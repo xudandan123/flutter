@@ -19,7 +19,7 @@ class _AgentLoginState extends State<AgentLogin> {
   @override
   void initState() {
     super.initState();
-    creatChoice(choiceDataList, 1, (btnGroups) {
+    creatChoice(serviceTag['Step1'], 1, (btnGroups) {
       setState(() {
         btnGroup = btnGroups;
       });
@@ -43,7 +43,7 @@ class _AgentLoginState extends State<AgentLogin> {
         bottom: PreferredSize(
           child: TabButton.createBtn(Constants.userTab, _activeBtn, (k) {
             if (k == 0) {
-              creatChoice(choiceDataList, 1, (btnGroups) {
+              creatChoice(serviceTag['Step1'], 1, (btnGroups) {
                 setState(() {
                   btnGroup = btnGroups;
                 });
@@ -135,7 +135,7 @@ class _AgentLoginState extends State<AgentLogin> {
                             constraints: BoxConstraints(
                               minWidth: double.infinity, //宽度尽可能大
                             ),
-                            child: Container(height: 20, child: Text('选择如下标签')),
+                            child: Container(height: 20, child: Text('选择如下标签', style: TextStyle(fontSize: 10),)),
                           ),
                           SizedBox(height: 12),
                           Column(
