@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(new HomePage());
+// void main() => runApp(new HomePage());
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,9 +10,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
-  String _name;
+  String _name = '';
 
-  String _password;
+  String _password = '';
 
   void _forSubmitted() {
     var _form = _formKey.currentState;
@@ -48,7 +48,9 @@ class _HomePageState extends State<HomePage> {
                     labelText: 'Your Name',
                   ),
                   onSaved: (val) {
-                    _name = val;
+                    setState(() {
+                      _name = val;
+                    });
                   },
                 ),
                 new TextFormField(
@@ -63,6 +65,7 @@ class _HomePageState extends State<HomePage> {
                     _password = val;
                   },
                 ),
+                Text(_name)
               ],
             ),
           ),

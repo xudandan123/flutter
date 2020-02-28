@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/constants.dart';
 
 class TabButton {
-  static createBtn(userTab, _activeIndex, pressed) {
+  static createBtn(userTab, _activeIndex, pressed, double marginS) {
     List<Widget> buttonList = [];
     for (int k = 0; k < userTab.length; k++) {
       buttonList.add(MyButton(
@@ -16,10 +16,10 @@ class TabButton {
     return Center(
       child: Container(
         // width: 250,
-        margin: EdgeInsets.fromLTRB(26, 0, 26, 0),
+        margin: EdgeInsets.fromLTRB(marginS, 0, marginS, marginS != 0 ? 16 : 0),
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Constants.COLOR_CCCCCC, width: 1),
+          color: Constants.COLOR_e5e5e5,
+          border: Border.all(color: marginS != 0 ? Constants.COLOR_CCCCCC : Constants.COLOR_8080, width: 1),
           borderRadius: BorderRadius.all(Radius.circular(23.0)),
         ),
         child: Row(
@@ -53,7 +53,7 @@ class MyButton extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             // 容器的背景颜色和背景图片
-            color: this.activeBtn ? Constants.COLOR_1FB3C4 : Colors.white,
+            color: this.activeBtn ? Constants.COLOR_1FB3C4 : Constants.COLOR_e5e5e5,
             borderRadius: BorderRadius.all(Radius.circular(23.0)),
           ),
           child: Text(

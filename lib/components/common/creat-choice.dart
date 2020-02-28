@@ -11,12 +11,12 @@ import 'package:flutter_app/constants/constants.dart';
           margin: EdgeInsets.only(bottom: 10),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(
+              // color: dataList[i]['text'] != '' ? Colors.white : Constants.COLOR_e5e5e5,
+              border: dataList[i]['text'] != '' ? Border.all(
                   color: activeNum == i
                       ? Constants.COLOR_1FB3C4
-                      : Color(0xDDDDDDDD),
-                  width: 1),
+                      :Constants.COLOR_8080,
+                  width: 1) : null,
               borderRadius: BorderRadius.circular(16.0), //3像素圆角
             ),
             child: Center(

@@ -133,7 +133,34 @@ class Constants {
       "left": 10.0
     }
   ];
-
+  static List hasOr = [
+    {
+      "text": "有",
+      "height": 32.0,
+      "right": 0.0,
+      "left": 0.0
+    },
+    {
+      "text": "没有",
+      "height": 32.0,
+      "right": 0.0,
+      "left": 0.0
+    }
+  ];
+    static List companyOr = [
+    {
+      "text": "有定向单位",
+      "height": 32.0,
+      "right": 0.0,
+      "left": 0.0
+    },
+    {
+      "text": "没有",
+      "height": 32.0,
+      "right": 0.0,
+      "left": 0.0
+    }
+  ];
   // static init() async {
   //   final _di = DeviceInfoPlugin();
   //   if (Platform.isAndroid) {
