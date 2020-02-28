@@ -4,6 +4,7 @@ Map serviceTag = {
     "limit": '多选',
     "hasOr": false,
     "hasInput": false,
+    "key": "step1_1",
     "list": [
       {"id": 1, "text": "撰写推荐报告"},
       {"id": 2, "text": "简历修改"},
@@ -18,6 +19,7 @@ Map serviceTag = {
     "limit": '',
     "hasOr": true,
     "hasInput": true,
+    "key": "step2_1",
     "list": [
       {"id": 1, "text": "世界500强名企"},
       {"id": 2, "text": "中国100强名企"},
@@ -31,6 +33,7 @@ Map serviceTag = {
     "limit": '多选2项',
     "hasOr": false,
     "hasInput": false,
+    "key": "step3_1",
     "list": [
       {"id": 1, "text": "上海"},
       {"id": 2, "text": "北京"},
@@ -51,6 +54,7 @@ Map serviceTag = {
     "limit": '最多选2项',
     "hasOr": false,
     "hasInput": false,
+    "key": "step4_1",
     "list": [
       {"id": 1, "text": "互联网IT信息"},
       {"id": 2, "text": "金融投资证券"},
@@ -67,6 +71,7 @@ Map serviceTag = {
     "limit": '最多选3项',
     "hasOr": false,
     "hasInput": false,
+    "key": "step5_1",
     "list": [
       {"id": 1, "text": "专业技术类"},
       {"id": 2, "text": "工程施工类"},
@@ -84,6 +89,7 @@ Map serviceTag = {
     "limit": '最多选3项',
     "hasOr": false,
     "hasInput": false,
+    "key": "step6_1",
     "list": [
       {"id": 1, "text": "不限"},
       {"id": -99, "text": ""},

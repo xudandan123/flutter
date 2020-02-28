@@ -4,6 +4,7 @@ import 'package:flutter_app/data.dart';
 import 'package:flutter_app/components/common/tab-button.dart';
 import 'package:flutter_app/components/common/creat-choice.dart';
 import 'package:flutter_app/components/common/input-add.dart';
+import 'package:flutter_app/components/common/toast.dart';
 
 class AgentLogin extends StatefulWidget {
   AgentLogin({Key key}) : super(key: key);
@@ -12,10 +13,10 @@ class AgentLogin extends StatefulWidget {
 }
 
 class _AgentLoginState extends State<AgentLogin> {
-  int _activeBtn = 0;
-  int _activeTag = 0;
-  int _activeTag2 = 0;
-  int _step = 1;
+  int _activeBtn = 0;// 顶部切换按钮的索引
+  int _activeTag = 0;// 有还是没有切换的索引
+  int _activeTag2 = 0;// 另一个切换的索引
+  int _step = 1;// 当前的页码
   List<Widget> btnGroup = [];
   List _nameGroup = [];
   @override
@@ -203,6 +204,8 @@ class _AgentLoginState extends State<AgentLogin> {
                                   setState(() {
                                     if (_nameGroup.length < 3) {
                                       _nameGroup.add(text);
+                                    }else {
+                                      Toast.toast(context, msg: "不能超过3");
                                     }
                                   });
                                 }, (index) {

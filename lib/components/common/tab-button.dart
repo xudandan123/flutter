@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/constants.dart';
 
 class TabButton {
-  static createBtn(userTab, _activeIndex, pressed, double marginS) {
+  static createBtn(userTab, activeIndex, pressed, double marginS) {
     List<Widget> buttonList = [];
     for (int k = 0; k < userTab.length; k++) {
       buttonList.add(MyButton(
         describe: userTab[k],
-        activeBtn: _activeIndex == k,
+        activeBtn: activeIndex == k,
         pressed: () {
           pressed(k);
         },
