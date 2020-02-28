@@ -12,7 +12,6 @@ import 'package:flutter_app/constants/constants.dart';
           margin: EdgeInsets.only(bottom: 10),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              // color: dataList[i]['text'] != '' ? Colors.white : Constants.COLOR_e5e5e5,
               border: dataList[i]['text'] != '' ? Border.all(
                   color: activeNum.indexOf(dataList[i]['id']) != -1
                       ? Constants.COLOR_1FB3C4
@@ -33,7 +32,7 @@ import 'package:flutter_app/constants/constants.dart';
         ),
         onTap: () {
           calback2(dataList[i]['id']);
-          activeId.add(dataList[i]['id']);
+          activeId.indexOf(dataList[i]['id']) == -1 ? activeId.add(dataList[i]['id']) : activeId.remove(dataList[i]['id']);
           creatChoice(dataList, listNum, activeId, calback, calback2);
         },
       );

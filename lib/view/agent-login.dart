@@ -20,12 +20,11 @@ class _AgentLoginState extends State<AgentLogin> {
   List<Widget> btnGroup = []; // 选择按钮数组
   List _nameGroup = []; //输入按钮数组
   Map agentUserInfo = {};
-  List activeId = [];
   @override
   void initState() {
     super.initState();
     Map currentMap = serviceTag['Step${_step}'];
-    this._changeList(currentMap["list"], currentMap["type"], activeId);
+    this._changeList(currentMap["list"], currentMap["type"], []);
   }
 
   _changeList(dataList, type, activeId) {
@@ -35,10 +34,8 @@ class _AgentLoginState extends State<AgentLogin> {
       });
     }, (id) {
       String key = serviceTag['Step${_step}']["key"];
-      print(agentUserInfo[key] != null);
       setState(() {
         btnGroup = [];
-        activeId.add(id);
         if(agentUserInfo.isEmpty){
           agentUserInfo = {
             key:{
@@ -56,7 +53,6 @@ class _AgentLoginState extends State<AgentLogin> {
           }
           agentUserInfo = _currentInfo;
         }
-        print(agentUserInfo);
       });
     });
   }
@@ -131,9 +127,9 @@ class _AgentLoginState extends State<AgentLogin> {
                                 padding: EdgeInsets.all(0),
                                 icon: Icon(Icons.arrow_forward),
                                 onPressed: () {
-                                  if (_step < serviceTag.length) {
-                                    List ids = [];
-                                    Map currentMap = serviceTag['Step${_step+1}'];
+                                  Map currentMap = serviceTag['Step${_step+1}'];
+                                  List ids = [];
+                                  if (_step < serviceTag.length && agentUserInfo[serviceTag['Step${_step}']["key"]] != null) {
                                     if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
                                       ids = agentUserInfo[currentMap["key"]]["ids"];
                                     }
@@ -180,7 +176,6 @@ class _AgentLoginState extends State<AgentLogin> {
                             ),
                           ),
                           SizedBox(height: 28),
-                          // Container(child: Text('选择如下标签')),
                           ConstrainedBox(
                             constraints: BoxConstraints(
                               minWidth: double.infinity, //宽度尽可能大
@@ -199,7 +194,7 @@ class _AgentLoginState extends State<AgentLogin> {
                                   ? TabButton.createBtn(
                                       Constants.hasOr, _activeTag, (k) {
                                       Map currentMap = serviceTag['Step${_step}'];
-                                      List dataLists = k == 0 ? currentMap["list"]["list"] : [];
+                                      List dataLists = k == 0 ? currentMap["list"] : [];
                                       List ids = [];
                                       if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
                                         ids = agentUserInfo[currentMap["key"]]["ids"];
@@ -210,10 +205,7 @@ class _AgentLoginState extends State<AgentLogin> {
                                       });
                                     }, 0)
                                   : SizedBox(height: 0),
-                              SizedBox(
-                                  height: serviceTag['Step${_step}']["hasOr"]
-                                      ? 10
-                                      : 0),
+                              SizedBox(height: serviceTag['Step${_step}']["hasOr"] ? 10 : 0),
                             ],
                           ),
                           Column(
@@ -222,11 +214,7 @@ class _AgentLoginState extends State<AgentLogin> {
                           serviceTag['Step${_step}']["hasInput"]
                               ? Column(
                                   children: <Widget>[
-                                    Divider(
-                                      height:
-                                          16, //容器器⾼高度，不不是线的⾼高度 indent: 10, //左侧间距
-                                      color: Constants.COLOR_333333,
-                                    ),
+                                    SizedBox(height: 46),
                                     TabButton.createBtn(
                                         Constants.companyOr, _activeTag2, (k) {
                                       print(k);
