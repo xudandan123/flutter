@@ -17,23 +17,46 @@ class _AgentLoginState extends State<AgentLogin> {
   int _activeTag = 0;// 有还是没有切换的索引
   int _activeTag2 = 0;// 另一个切换的索引
   int _step = 1;// 当前的页码
-  List<Widget> btnGroup = [];
-  List _nameGroup = [];
+  List<Widget> btnGroup = []; // 选择按钮数组
+  List _nameGroup = []; //输入按钮数组
+  Map agentUserInfo = {};
+  List activeId = [];
   @override
   void initState() {
     super.initState();
-    this._changeList(serviceTag['Step${_step}']["list"]);
+    Map currentMap = serviceTag['Step${_step}'];
+    this._changeList(currentMap["list"], currentMap["type"], activeId);
   }
 
-  _changeList(dataList) {
-    creatChoice(dataList, serviceTag['Step${_step}']["type"], (btnGroups) {
+  _changeList(dataList, type, activeId) {
+    creatChoice(dataList,type , activeId, (btnGroups) {
       setState(() {
         btnGroup = btnGroups;
       });
     }, (id) {
-      print("当前选中数据的id为${id}");
+      String key = serviceTag['Step${_step}']["key"];
+      print(agentUserInfo[key] != null);
       setState(() {
         btnGroup = [];
+        activeId.add(id);
+        if(agentUserInfo.isEmpty){
+          agentUserInfo = {
+            key:{
+              "ids": [id]
+            }
+          };
+        }else{
+          Map _currentInfo = {...agentUserInfo};
+          if(_currentInfo[key] != null){
+            _currentInfo[key]["ids"].add(id);
+          }else{
+            _currentInfo[key] = {
+              "ids": [id]
+            };
+          }
+          agentUserInfo = _currentInfo;
+        }
+        print(agentUserInfo);
       });
     });
   }
@@ -50,7 +73,12 @@ class _AgentLoginState extends State<AgentLogin> {
         bottom: PreferredSize(
           child: TabButton.createBtn(Constants.userTab, _activeBtn, (k) {
             if (k == 0) {
-              this._changeList(serviceTag['Step${_step}']["list"]);
+              List ids = [];
+              Map currentMap = serviceTag['Step${_step}'];
+              if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
+                ids = agentUserInfo[currentMap["key"]]["ids"];
+              }
+              this._changeList(currentMap["list"],currentMap["type"], ids);
             }
             setState(() {
               _activeBtn = k;
@@ -79,34 +107,41 @@ class _AgentLoginState extends State<AgentLogin> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              IconButton(
+                              _step > 1 ? IconButton(
                                 alignment: Alignment.centerLeft,
                                 padding: EdgeInsets.all(0),
                                 icon: Icon(Icons.arrow_back),
                                 onPressed: () {
-                                  setState(() {
-                                    if (_step > 1) {
-                                      _step -= 1;
-                                      this._changeList(
-                                          serviceTag['Step${_step}']["list"]);
+                                  if (_step > 1) {
+                                    List ids = [];
+                                    Map currentMap = serviceTag['Step${_step-1}'];
+                                    if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
+                                      ids = agentUserInfo[currentMap["key"]]["ids"];
                                     }
-                                  });
+                                    this._changeList(currentMap["list"], currentMap["type"], ids);
+                                    setState(() {
+                                      _step -= 1;
+                                    });
+                                  }
                                 },
-                              ),
+                              ) : SizedBox(width: 0),
                               Text('服务标签 ${_step}/${serviceTag.length}'),
                               IconButton(
                                 alignment: Alignment.centerRight,
                                 padding: EdgeInsets.all(0),
                                 icon: Icon(Icons.arrow_forward),
                                 onPressed: () {
-                                  setState(() {
-                                    if (_step < serviceTag.length) {
-                                      _step += 1;
-                                      this._changeList(
-                                        serviceTag['Step${_step}']["list"],
-                                      );
+                                  if (_step < serviceTag.length) {
+                                    List ids = [];
+                                    Map currentMap = serviceTag['Step${_step+1}'];
+                                    if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
+                                      ids = agentUserInfo[currentMap["key"]]["ids"];
                                     }
-                                  });
+                                    this._changeList(currentMap["list"], currentMap["type"], ids);
+                                    setState(() {
+                                      _step += 1;
+                                    });
+                                  }
                                 },
                               ),
                             ],
@@ -163,10 +198,13 @@ class _AgentLoginState extends State<AgentLogin> {
                               serviceTag['Step${_step}']["hasOr"]
                                   ? TabButton.createBtn(
                                       Constants.hasOr, _activeTag, (k) {
-                                      List dataLists = k == 0
-                                          ? serviceTag['Step${_step}']["list"]
-                                          : [];
-                                      this._changeList(dataLists);
+                                      Map currentMap = serviceTag['Step${_step}'];
+                                      List dataLists = k == 0 ? currentMap["list"]["list"] : [];
+                                      List ids = [];
+                                      if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
+                                        ids = agentUserInfo[currentMap["key"]]["ids"];
+                                      }
+                                      this._changeList(dataLists,currentMap["type"], ids);
                                       setState(() {
                                         _activeTag = k;
                                       });

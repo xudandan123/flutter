@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/constants.dart';
 
-  creatChoice(List dataList, int listNum, calback, calback2, [activeNum]) {
+  creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
     List<Widget> btnGroupList = [];
     List<Widget> btnGroups = [];
+    List activeId = [...activeNum];
     Widget _childBtn(int i) {
       return GestureDetector(
         child: Container(
@@ -13,7 +14,7 @@ import 'package:flutter_app/constants/constants.dart';
             decoration: BoxDecoration(
               // color: dataList[i]['text'] != '' ? Colors.white : Constants.COLOR_e5e5e5,
               border: dataList[i]['text'] != '' ? Border.all(
-                  color: activeNum == i
+                  color: activeNum.indexOf(dataList[i]['id']) != -1
                       ? Constants.COLOR_1FB3C4
                       :Constants.COLOR_8080,
                   width: 1) : null,
@@ -24,7 +25,7 @@ import 'package:flutter_app/constants/constants.dart';
                 dataList[i]['text'],
                 style: TextStyle(
                     color:
-                        activeNum == i ? Constants.COLOR_1FB3C4 : Colors.black,
+                        activeNum.indexOf(dataList[i]['id']) != -1 ? Constants.COLOR_1FB3C4 : Colors.black,
                     fontSize: 14),
               ),
             ),
@@ -32,7 +33,8 @@ import 'package:flutter_app/constants/constants.dart';
         ),
         onTap: () {
           calback2(dataList[i]['id']);
-          creatChoice(dataList, listNum,calback, calback2, i);
+          activeId.add(dataList[i]['id']);
+          creatChoice(dataList, listNum, activeId, calback, calback2);
         },
       );
     }
