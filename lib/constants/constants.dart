@@ -161,6 +161,28 @@ class Constants {
       "left": 0.0
     }
   ];
+   static List agentUserList = [
+     {
+       "step": 1,
+       "text": "1. K-服务标签  - 6"
+     },
+     {
+       "step": 7,
+       "text": "2. M-照片视频 - 1"
+     },
+     {
+       "step": 8,
+       "text": "3. N-学历标签 - 2"
+     },
+     {
+       "step": 10,
+       "text": "4. O-职业标签 - 3"
+     },
+     {
+       "step": 13,
+       "text": "5. P-身份标签  - 4"
+     }
+   ];
   // static init() async {
   //   final _di = DeviceInfoPlugin();
   //   if (Platform.isAndroid) {

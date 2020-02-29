@@ -9,9 +9,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: MaterialApp(
-          title: '全民推荐',
-          debugShowCheckedModeBanner: false,
-          home: AgentLogin()),
+        title: '全民推荐',
+        debugShowCheckedModeBanner: false,
+        home: AgentLogin(),
+      ),
     );
   }
 }

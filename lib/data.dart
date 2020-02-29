@@ -1,11 +1,12 @@
 Map serviceTag = {
   'Step1': {
-    "type": 1,
-    "limit": '多选',
-    "hasOr": false,
-    "hasInput": false,
-    "key": "step1_1",
-    "list": [
+    "type": 1, // 按钮的排列类型 1为竖排1列，2为竖排2列
+    "steptitle": "服务标签 1/6", // 当前步骤title
+    "titles": '您提供的服务有哪些 ？ 多选', // 选择提示
+    "hasOr": false, // 有还是没有
+    "hasInput": false, // 有无输入框
+    "key": "step1_1", // 存数据的key
+    "list": [ // 数据列表
       {"id": 1, "text": "撰写推荐报告"},
       {"id": 2, "text": "简历修改"},
       {"id": 3, "text": "择业辅导"},
@@ -16,7 +17,8 @@ Map serviceTag = {
   },
   'Step2': {
     "type": 1,
-    "limit": '',
+    "steptitle": "服务标签 2/6",
+    "titles": '您有定向推荐服务吗 ？',
     "hasOr": true,
     "hasInput": true,
     "key": "step2_1",
@@ -30,7 +32,8 @@ Map serviceTag = {
   },
   'Step3': {
     "type": 2,
-    "limit": '多选2项',
+    "steptitle": "服务标签 3/6",
+    "titles": '您专注服务哪些城市 ？ 多选2项',
     "hasOr": false,
     "hasInput": false,
     "key": "step3_1",
@@ -51,7 +54,8 @@ Map serviceTag = {
   },
   'Step4': {
     "type": 1,
-    "limit": '最多选2项',
+    "steptitle": "服务标签 4/6",
+    "titles": '您专注服务哪些行业 ？ 最多选2项',
     "hasOr": false,
     "hasInput": false,
     "key": "step4_1",
@@ -68,7 +72,8 @@ Map serviceTag = {
   },
   'Step5': {
     "type": 1,
-    "limit": '最多选3项',
+    "steptitle": "服务标签 5/6",
+    "titles": '您专注哪类岗位 ？ 多选3项',
     "hasOr": false,
     "hasInput": false,
     "key": "step5_1",
@@ -86,7 +91,8 @@ Map serviceTag = {
   },
   'Step6': {
     "type": 2,
-    "limit": '最多选3项',
+    "steptitle": "服务标签 5/6",
+    "titles": '您专注服务哪些职级 ？ 多选3项',
     "hasOr": false,
     "hasInput": false,
     "key": "step6_1",
@@ -104,5 +110,14 @@ Map serviceTag = {
       {"id": 10, "text": "高级管理级"},
       {"id": 11, "text": "技术类专家级"},
     ]
+  },
+  'Step7': {
+    "type": 2,
+    "steptitle": "照片视频 1/1",
+    "titles": '上传个人照片或视频吧',
+    "hasOr": false,
+    "hasInput": false,
+    "key": "step6_1",
+    "list": []
   }
 };
