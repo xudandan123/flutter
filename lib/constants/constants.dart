@@ -145,6 +145,15 @@ class Constants {
     {"id": 3, "text": "本科"},
     {"id": 4, "text": "专科"},
   ];
+  static List foreignLanguage = [
+    {"id": 1, "text": "英语"},
+    {"id": 2, "text": "日语"},
+    {"id": 3, "text": "法语"},
+    {"id": 4, "text": "德语"},
+    {"id": 5, "text": "意大利语"},
+    {"id": 6, "text": "西班牙语"},
+    {"id": 7, "text": "俄语"},
+  ];
   // static init() async {
   //   final _di = DeviceInfoPlugin();
   //   if (Platform.isAndroid) {

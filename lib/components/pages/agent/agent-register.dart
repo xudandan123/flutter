@@ -23,12 +23,13 @@ class AgentRegister extends StatefulWidget {
 
 class _AgentRegisterState extends State<AgentRegister> {
   int step;
-  int _activeBtn = 0;// 顶部切换按钮的索引
-  int _activeTag = 0;// 有还是没有切换的索引
-  int _activeTag2 = 0;// 另一个切换的索引
-  int _step = 1;// 当前的页码
+  int _activeBtn = 0; // 顶部切换按钮的索引
+  int _activeTag = 0; // 有还是没有切换的索引
+  int _activeTag2 = 0; // 另一个切换的索引
+  int _step = 1; // 当前的页码
   List<Widget> btnGroup = []; // 选择按钮数组
-  List<Widget> btnGroup2 = []; // 选择按钮数组
+  List<Widget> btnGroup2 = []; // 选择学历按钮数组
+  List<Widget> btnGroup3 = []; // 选择外语按钮数组
   List _nameGroup = []; //输入按钮数组
   Map agentUserInfo = {};
   // bool _showMsg = false;
@@ -40,23 +41,27 @@ class _AgentRegisterState extends State<AgentRegister> {
     _step = step;
     Map pageInfoData = serviceTag['Step${_step}'];
     this._changeList(pageInfoData["list"], pageInfoData["type"], []);
-    this._changeList(pageInfoData["list"], 3, [], Constants.education);
-    // if(_step == 8) {
-      
-    // }
+    this._changeList(pageInfoData["list"], 3, [], Constants.education, 8);
+    this._changeList(
+        pageInfoData["list"], 3, [], Constants.foreignLanguage, 15);
   }
-  _changeList(dataList, type, activeId, [list2]) {
-    if(list2 != null) {
-      creatChoice(list2, type, activeId, (btnGroups){
+
+  _changeList(dataList, type, activeId, [list2, step]) {
+    if (list2 != null) {
+      creatChoice(list2, type, activeId, (btnGroups) {
         setState(() {
-          btnGroup2 = btnGroups;
+          if (step == 8) {
+            btnGroup2 = btnGroups;
+          } else if (step == 15) {
+            btnGroup3 = btnGroups;
+          }
         });
       }, (id) {
         print(id);
       });
       return;
     }
-    creatChoice(dataList,type , activeId, (btnGroups) {
+    creatChoice(dataList, type, activeId, (btnGroups) {
       setState(() {
         btnGroup = btnGroups;
       });
@@ -64,17 +69,17 @@ class _AgentRegisterState extends State<AgentRegister> {
       String key = serviceTag['Step${_step}']["key"];
       setState(() {
         btnGroup = [];
-        if(agentUserInfo.isEmpty){
+        if (agentUserInfo.isEmpty) {
           agentUserInfo = {
-            key:{
+            key: {
               "ids": [id]
             }
           };
-        }else{
+        } else {
           Map _currentInfo = {...agentUserInfo};
-          if(_currentInfo[key] != null){
+          if (_currentInfo[key] != null) {
             _currentInfo[key]["ids"].add(id);
-          }else{
+          } else {
             _currentInfo[key] = {
               "ids": [id]
             };
@@ -100,10 +105,11 @@ class _AgentRegisterState extends State<AgentRegister> {
           child: TabButton.createBtn(Constants.userTab, _activeBtn, (k) {
             if (k == 0) {
               List ids = [];
-              if(agentUserInfo.isEmpty == false && agentUserInfo[pageInfoData["key"]] != null){
+              if (agentUserInfo.isEmpty == false &&
+                  agentUserInfo[pageInfoData["key"]] != null) {
                 ids = agentUserInfo[pageInfoData["key"]]["ids"];
               }
-              this._changeList(pageInfoData["list"],pageInfoData["type"], ids);
+              this._changeList(pageInfoData["list"], pageInfoData["type"], ids);
             }
             // print();
             setState(() {
@@ -133,44 +139,57 @@ class _AgentRegisterState extends State<AgentRegister> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              _step > 1 ? IconButton(
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.all(0),
-                                icon: Icon(Icons.arrow_back),
-                                onPressed: () {
-                                  if (_step > 1) {
-                                    List ids = [];
-                                    Map currentMap = serviceTag['Step${_step-1}'];
-                                    if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
-                                      ids = agentUserInfo[currentMap["key"]]["ids"];
-                                    }
-                                    this._changeList(currentMap["list"], currentMap["type"], ids);
-                                    setState(() {
-                                      _step -= 1;
-                                      // _showMsg = false;
-                                    });
-                                  }
-                                },
-                              ) : SizedBox(width: 0),
+                              _step > 1
+                                  ? IconButton(
+                                      alignment: Alignment.centerLeft,
+                                      padding: EdgeInsets.all(0),
+                                      icon: Icon(Icons.arrow_back),
+                                      onPressed: () {
+                                        if (_step > 1) {
+                                          List ids = [];
+                                          Map currentMap =
+                                              serviceTag['Step${_step - 1}'];
+                                          if (agentUserInfo.isEmpty == false &&
+                                              agentUserInfo[
+                                                      currentMap["key"]] !=
+                                                  null) {
+                                            ids =
+                                                agentUserInfo[currentMap["key"]]
+                                                    ["ids"];
+                                          }
+                                          this._changeList(currentMap["list"],
+                                              currentMap["type"], ids);
+                                          setState(() {
+                                            _step -= 1;
+                                            // _showMsg = false;
+                                          });
+                                        }
+                                      },
+                                    )
+                                  : SizedBox(width: 0),
                               Text(pageInfoData["steptitle"]),
                               IconButton(
                                 alignment: Alignment.centerRight,
                                 padding: EdgeInsets.all(0),
                                 icon: Icon(Icons.arrow_forward),
                                 onPressed: () {
-                                  Map currentMap = serviceTag['Step${_step+1}'];
+                                  Map currentMap =
+                                      serviceTag['Step${_step + 1}'];
                                   List ids = [];
                                   if (_step < serviceTag.length) {
-                                    if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
-                                      ids = agentUserInfo[currentMap["key"]]["ids"];
+                                    if (agentUserInfo.isEmpty == false &&
+                                        agentUserInfo[currentMap["key"]] !=
+                                            null) {
+                                      ids = agentUserInfo[currentMap["key"]]
+                                          ["ids"];
                                     }
-                                    print(currentMap["list"]);
-                                    this._changeList(currentMap["list"], currentMap["type"], ids);
+                                    this._changeList(currentMap["list"],
+                                        currentMap["type"], ids);
                                     setState(() {
                                       _step += 1;
                                       // _showMsg = false;
                                     });
-                                  }else{
+                                  } else {
                                     setState(() {
                                       // _showMsg = true;
                                     });
@@ -212,31 +231,52 @@ class _AgentRegisterState extends State<AgentRegister> {
                               ),
                             ),
                           ),
+                          _step == 15
+                              ? Column(
+                                  children: <Widget>[
+                                    SizedBox(height: 15,),
+                                    Wrap(
+                                      spacing: 16.0, // 主轴(水平)方向间距
+                                      runSpacing: 3.0, // 纵轴（垂直）方向间距
+                                      alignment: WrapAlignment.start,
+                                      children: btnGroup3),
+                                  ],
+                                )
+                              : SizedBox(height: 0),
                           SizedBox(height: 28),
-                          pageInfoData["page"] != '' ? Chips[pageInfoData['page']] : SizedBox(height: 0),
-                          pageInfoData["list"].length != 0 ? ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minWidth: double.infinity, //宽度尽可能大
-                            ),
-                            child: Container(
-                                height: 20,
-                                child: Text(
-                                  '选择如下标签',
-                                  style: TextStyle(fontSize: 10),
-                                )),
-                          ) : SizedBox(height: 0),
+                          pageInfoData["page"] != ''
+                              ? Chips[pageInfoData['page']]
+                              : SizedBox(height: 0),
+                          pageInfoData["list"].length != 0
+                              ? ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    minWidth: double.infinity, //宽度尽可能大
+                                  ),
+                                  child: Container(
+                                      height: 20,
+                                      child: Text(
+                                        '选择如下标签',
+                                        style: TextStyle(fontSize: 10),
+                                      )),
+                                )
+                              : SizedBox(height: 0),
                           SizedBox(height: 2),
                           Column(
                             children: <Widget>[
                               pageInfoData["hasOr"]
                                   ? TabButton.createBtn(
                                       Constants.hasOr, _activeTag, (k) {
-                                      List dataLists = k == 0 ? pageInfoData["list"] : [];
+                                      List dataLists =
+                                          k == 0 ? pageInfoData["list"] : [];
                                       List ids = [];
-                                      if(agentUserInfo.isEmpty == false && agentUserInfo[pageInfoData["key"]] != null){
-                                        ids = agentUserInfo[pageInfoData["key"]]["ids"];
+                                      if (agentUserInfo.isEmpty == false &&
+                                          agentUserInfo[pageInfoData["key"]] !=
+                                              null) {
+                                        ids = agentUserInfo[pageInfoData["key"]]
+                                            ["ids"];
                                       }
-                                      this._changeList(dataLists,pageInfoData["type"], ids);
+                                      this._changeList(
+                                          dataLists, pageInfoData["type"], ids);
                                       setState(() {
                                         _activeTag = k;
                                       });
@@ -245,34 +285,40 @@ class _AgentRegisterState extends State<AgentRegister> {
                               SizedBox(height: pageInfoData["hasOr"] ? 10 : 0),
                             ],
                           ),
-                          pageInfoData["list"].length != 0 ?
-                          Container(
-                            child: pageInfoData["type"] != 3 ? Column(
-                              children: btnGroup,
-                            ) :
-                            // Text('123'),
-                            Wrap(
-                              spacing: 7.0, // 主轴(水平)方向间距
-                              runSpacing: 3.0, // 纵轴（垂直）方向间距
-                              alignment: WrapAlignment.start,
-                              children: btnGroup
-                            ),
-                          ) : SizedBox(height: 0),
-                           _step == 8 ?
-                           Column(
-                             children: <Widget>[
-                                Divider(height: 45, color: Constants.COLOR_999999),
-                                Wrap(
-                                  spacing: 16.0, // 主轴(水平)方向间距
-                                  runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                  alignment: WrapAlignment.start,
-                                  children: btnGroup2
-                                ),
-                                Divider(height: 45, color: Constants.COLOR_999999),
-                             ],
-                           ) :
-                           SizedBox(height: 0),
-                          pageInfoData["hasInput"] && pageInfoData["inputTab"] != false
+                          pageInfoData["list"].length != 0
+                              ? Container(
+                                  child: pageInfoData["type"] != 3
+                                      ? Column(
+                                          children: btnGroup,
+                                        )
+                                      :
+                                      // Text('123'),
+                                      Wrap(
+                                          spacing: 7.0, // 主轴(水平)方向间距
+                                          runSpacing: 3.0, // 纵轴（垂直）方向间距
+                                          alignment: WrapAlignment.start,
+                                          children: btnGroup),
+                                )
+                              : SizedBox(height: 0),
+                          _step == 8
+                              ? Column(
+                                  children: <Widget>[
+                                    Divider(
+                                        height: 45,
+                                        color: Constants.COLOR_999999),
+                                    Wrap(
+                                        spacing: 16.0, // 主轴(水平)方向间距
+                                        runSpacing: 3.0, // 纵轴（垂直）方向间距
+                                        alignment: WrapAlignment.start,
+                                        children: btnGroup2),
+                                    Divider(
+                                        height: 45,
+                                        color: Constants.COLOR_999999),
+                                  ],
+                                )
+                              : SizedBox(height: 0),
+                          pageInfoData["hasInput"] &&
+                                  pageInfoData["inputTab"] != false
                               ? Column(
                                   children: <Widget>[
                                     SizedBox(height: 46),
@@ -291,7 +337,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                   setState(() {
                                     if (_nameGroup.length < 3) {
                                       _nameGroup.add(text);
-                                    }else {
+                                    } else {
                                       Toast.toast(context, msg: "不能超过3");
                                     }
                                   });

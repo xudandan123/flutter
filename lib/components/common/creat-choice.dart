@@ -11,7 +11,7 @@ creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
       btnGroups.add(GestureDetector(
         child: Container(
           height: 32,
-          margin: EdgeInsets.only(bottom: 10),
+          margin: EdgeInsets.only(bottom: 6),
           padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
           decoration: BoxDecoration(
             border: dataList[i]['text'] != ''
@@ -67,7 +67,6 @@ creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
               Positioned(
                 left: 15.0,
                 child: Text(
-                  // pageInfoData['titles'],
                   dataList[i]['text'],
                   style: TextStyle(
                       color: activeNum.indexOf(dataList[i]['id']) != -1
@@ -78,16 +77,6 @@ creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
               ),
             ],
           ),
-          // child: Center(
-          //   child: Text(
-          //     dataList[i]['text'],
-          // style: TextStyle(
-          //     color: activeNum.indexOf(dataList[i]['id']) != -1
-          //         ? Constants.COLOR_1FB3C4
-          //         : Colors.black,
-          //     fontSize: 14),
-          // ),
-          // ),
         ),
       ),
       onTap: () {
