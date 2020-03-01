@@ -61,16 +61,33 @@ creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
                 : null,
             borderRadius: BorderRadius.circular(16.0), //3像素圆角
           ),
-          child: Center(
-            child: Text(
-              dataList[i]['text'],
-              style: TextStyle(
-                  color: activeNum.indexOf(dataList[i]['id']) != -1
-                      ? Constants.COLOR_1FB3C4
-                      : Colors.black,
-                  fontSize: 14),
-            ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Positioned(
+                left: 15.0,
+                child: Text(
+                  // pageInfoData['titles'],
+                  dataList[i]['text'],
+                  style: TextStyle(
+                      color: activeNum.indexOf(dataList[i]['id']) != -1
+                          ? Constants.COLOR_1FB3C4
+                          : Colors.black,
+                      fontSize: 14),
+                ),
+              ),
+            ],
           ),
+          // child: Center(
+          //   child: Text(
+          //     dataList[i]['text'],
+          // style: TextStyle(
+          //     color: activeNum.indexOf(dataList[i]['id']) != -1
+          //         ? Constants.COLOR_1FB3C4
+          //         : Colors.black,
+          //     fontSize: 14),
+          // ),
+          // ),
         ),
       ),
       onTap: () {

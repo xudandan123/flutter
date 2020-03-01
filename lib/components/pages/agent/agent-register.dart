@@ -11,6 +11,7 @@ import 'package:flutter_app/components/pages/chips/register.dart';
 Map Chips = {
   "Images": Images(),
   "Forms": Forms(),
+  "Forms2": Forms2(),
 };
 
 class AgentRegister extends StatefulWidget {
@@ -37,9 +38,9 @@ class _AgentRegisterState extends State<AgentRegister> {
   void initState() {
     super.initState();
     _step = step;
-    Map currentMap = serviceTag['Step${_step}'];
-    this._changeList(currentMap["list"], currentMap["type"], []);
-    this._changeList(currentMap["list"], 3, [], Constants.education);
+    Map pageInfoData = serviceTag['Step${_step}'];
+    this._changeList(pageInfoData["list"], pageInfoData["type"], []);
+    this._changeList(pageInfoData["list"], 3, [], Constants.education);
     // if(_step == 8) {
       
     // }
@@ -86,7 +87,7 @@ class _AgentRegisterState extends State<AgentRegister> {
 
   @override
   Widget build(BuildContext context) {
-    print(serviceTag['Step${_step}']["list"].length);
+    Map pageInfoData = serviceTag['Step${_step}'];
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
@@ -99,11 +100,10 @@ class _AgentRegisterState extends State<AgentRegister> {
           child: TabButton.createBtn(Constants.userTab, _activeBtn, (k) {
             if (k == 0) {
               List ids = [];
-              Map currentMap = serviceTag['Step${_step}'];
-              if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
-                ids = agentUserInfo[currentMap["key"]]["ids"];
+              if(agentUserInfo.isEmpty == false && agentUserInfo[pageInfoData["key"]] != null){
+                ids = agentUserInfo[pageInfoData["key"]]["ids"];
               }
-              this._changeList(currentMap["list"],currentMap["type"], ids);
+              this._changeList(pageInfoData["list"],pageInfoData["type"], ids);
             }
             // print();
             setState(() {
@@ -152,7 +152,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                   }
                                 },
                               ) : SizedBox(width: 0),
-                              Text(serviceTag['Step${_step}']["steptitle"]),
+                              Text(pageInfoData["steptitle"]),
                               IconButton(
                                 alignment: Alignment.centerRight,
                                 padding: EdgeInsets.all(0),
@@ -183,11 +183,6 @@ class _AgentRegisterState extends State<AgentRegister> {
                             height: 8, //容器器⾼高度，不不是线的⾼高度 indent: 10, //左侧间距
                             color: Constants.COLOR_333333,
                           ),
-                          // Container(
-                          //   height: 18,
-                          //   alignment: Alignment.centerLeft,
-                          //   child: _showMsg ? Text("请先将本页信息填写完整", style: TextStyle(fontSize: 12, color: Colors.red),) : SizedBox(height: 0),
-                          // ),
                           SizedBox(height: 18),
                           Container(
                             height: 41,
@@ -207,7 +202,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                   Positioned(
                                     left: 10.0,
                                     child: Text(
-                                      serviceTag['Step${_step}']['titles'],
+                                      pageInfoData['titles'],
                                       style: TextStyle(
                                           fontSize: 14,
                                           color: Constants.COLOR_e5e5e5),
@@ -218,7 +213,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                             ),
                           ),
                           SizedBox(height: 28),
-                          serviceTag['Step${_step}']["list"].length != 0 ? ConstrainedBox(
+                          pageInfoData["page"] != '' ? Chips[pageInfoData['page']] : SizedBox(height: 0),
+                          pageInfoData["list"].length != 0 ? ConstrainedBox(
                             constraints: BoxConstraints(
                               minWidth: double.infinity, //宽度尽可能大
                             ),
@@ -232,27 +228,26 @@ class _AgentRegisterState extends State<AgentRegister> {
                           SizedBox(height: 2),
                           Column(
                             children: <Widget>[
-                              serviceTag['Step${_step}']["hasOr"]
+                              pageInfoData["hasOr"]
                                   ? TabButton.createBtn(
                                       Constants.hasOr, _activeTag, (k) {
-                                      Map currentMap = serviceTag['Step${_step}'];
-                                      List dataLists = k == 0 ? currentMap["list"] : [];
+                                      List dataLists = k == 0 ? pageInfoData["list"] : [];
                                       List ids = [];
-                                      if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
-                                        ids = agentUserInfo[currentMap["key"]]["ids"];
+                                      if(agentUserInfo.isEmpty == false && agentUserInfo[pageInfoData["key"]] != null){
+                                        ids = agentUserInfo[pageInfoData["key"]]["ids"];
                                       }
-                                      this._changeList(dataLists,currentMap["type"], ids);
+                                      this._changeList(dataLists,pageInfoData["type"], ids);
                                       setState(() {
                                         _activeTag = k;
                                       });
                                     }, 0)
                                   : SizedBox(height: 0),
-                              SizedBox(height: serviceTag['Step${_step}']["hasOr"] ? 10 : 0),
+                              SizedBox(height: pageInfoData["hasOr"] ? 10 : 0),
                             ],
                           ),
-                          serviceTag['Step${_step}']["list"].length != 0 ?
+                          pageInfoData["list"].length != 0 ?
                           Container(
-                            child: serviceTag['Step${_step}']["type"] != 3 ? Column(
+                            child: pageInfoData["type"] != 3 ? Column(
                               children: btnGroup,
                             ) :
                             // Text('123'),
@@ -262,8 +257,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                               alignment: WrapAlignment.start,
                               children: btnGroup
                             ),
-                          ) :
-                          Chips[serviceTag['Step${_step}']['page']],
+                          ) : SizedBox(height: 0),
                            _step == 8 ?
                            Column(
                              children: <Widget>[
@@ -278,7 +272,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                              ],
                            ) :
                            SizedBox(height: 0),
-                          serviceTag['Step${_step}']["hasInput"]
+                          pageInfoData["hasInput"] && pageInfoData["inputTab"] != false
                               ? Column(
                                   children: <Widget>[
                                     SizedBox(height: 46),
@@ -292,7 +286,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                   ],
                                 )
                               : SizedBox(height: 0),
-                          serviceTag['Step${_step}']["hasInput"]
+                          pageInfoData["hasInput"]
                               ? addCompany(_activeTag2, _nameGroup, (text) {
                                   setState(() {
                                     if (_nameGroup.length < 3) {

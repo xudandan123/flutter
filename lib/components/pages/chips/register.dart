@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:date_format/date_format.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter_app/constants/constants.dart';
 
 Images() {
@@ -36,9 +36,93 @@ Images() {
   );
 }
 
-// Forms(){
-//   return Text("form");
-// }
+Forms2() {
+  return Column(
+    children: <Widget>[
+      Text(
+        "以下信息仅好友可见",
+        style: TextStyle(
+            fontSize: 14,
+            color: Constants.COLOR_1FB3C4,
+            fontWeight: FontWeight.w500),
+      ),
+      ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: double.infinity, //宽度尽可能大
+        ),
+        child: Container(
+            height: 20,
+            child: Text(
+              '请填写工作单位信息',
+              style: TextStyle(fontSize: 10),
+            )),
+      ),
+      GestureDetector(
+        onTap: () {},
+        child: Container(
+          height: 32,
+          decoration: BoxDecoration(
+            // 容器的背景颜色和背景图片
+            border: Border.all(width: 1, color: Constants.COLOR_808080),
+            borderRadius: BorderRadius.all(Radius.circular(16.0)),
+          ),
+          child: Center(
+            child: Text("无工作单位"),
+          ),
+        ),
+      ),
+      SizedBox(height: 10),
+      Container(
+        constraints: BoxConstraints(maxHeight: 32),
+        child: TextFormField(
+          textAlignVertical: TextAlignVertical(y: 1), // 文字居中
+          decoration: new InputDecoration(
+            hintText: '请输入工作单位全称',
+            hintStyle: TextStyle(fontSize: 14),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(width: 1, color: Constants.COLOR_808080),
+            ),
+          ),
+          onSaved: (val) {},
+        ),
+      ),
+      SizedBox(height: 10),
+      Container(
+        constraints: BoxConstraints(maxHeight: 32),
+        child: TextFormField(
+          textAlignVertical: TextAlignVertical(y: 1), // 文字居中
+          decoration: new InputDecoration(
+            hintText: '请输入部门全称',
+            hintStyle: TextStyle(fontSize: 14),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(width: 1, color: Constants.COLOR_808080),
+            ),
+          ),
+          onSaved: (val) {},
+        ),
+      ),
+      SizedBox(height: 10),
+      Container(
+        constraints: BoxConstraints(maxHeight: 32),
+        child: TextFormField(
+          textAlignVertical: TextAlignVertical(y: 1), // 文字居中
+          decoration: new InputDecoration(
+            hintText: '请输入岗位名称',
+            hintStyle: TextStyle(fontSize: 14),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(width: 1, color: Constants.COLOR_808080),
+            ),
+          ),
+          onSaved: (val) {},
+        ),
+      ),
+      SizedBox(height: 30),
+    ],
+  );
+}
 
 class Forms extends StatefulWidget {
   @override
@@ -137,13 +221,37 @@ class _FormsState extends State<Forms> {
                         BorderSide(width: 1, color: Constants.COLOR_808080),
                   ),
                 ),
-                obscureText: true,
-                validator: (val) {
-                  return val.length < 4 ? "密码长度错误" : null;
-                },
                 onSaved: (val) {
                   _password = val;
                 },
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            InkWell(
+              onTap: () {
+                //调起日期选择器
+                _showDatePicker();
+              },
+              child: Container(
+                height: 32,
+                padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
+                constraints: BoxConstraints(minWidth: double.infinity),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Constants.COLOR_808080, width: 1),
+                  borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      formatDate(this._selectedDate, [yyyy, "-", mm, "-", "dd"]),
+                      style: TextStyle(fontSize: 14, color: Color(0xFF777777)),
+                    ),
+                    Icon(Icons.schedule, color: Color(0xFF777777),)
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -159,44 +267,15 @@ class _FormsState extends State<Forms> {
                   border: Border.all(color: Constants.COLOR_1FB3C4, width: 1),
                   borderRadius: BorderRadius.all(Radius.circular(16.0)),
                 ),
-                child: Text('保存', style: TextStyle(color: Constants.COLOR_1FB3C4),),
+                child: Text(
+                  '保存',
+                  style: TextStyle(color: Constants.COLOR_1FB3C4),
+                ),
               ),
               onTap: () {
                 // this.pressed();
               },
             ),
-            // InkWell(
-            //     onTap: () {
-            //       //调起日期选择器
-            //       _showDatePicker();
-            //     },
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: <Widget>[
-            //         Text(formatDate(
-            //             this._selectedDate, [yyyy, "-", mm, "-", "dd"])),
-            //         Icon(Icons.arrow_drop_down)
-            //       ],
-            //     ),
-            //   ),
-            // FlatButton(
-            //   color: Colors.red,
-            //   highlightColor: Colors.blue[700],
-            //   colorBrightness: Brightness.dark,
-            //   splashColor: Colors.grey,
-            //   child: Text("保存"),
-            //   shape: RoundedRectangleBorder(
-
-            //       borderRadius: BorderRadius.circular(20.0)),
-            //   onPressed: () {},
-            // ),
-            // RaisedButton(
-            //   child: Text("保存"),
-            //   onPressed: () {
-            //     this._forSubmitted();
-            //   },
-            // ),
-            Text(_name)
           ],
         ),
       ),
