@@ -30,7 +30,7 @@ class _AgentRegisterState extends State<AgentRegister> {
   List<Widget> btnGroup2 = []; // 选择按钮数组
   List _nameGroup = []; //输入按钮数组
   Map agentUserInfo = {};
-  bool _showMsg = false;
+  // bool _showMsg = false;
 
   _AgentRegisterState(this.step);
   @override
@@ -147,7 +147,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                     this._changeList(currentMap["list"], currentMap["type"], ids);
                                     setState(() {
                                       _step -= 1;
-                                      _showMsg = false;
+                                      // _showMsg = false;
                                     });
                                   }
                                 },
@@ -160,7 +160,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 onPressed: () {
                                   Map currentMap = serviceTag['Step${_step+1}'];
                                   List ids = [];
-                                  if (_step < serviceTag.length && agentUserInfo[serviceTag['Step${_step}']["key"]] != null || _step == 7) {
+                                  if (_step < serviceTag.length) {
                                     if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
                                       ids = agentUserInfo[currentMap["key"]]["ids"];
                                     }
@@ -168,11 +168,11 @@ class _AgentRegisterState extends State<AgentRegister> {
                                     this._changeList(currentMap["list"], currentMap["type"], ids);
                                     setState(() {
                                       _step += 1;
-                                      _showMsg = false;
+                                      // _showMsg = false;
                                     });
                                   }else{
                                     setState(() {
-                                      _showMsg = true;
+                                      // _showMsg = true;
                                     });
                                   }
                                 },
@@ -183,11 +183,11 @@ class _AgentRegisterState extends State<AgentRegister> {
                             height: 8, //容器器⾼高度，不不是线的⾼高度 indent: 10, //左侧间距
                             color: Constants.COLOR_333333,
                           ),
-                          Container(
-                            height: 18,
-                            alignment: Alignment.centerLeft,
-                            child: _showMsg ? Text("请先将本页信息填写完整", style: TextStyle(fontSize: 12, color: Colors.red),) : SizedBox(height: 0),
-                          ),
+                          // Container(
+                          //   height: 18,
+                          //   alignment: Alignment.centerLeft,
+                          //   child: _showMsg ? Text("请先将本页信息填写完整", style: TextStyle(fontSize: 12, color: Colors.red),) : SizedBox(height: 0),
+                          // ),
                           SizedBox(height: 18),
                           Container(
                             height: 41,
