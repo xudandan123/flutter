@@ -13,7 +13,8 @@ Map serviceTag = {
       {"id": 4, "text": "综合面试辅导"},
       {"id": 5, "text": "专业面试辅导"},
       {"id": 6, "text": "笔试辅导"}
-    ]
+    ],
+    "page": ''
   },
   'Step2': {
     "type": 1,
@@ -28,7 +29,8 @@ Map serviceTag = {
       {"id": 3, "text": "行业前20强名企"},
       {"id": 4, "text": "行业前10强名企"},
       // {"id": 5, "text": "以上都不是"}
-    ]
+    ],
+    "page": ''
   },
   'Step3': {
     "type": 2,
@@ -50,7 +52,8 @@ Map serviceTag = {
       {"id": 10, "text": "南京"},
       {"id": 11, "text": "成都"},
       {"id": 12, "text": "昆明"},
-    ]
+    ],
+    "page": ''
   },
   'Step4': {
     "type": 1,
@@ -68,7 +71,8 @@ Map serviceTag = {
       {"id": 6, "text": "汽车制造"},
       {"id": 7, "text": "医药与化工"},
       {"id": 8, "text": "教育科研与院所"},
-    ]
+    ],
+    "page": ''
   },
   'Step5': {
     "type": 1,
@@ -87,11 +91,12 @@ Map serviceTag = {
       {"id": 7, "text": "市场营销策划类"},
       {"id": 8, "text": "财务金融类"},
       {"id": 9, "text": "蓝领技术类"},
-    ]
+    ],
+    "page": ''
   },
   'Step6': {
     "type": 2,
-    "steptitle": "服务标签 5/6",
+    "steptitle": "服务标签 6/6",
     "titles": '您专注服务哪些职级 ？ 多选3项',
     "hasOr": false,
     "hasInput": false,
@@ -109,7 +114,8 @@ Map serviceTag = {
       {"id": 9, "text": "技术类高级"},
       {"id": 10, "text": "高级管理级"},
       {"id": 11, "text": "技术类专家级"},
-    ]
+    ],
+    "page": ''
   },
   'Step7': {
     "type": 2,
@@ -117,7 +123,36 @@ Map serviceTag = {
     "titles": '上传个人照片或视频吧',
     "hasOr": false,
     "hasInput": false,
-    "key": "step6_1",
-    "list": []
-  }
+    "key": "step7_1",
+    "list": [],
+    "page": 'Images'
+  },
+  'Step8': {
+    "type": 3,
+    "steptitle": "学历标签 1/2",
+    "titles": '您的学历背景是 ？',
+    "hasOr": false,
+    "hasInput": false,
+    "key": "step8_1",
+    "list": [
+      {"id": 1, "text": "海外名校留学"},
+      {"id": 2, "text": "海外留学"},
+      {"id": 3, "text": "双一流"},
+      {"id": 4, "text": "985"},
+      {"id": 5, "text": "211"},
+      {"id": 6, "text": "普通大学"},
+      {"id": 7, "text": "高职院校"},
+    ],
+    "page": ''
+  },
+  'Step9': {
+    "type": 1,
+    "steptitle": "学历标签 2/2",
+    "titles": '您毕业于哪所院校 ？（最高学历）',
+    "hasOr": false,
+    "hasInput": false,
+    "key": "step9_1",
+    "list": [],
+    "page": 'Forms'
+  },
 };

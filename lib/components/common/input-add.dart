@@ -7,16 +7,18 @@ addCompany(_activeTag2, nameGroup, calback, calback2) {
   List<Widget> nameArr = [];
   TextEditingController _userEtController = TextEditingController();
   for (int i = 0; i < nameGroup.length; i++) {
-    nameArr.add(Chip(
-      onDeleted: () {
-        calback2(i);
-      },
-      deleteIcon: Icon(Icons.cancel),
-      deleteIconColor: Color.fromRGBO(0, 0, 0, 0.3),
-      backgroundColor: Color(0xFF81CBD4),
-      labelStyle: TextStyle(color: Constants.COLOR_e5e5e5),
-      label: Text(nameGroup[i]),
-    ));
+    nameArr.add(
+      Chip(
+        onDeleted: () {
+          calback2(i);
+        },
+        deleteIcon: Icon(Icons.cancel),
+        deleteIconColor: Color.fromRGBO(0, 0, 0, 0.3),
+        backgroundColor: Color(0xFF81CBD4),
+        labelStyle: TextStyle(color: Constants.COLOR_e5e5e5),
+        label: Text(nameGroup[i]),
+      ),
+    );
   }
   return _activeTag2 == 0
       ? Column(
@@ -43,9 +45,10 @@ addCompany(_activeTag2, nameGroup, calback, calback2) {
                     hintText: '请输入单位名称',
                     hintStyle: TextStyle(fontSize: 14),
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide:
-                            BorderSide(width: 1, color: Constants.COLOR_8080)),
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide:
+                          BorderSide(width: 1, color: Constants.COLOR_808080),
+                    ),
                     suffixIcon: IconButton(
                         color: Constants.COLOR_999999,
                         padding: EdgeInsets.all(0),
@@ -53,12 +56,13 @@ addCompany(_activeTag2, nameGroup, calback, calback2) {
                         onPressed: () {
                           calback(_userEtController.text);
                           // _userEtController.clear();
-                          WidgetsBinding.instance.addPostFrameCallback((_) => _userEtController.clear());
+                          WidgetsBinding.instance.addPostFrameCallback(
+                              (_) => _userEtController.clear());
                         }),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
-                        borderSide:
-                            BorderSide(width: 1, color: Constants.COLOR_8080)),
+                        borderSide: BorderSide(
+                            width: 1, color: Constants.COLOR_808080)),
                     filled: true,
                     fillColor: Constants.COLOR_e5e5e5,
                   )),

@@ -26,7 +26,8 @@ class Constants {
   static const Color COLOR_666666 = Color(0xFF666666);
   static const Color COLOR_333333 = Color(0xFF333333);
   static const Color COLOR_e5e5e5 = Color(0xFFE5E5E5);
-  static const Color COLOR_8080 = Color(0xFF808080);
+  static const Color COLOR_808080 = Color(0xFF808080);
+  static const Color COLOR_505050 = Color(0xFF505050);
   static const Color COLOR_000000_005 = Color.fromRGBO(0, 0, 0, 0.05);
 
   static const int STATUS_OK = 0;
@@ -120,69 +121,30 @@ class Constants {
   static Map<String, dynamic> deviceInfo = {};
 
   static List userTab = [
-    {
-      "text": "身份注册",
-      "height": 32.0,
-      "right": 10.0,
-      "left": 0.0
-    },
-    {
-      "text": "个人中心",
-      "height": 32.0,
-      "right": 0.0,
-      "left": 10.0
-    }
+    {"text": "身份注册", "height": 32.0, "right": 10.0, "left": 0.0},
+    {"text": "个人中心", "height": 32.0, "right": 0.0, "left": 10.0}
   ];
   static List hasOr = [
-    {
-      "text": "有",
-      "height": 32.0,
-      "right": 0.0,
-      "left": 0.0
-    },
-    {
-      "text": "没有",
-      "height": 32.0,
-      "right": 0.0,
-      "left": 0.0
-    }
+    {"text": "有", "height": 32.0, "right": 0.0, "left": 0.0},
+    {"text": "没有", "height": 32.0, "right": 0.0, "left": 0.0}
   ];
-    static List companyOr = [
-    {
-      "text": "有定向单位",
-      "height": 32.0,
-      "right": 0.0,
-      "left": 0.0
-    },
-    {
-      "text": "没有",
-      "height": 32.0,
-      "right": 0.0,
-      "left": 0.0
-    }
+  static List companyOr = [
+    {"text": "有定向单位", "height": 32.0, "right": 0.0, "left": 0.0},
+    {"text": "没有", "height": 32.0, "right": 0.0, "left": 0.0}
   ];
-   static List agentUserList = [
-     {
-       "step": 1,
-       "text": "1. K-服务标签  - 6"
-     },
-     {
-       "step": 7,
-       "text": "2. M-照片视频 - 1"
-     },
-     {
-       "step": 8,
-       "text": "3. N-学历标签 - 2"
-     },
-     {
-       "step": 10,
-       "text": "4. O-职业标签 - 3"
-     },
-     {
-       "step": 13,
-       "text": "5. P-身份标签  - 4"
-     }
-   ];
+  static List agentUserList = [
+    {"step": 1, "text": "1. K-服务标签  - 6"},
+    {"step": 7, "text": "2. M-照片视频 - 1"},
+    {"step": 8, "text": "3. N-学历标签 - 2"},
+    {"step": 10, "text": "4. O-职业标签 - 3"},
+    {"step": 13, "text": "5. P-身份标签  - 4"}
+  ];
+  static List education = [
+    {"id": 1, "text": "博士"},
+    {"id": 2, "text": "硕士"},
+    {"id": 3, "text": "本科"},
+    {"id": 4, "text": "专科"},
+  ];
   // static init() async {
   //   final _di = DeviceInfoPlugin();
   //   if (Platform.isAndroid) {

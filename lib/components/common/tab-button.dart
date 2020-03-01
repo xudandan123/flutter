@@ -19,7 +19,7 @@ class TabButton {
         margin: EdgeInsets.fromLTRB(marginS, 0, marginS, marginS != 0 ? 16 : 0),
         decoration: BoxDecoration(
           color: Constants.COLOR_e5e5e5,
-          border: Border.all(color: marginS != 0 ? Constants.COLOR_CCCCCC : Constants.COLOR_8080, width: 1),
+          border: Border.all(color: marginS != 0 ? Constants.COLOR_CCCCCC : Constants.COLOR_808080, width: 1),
           borderRadius: BorderRadius.all(Radius.circular(23.0)),
         ),
         child: Row(
@@ -59,7 +59,7 @@ class MyButton extends StatelessWidget {
           child: Text(
             this.describe["text"],
             style: TextStyle(
-                color: this.activeBtn ? Constants.COLOR_e5e5e5 : Constants.COLOR_8080,
+                color: this.activeBtn ? Constants.COLOR_e5e5e5 : Constants.COLOR_808080,
                 fontSize: 14),
           ),
         ),

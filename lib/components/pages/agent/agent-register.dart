@@ -6,6 +6,12 @@ import 'package:flutter_app/components/common/tab-button.dart';
 import 'package:flutter_app/components/common/creat-choice.dart';
 import 'package:flutter_app/components/common/input-add.dart';
 import 'package:flutter_app/components/common/toast.dart';
+import 'package:flutter_app/components/pages/chips/register.dart';
+
+Map Chips = {
+  "Images": Images(),
+  "Forms": Forms(),
+};
 
 class AgentRegister extends StatefulWidget {
   int step;
@@ -21,8 +27,11 @@ class _AgentRegisterState extends State<AgentRegister> {
   int _activeTag2 = 0;// 另一个切换的索引
   int _step = 1;// 当前的页码
   List<Widget> btnGroup = []; // 选择按钮数组
+  List<Widget> btnGroup2 = []; // 选择按钮数组
   List _nameGroup = []; //输入按钮数组
   Map agentUserInfo = {};
+  bool _showMsg = false;
+
   _AgentRegisterState(this.step);
   @override
   void initState() {
@@ -30,8 +39,22 @@ class _AgentRegisterState extends State<AgentRegister> {
     _step = step;
     Map currentMap = serviceTag['Step${_step}'];
     this._changeList(currentMap["list"], currentMap["type"], []);
+    this._changeList(currentMap["list"], 3, [], Constants.education);
+    // if(_step == 8) {
+      
+    // }
   }
-  _changeList(dataList, type, activeId) {
+  _changeList(dataList, type, activeId, [list2]) {
+    if(list2 != null) {
+      creatChoice(list2, type, activeId, (btnGroups){
+        setState(() {
+          btnGroup2 = btnGroups;
+        });
+      }, (id) {
+        print(id);
+      });
+      return;
+    }
     creatChoice(dataList,type , activeId, (btnGroups) {
       setState(() {
         btnGroup = btnGroups;
@@ -63,6 +86,7 @@ class _AgentRegisterState extends State<AgentRegister> {
 
   @override
   Widget build(BuildContext context) {
+    print(serviceTag['Step${_step}']["list"].length);
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
@@ -123,6 +147,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                     this._changeList(currentMap["list"], currentMap["type"], ids);
                                     setState(() {
                                       _step -= 1;
+                                      _showMsg = false;
                                     });
                                   }
                                 },
@@ -135,13 +160,19 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 onPressed: () {
                                   Map currentMap = serviceTag['Step${_step+1}'];
                                   List ids = [];
-                                  if (_step < serviceTag.length && agentUserInfo[serviceTag['Step${_step}']["key"]] != null) {
+                                  if (_step < serviceTag.length && agentUserInfo[serviceTag['Step${_step}']["key"]] != null || _step == 7) {
                                     if(agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null){
                                       ids = agentUserInfo[currentMap["key"]]["ids"];
                                     }
+                                    print(currentMap["list"]);
                                     this._changeList(currentMap["list"], currentMap["type"], ids);
                                     setState(() {
                                       _step += 1;
+                                      _showMsg = false;
+                                    });
+                                  }else{
+                                    setState(() {
+                                      _showMsg = true;
                                     });
                                   }
                                 },
@@ -152,8 +183,12 @@ class _AgentRegisterState extends State<AgentRegister> {
                             height: 8, //容器器⾼高度，不不是线的⾼高度 indent: 10, //左侧间距
                             color: Constants.COLOR_333333,
                           ),
-                          Text("请先将信息填写完整", style: TextStyle(fontSize: 12, color: Colors.red),),
-                          SizedBox(height: 36),
+                          Container(
+                            height: 18,
+                            alignment: Alignment.centerLeft,
+                            child: _showMsg ? Text("请先将本页信息填写完整", style: TextStyle(fontSize: 12, color: Colors.red),) : SizedBox(height: 0),
+                          ),
+                          SizedBox(height: 18),
                           Container(
                             height: 41,
                             width: 312,
@@ -183,7 +218,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                             ),
                           ),
                           SizedBox(height: 28),
-                          ConstrainedBox(
+                          serviceTag['Step${_step}']["list"].length != 0 ? ConstrainedBox(
                             constraints: BoxConstraints(
                               minWidth: double.infinity, //宽度尽可能大
                             ),
@@ -193,7 +228,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                   '选择如下标签',
                                   style: TextStyle(fontSize: 10),
                                 )),
-                          ),
+                          ) : SizedBox(height: 0),
                           SizedBox(height: 2),
                           Column(
                             children: <Widget>[
@@ -215,9 +250,34 @@ class _AgentRegisterState extends State<AgentRegister> {
                               SizedBox(height: serviceTag['Step${_step}']["hasOr"] ? 10 : 0),
                             ],
                           ),
-                          Column(
-                            children: btnGroup,
-                          ),
+                          serviceTag['Step${_step}']["list"].length != 0 ?
+                          Container(
+                            child: serviceTag['Step${_step}']["type"] != 3 ? Column(
+                              children: btnGroup,
+                            ) :
+                            // Text('123'),
+                            Wrap(
+                              spacing: 7.0, // 主轴(水平)方向间距
+                              runSpacing: 3.0, // 纵轴（垂直）方向间距
+                              alignment: WrapAlignment.start,
+                              children: btnGroup
+                            ),
+                          ) :
+                          Chips[serviceTag['Step${_step}']['page']],
+                           _step == 8 ?
+                           Column(
+                             children: <Widget>[
+                                Divider(height: 45, color: Constants.COLOR_999999),
+                                Wrap(
+                                  spacing: 16.0, // 主轴(水平)方向间距
+                                  runSpacing: 3.0, // 纵轴（垂直）方向间距
+                                  alignment: WrapAlignment.start,
+                                  children: btnGroup2
+                                ),
+                                Divider(height: 45, color: Constants.COLOR_999999),
+                             ],
+                           ) :
+                           SizedBox(height: 0),
                           serviceTag['Step${_step}']["hasInput"]
                               ? Column(
                                   children: <Widget>[
