@@ -185,15 +185,20 @@ class Constants {
  static List educationList = [
   {
     "text": '学历背景',
+    "type": "circle",
+    "data": ['硕士', '211', '海外留学']
   },
   {
     "text": '毕业院校',
+    "type": 'list',
+    "data": ['华中科技大学', '计算机科学与管理专业', '2012年12月毕业']
   }
 ];
 
  static List occupation = [
   {
-    "text": '经验'
+    "text": '经验',
+    "data": ['工作10年（管理5年）']
   },
   {
     "text": '最近工作单位',

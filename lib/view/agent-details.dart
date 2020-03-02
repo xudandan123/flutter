@@ -25,6 +25,7 @@ class AgentDetail extends StatelessWidget {
   List<Widget> _listIntention(List intentionTitle) {
     return intentionTitle.map((value) {
       return Row(
+        // mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Expanded(
             flex: 3,
@@ -56,7 +57,7 @@ class AgentDetail extends StatelessWidget {
             child: Container(
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: 5),
-              height: 32.0,
+              // height: 32.0,
               decoration: ShapeDecoration(
                 shape: Border(
                     left: BorderSide(
@@ -72,7 +73,7 @@ class AgentDetail extends StatelessWidget {
                       color: Color(0xFFA6A6A6),
                     )),
               ),
-              child: Text(''),
+              child: Text('撒打算打算发撒发烧发顺丰发烧发烧发烧发烧发顺丰发烧发顺丰发烧发烧'),
             ),
           ),
         ],
@@ -133,9 +134,11 @@ class AgentDetail extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Icon(IconData(0xe62f, fontFamily: 'AliIcon')),
-                    Icon(IconData(0xe6a0, fontFamily: 'AliIcon')),
-                    Icon(IconData(0xe6b3, fontFamily: 'AliIcon')),
+                    Icon(IconData(0xe62f, fontFamily: 'AliIcon'), color: Constants.COLOR_CCCCCC,),
+                    SizedBox(width: 12,),
+                    Icon(IconData(0xe6a0, fontFamily: 'AliIcon'), color: Constants.COLOR_CCCCCC,),
+                    SizedBox(width: 12,),
+                    Icon(IconData(0xe6b3, fontFamily: 'AliIcon'), color: Constants.COLOR_CCCCCC,),
                   ],
                 ),
                 Divider(height: 5, color: Color(0xFFA6A6A6)),
@@ -261,3 +264,63 @@ class AgentDetail extends StatelessWidget {
     );
   }
 }
+
+
+
+
+// _listIntention(List dataList) {
+//     getDetails(data, type) {
+//       if (data != null && data.length != 0) {
+//         if (type != null) {
+//           if (type == "list") {
+//             return Column(
+//               children: data.map<Widget>((value) {
+//                 return Text(value);
+//               }).toList(),
+//             );
+//           } else if (type == "circle") {
+//             return Wrap(
+//               children: data.map<Widget>((value) {
+//                 return Chip(label: Text(value));
+//               }).toList(),
+//             );
+//           }
+//         } else {
+//           return Wrap(
+//             children: data.map<Widget>((value) {
+//               return Text(value);
+//             }).toList(),
+//           );
+//         }
+//       } else {
+//         return Text('');
+//       }
+//     }
+
+//     return Table(
+//       columnWidths: const <int, TableColumnWidth>{
+//         0: FixedColumnWidth(100.0),
+//         2: FixedColumnWidth(0.0),
+//       },
+//       border: TableBorder.all(
+//           color: Color(0xFFA6A6A6), width: 1.0, style: BorderStyle.solid),
+//       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+//       children: dataList.map((value) {
+//         return TableRow(children: <Widget>[
+//           Container(
+//             color: Constants.COLOR_1FB3C4,
+//             padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
+//             child: Text(
+//               value["text"],
+//               style: TextStyle(color: Constants.COLOR_e5e5e5),
+//             ),
+//           ),
+//           Container(
+//             alignment: Alignment.centerLeft,
+//             padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
+//             child: getDetails(value["data"], value["type"]),
+//           ),
+//         ]);
+//       }).toList(),
+//     );
+//   }

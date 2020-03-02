@@ -70,7 +70,7 @@ flutter:
   fonts:
     - family: AliIcon
       fonts:
-        - asset: lib/assets/icons/iconfont.ttf
+        - asset: assets/icons/iconfont.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
