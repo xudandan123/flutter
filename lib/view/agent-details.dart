@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/constants.dart';
 
-
 class AgentDetail extends StatelessWidget {
   const AgentDetail({Key key}) : super(key: key);
   Widget _listTitle(title) {
@@ -9,9 +8,23 @@ class AgentDetail extends StatelessWidget {
       alignment: Alignment.center,
       height: 28,
       margin: EdgeInsets.only(top: 20),
-      decoration: BoxDecoration(
-          color: Constants.COLOR_1FB3C4,
-          border: Border.all(width: 1, color: Color(0xFFA6A6A6))),
+      decoration: ShapeDecoration(
+        color: Constants.COLOR_1FB3C4,
+        shape: Border(
+          left: BorderSide(
+            width: 1,
+            color: Color(0xFFA6A6A6),
+          ),
+          top: BorderSide(
+            width: 1,
+            color: Color(0xFFA6A6A6),
+          ),
+          right: BorderSide(
+            width: 1,
+            color: Color(0xFFA6A6A6),
+          ),
+        ),
+      ),
       child: Text(
         title,
         style: TextStyle(
@@ -22,63 +35,79 @@ class AgentDetail extends StatelessWidget {
     );
   }
 
-  List<Widget> _listIntention(List intentionTitle) {
-    return intentionTitle.map((value) {
-      return Row(
-        // mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 5),
-              constraints: BoxConstraints(minHeight: 32.0),
-              decoration: ShapeDecoration(
-                color: Constants.COLOR_1FB3C4,
-                shape: Border(
-                  left: BorderSide(
-                    width: 1,
-                    color: Color(0xFFA6A6A6),
-                  ),
-                  bottom: BorderSide(
-                    width: 1,
-                    color: Color(0xFFA6A6A6),
-                  ),
-                ),
-              ),
+  _listIntention(List dataList) {
+    getDetails(data, type) {
+      if (data != null && data.length != 0) {
+        if (type != null) {
+          if (type == "list") {
+            return Column(
+              children: data.map<Widget>((value) {
+                return Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(value),
+                );
+              }).toList(),
+            );
+          } else if (type == "circle") {
+            return Wrap(
+              spacing: 6,
+              runAlignment: WrapAlignment.start,
+              runSpacing: 4,
+              children: data.map<Widget>((value) {
+                return Container(
+                  padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.0),
+                      color: Constants.COLOR_1FB3C4),
+                  child: Text(value, style: TextStyle(color: Constants.COLOR_e5e5e5),),
+                );
+              }).toList(),
+            );
+          }
+        } else {
+          return Wrap(
+            children: data.map<Widget>((value) {
+              return Text(value);
+            }).toList(),
+          );
+        }
+      } else {
+        return Text('');
+      }
+    }
+
+    return Table(
+      columnWidths: const <int, TableColumnWidth>{
+        0: FixedColumnWidth(100.0),
+        2: FixedColumnWidth(0.0),
+      },
+      border: TableBorder.all(
+          color: Color(0xFFA6A6A6), width: 1.0, style: BorderStyle.solid),
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      children: dataList.map((value) {
+        return TableRow(
+          decoration: BoxDecoration(
+            color: Constants.COLOR_1FB3C4,
+          ),
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
               child: Text(
                 value["text"],
                 style: TextStyle(color: Constants.COLOR_e5e5e5),
               ),
             ),
-          ),
-          Expanded(
-            flex: 7,
-            child: Container(
+            Container(
+              constraints: BoxConstraints(minHeight: 32),
+              color: Constants.COLOR_e5e5e5,
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 5),
-              // height: 32.0,
-              decoration: ShapeDecoration(
-                shape: Border(
-                    left: BorderSide(
-                      width: 1,
-                      color: Color(0xFFA6A6A6),
-                    ),
-                    right: BorderSide(
-                      width: 1,
-                      color: Color(0xFFA6A6A6),
-                    ),
-                    bottom: BorderSide(
-                      width: 1,
-                      color: Color(0xFFA6A6A6),
-                    )),
-              ),
-              child: Text('撒打算打算发撒发烧发顺丰发烧发烧发烧发烧发顺丰发烧发顺丰发烧发烧'),
+              padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
+              child: getDetails(value["data"], value["type"]),
             ),
-          ),
-        ],
-      );
-    }).toList();
+          ],
+        );
+      }).toList(),
+    );
   }
 
   @override
@@ -134,14 +163,27 @@ class AgentDetail extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Icon(IconData(0xe62f, fontFamily: 'AliIcon'), color: Constants.COLOR_CCCCCC,),
-                    SizedBox(width: 12,),
-                    Icon(IconData(0xe6a0, fontFamily: 'AliIcon'), color: Constants.COLOR_CCCCCC,),
-                    SizedBox(width: 12,),
-                    Icon(IconData(0xe6b3, fontFamily: 'AliIcon'), color: Constants.COLOR_CCCCCC,),
+                    Icon(
+                      IconData(0xe62f, fontFamily: 'AliIcon'),
+                      color: Constants.COLOR_CCCCCC,
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Icon(
+                      IconData(0xe6a0, fontFamily: 'AliIcon'),
+                      color: Constants.COLOR_CCCCCC,
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Icon(
+                      IconData(0xe6b3, fontFamily: 'AliIcon'),
+                      color: Constants.COLOR_CCCCCC,
+                    ),
                   ],
                 ),
-                Divider(height: 5, color: Color(0xFFA6A6A6)),
+                Divider(height: 10, color: Color(0xFFA6A6A6)),
                 Center(
                   child: Column(
                     children: <Widget>[
@@ -229,30 +271,32 @@ class AgentDetail extends StatelessWidget {
                   ],
                 ),
                 this._listTitle('求职意向'),
-                Column(
-                  children: this._listIntention(Constants.listIntentionTitle),
-                ),
+                this._listIntention(Constants.listIntentionTitle),
                 this._listTitle('学历'),
-                Column(
-                  children: this._listIntention(Constants.educationList),
-                ),
-                 this._listTitle('职业'),
-                Column(
-                  children: this._listIntention(Constants.occupation),
-                ),
-                 this._listTitle('身份'),
-                Column(
-                  children: this._listIntention(Constants.identity),
-                ),
+                this._listIntention(Constants.educationList),
+                this._listTitle('职业'),
+                this._listIntention(Constants.occupation),
+                this._listTitle('身份'),
+                this._listIntention(Constants.identity),
                 SizedBox(height: 50),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 30),
-                  decoration: BoxDecoration(border: Border.all(width: 1, color: Constants.COLOR_808080)),
+                  decoration: BoxDecoration(
+                      border:
+                          Border.all(width: 1, color: Constants.COLOR_808080)),
                   child: Column(
                     children: <Widget>[
-                      Text("T-MAP 数据与支付宝、芝麻信用直连，由人力资源区块链（HRBC）进行加密和认证。HRBC 已获国家网信办区块链信息服务备案。", style: TextStyle(fontSize: 12, color: Color(0xFF383838)),),
+                      Text(
+                        "T-MAP 数据与支付宝、芝麻信用直连，由人力资源区块链（HRBC）进行加密和认证。HRBC 已获国家网信办区块链信息服务备案。",
+                        style:
+                            TextStyle(fontSize: 12, color: Color(0xFF383838)),
+                      ),
                       SizedBox(height: 20),
-                      Text("T-MAP数据源于当事人本人填写，该信息内容和数据仅限用人单位招聘和评估人才工作之参考借鉴。任何用户或第三方对于使用该信息内容和数据所导致的任何结果，全民推荐软件及所有权人不承担任何形式下的法律责任。", style: TextStyle(fontSize: 12, color: Color(0xFF383838)),)
+                      Text(
+                        "T-MAP数据源于当事人本人填写，该信息内容和数据仅限用人单位招聘和评估人才工作之参考借鉴。任何用户或第三方对于使用该信息内容和数据所导致的任何结果，全民推荐软件及所有权人不承担任何形式下的法律责任。",
+                        style:
+                            TextStyle(fontSize: 12, color: Color(0xFF383838)),
+                      )
                     ],
                   ),
                 ),
@@ -264,63 +308,3 @@ class AgentDetail extends StatelessWidget {
     );
   }
 }
-
-
-
-
-// _listIntention(List dataList) {
-//     getDetails(data, type) {
-//       if (data != null && data.length != 0) {
-//         if (type != null) {
-//           if (type == "list") {
-//             return Column(
-//               children: data.map<Widget>((value) {
-//                 return Text(value);
-//               }).toList(),
-//             );
-//           } else if (type == "circle") {
-//             return Wrap(
-//               children: data.map<Widget>((value) {
-//                 return Chip(label: Text(value));
-//               }).toList(),
-//             );
-//           }
-//         } else {
-//           return Wrap(
-//             children: data.map<Widget>((value) {
-//               return Text(value);
-//             }).toList(),
-//           );
-//         }
-//       } else {
-//         return Text('');
-//       }
-//     }
-
-//     return Table(
-//       columnWidths: const <int, TableColumnWidth>{
-//         0: FixedColumnWidth(100.0),
-//         2: FixedColumnWidth(0.0),
-//       },
-//       border: TableBorder.all(
-//           color: Color(0xFFA6A6A6), width: 1.0, style: BorderStyle.solid),
-//       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-//       children: dataList.map((value) {
-//         return TableRow(children: <Widget>[
-//           Container(
-//             color: Constants.COLOR_1FB3C4,
-//             padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
-//             child: Text(
-//               value["text"],
-//               style: TextStyle(color: Constants.COLOR_e5e5e5),
-//             ),
-//           ),
-//           Container(
-//             alignment: Alignment.centerLeft,
-//             padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
-//             child: getDetails(value["data"], value["type"]),
-//           ),
-//         ]);
-//       }).toList(),
-//     );
-//   }
