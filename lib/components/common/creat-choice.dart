@@ -29,7 +29,7 @@ creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
               fontSize: 14,
               color: activeNum.indexOf(dataList[i]['id']) != -1
                   ? Constants.COLOR_1FB3C4
-                  : Constants.COLOR_808080,
+                  : Constants.COLOR_505050,
             ),
           ),
         ),
@@ -71,7 +71,7 @@ creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
                   style: TextStyle(
                       color: activeNum.indexOf(dataList[i]['id']) != -1
                           ? Constants.COLOR_1FB3C4
-                          : Colors.black,
+                          : Constants.COLOR_505050,
                       fontSize: 14),
                 ),
               ),

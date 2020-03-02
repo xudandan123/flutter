@@ -154,6 +154,89 @@ class Constants {
     {"id": 6, "text": "西班牙语"},
     {"id": 7, "text": "俄语"},
   ];
+
+ static List listIntentionTitle = [
+  {
+    "text": '意向类别'
+  },
+  {
+    "text": '岗位和职级',
+  },
+  {
+    "text": '期望薪资',
+  },
+  {
+    "text": '城市',
+  },
+  {
+    "text": '行业',
+  },
+  {
+    "text": '状态',
+  },
+  {
+    "text": '到岗时间',
+  },
+  {
+    "text": '家庭地址'
+  }
+];
+
+ static List educationList = [
+  {
+    "text": '学历背景',
+  },
+  {
+    "text": '毕业院校',
+  }
+];
+
+ static List occupation = [
+  {
+    "text": '经验'
+  },
+  {
+    "text": '最近工作单位',
+  },
+  {
+    "text": '行业经历',
+  },
+  {
+    "text": '任职岗位经历',
+  },
+  {
+    "text": '名企经历',
+  },
+  {
+    "text": '离职原因',
+  },
+];
+ static List identity = [
+  {
+    "text": '特殊工作经验'
+  },
+  {
+    "text": '竟业保密',
+  },
+  {
+    "text": '性格倾向',
+  },
+  {
+    "text": '人才类型',
+  },
+  {
+    "text": '接受',
+  },
+  {
+    "text": '不接受',
+  },
+  {
+    "text": '外语水平',
+  },
+  {
+    "text": '特别标签'
+  }
+];
   // static init() async {
   //   final _di = DeviceInfoPlugin();
   //   if (Platform.isAndroid) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/view/agent-login.dart';
+import 'package:flutter_app/view/agent-details.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate
         ],
         supportedLocales: [const Locale("zh", "CH")],
-        home: AgentLogin(),
+        // home: AgentLogin(),
+        home: AgentDetail(),
       ),
     );
   }
