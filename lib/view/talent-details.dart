@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/constants.dart';
 
-class AgentDetail extends StatelessWidget {
-  const AgentDetail({Key key}) : super(key: key);
+class TalentDetail extends StatelessWidget {
+  const TalentDetail({Key key}) : super(key: key);
   Widget _listTitle(title) {
     return Container(
       alignment: Alignment.center,
@@ -59,10 +59,7 @@ class AgentDetail extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16.0),
                       color: Constants.COLOR_1FB3C4),
-                  child: Text(
-                    value,
-                    style: TextStyle(color: Constants.COLOR_e5e5e5, fontSize: 12),
-                  ),
+                  child: Text(value, style: TextStyle(color: Constants.COLOR_e5e5e5),),
                 );
               }).toList(),
             );
@@ -104,7 +101,7 @@ class AgentDetail extends StatelessWidget {
               constraints: BoxConstraints(minHeight: 32),
               color: Constants.COLOR_e5e5e5,
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.fromLTRB(5, 10, 0, 10),
+              padding: EdgeInsets.fromLTRB(5, 5, 0, 5),
               child: getDetails(value["data"], value["type"]),
             ),
           ],
@@ -187,60 +184,30 @@ class AgentDetail extends StatelessWidget {
                   ],
                 ),
                 Divider(height: 10, color: Color(0xFFA6A6A6)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  verticalDirection:VerticalDirection.up,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              "张晓四",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Constants.COLOR_505050,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "资深猎头顾问",
-                              strutStyle: StrutStyle(height: 2),
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Constants.COLOR_808080,
-                              ),
-                            ),
-                          ],
+                Center(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.center,
+                        width: 88,
+                        height: 88,
+                        margin: EdgeInsets.fromLTRB(0, 25, 0, 15),
+                        decoration: BoxDecoration(
+                          // 容器的背景颜色和背景图片
+                          color: Constants.COLOR_CCCCCC,
+                          borderRadius: BorderRadius.all(Radius.circular(18.0)),
                         ),
-                        Text(
-                          "猎头经验 5 年 - HR经验 2 年",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Constants.COLOR_808080,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: 79,
-                      height: 79,
-                      margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                      decoration: BoxDecoration(
-                        // 容器的背景颜色和背景图片
-                        color: Constants.COLOR_CCCCCC,
-                        borderRadius: BorderRadius.all(Radius.circular(18.0)),
+                        child: Text("图片"),
                       ),
-                      child: Text("图片"),
-                    ),
-                  ],
+                      Text(
+                        "张晓四",
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Constants.COLOR_505050,
+                            fontWeight: FontWeight.w700),
+                      )
+                    ],
+                  ),
                 ),
                 Divider(height: 20, color: Color(0xFFA6A6A6)),
                 Center(
@@ -249,23 +216,23 @@ class AgentDetail extends StatelessWidget {
                     style: TextStyle(fontSize: 12, color: Color(0xFF383838)),
                   ),
                 ),
-                Divider(height: 30, color: Color(0xFFA6A6A6)),
-                // Container(
-                //   height: 40,
-                //   margin: EdgeInsets.only(bottom: 20),
-                //   alignment: Alignment.center,
-                //   decoration: BoxDecoration(
-                //     // 容器的背景颜色和背景图片
-                //     border: Border.all(width: 1, color: Constants.COLOR_1FB3C4),
-                //     borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                //   ),
-                //   child: Text(
-                //     "顾问费  2000.00  元",
-                //     style: TextStyle(
-                //         color: Constants.COLOR_1FB3C4,
-                //         fontWeight: FontWeight.w700),
-                //   ),
-                // ),
+                Divider(height: 20, color: Color(0xFFA6A6A6)),
+                Container(
+                  height: 40,
+                  margin: EdgeInsets.only(bottom: 20),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    // 容器的背景颜色和背景图片
+                    border: Border.all(width: 1, color: Constants.COLOR_1FB3C4),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  ),
+                  child: Text(
+                    "顾问费  2000.00  元",
+                    style: TextStyle(
+                        color: Constants.COLOR_1FB3C4,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ),
                 Row(
                   children: <Widget>[
                     Expanded(
