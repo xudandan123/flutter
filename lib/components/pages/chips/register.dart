@@ -58,7 +58,9 @@ Forms2() {
             )),
       ),
       GestureDetector(
-        onTap: () {},
+        onTap: () {
+          
+        },
         child: Container(
           height: 32,
           decoration: BoxDecoration(
@@ -67,7 +69,7 @@ Forms2() {
             borderRadius: BorderRadius.all(Radius.circular(16.0)),
           ),
           child: Center(
-            child: Text("无工作单位"),
+            child: Text("无工作单位", style: TextStyle(color: Constants.COLOR_808080),),
           ),
         ),
       ),

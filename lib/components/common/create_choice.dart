@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/constants.dart';
 
-creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
+creatChoice(List dataList, int listNum, activeNum, callback, callback2) {
   List<Widget> btnGroupList = [];
   List<Widget> btnGroups = [];
   List activeId = [...activeNum];
@@ -34,15 +34,15 @@ creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
           ),
         ),
         onTap: () {
-          calback2(dataList[i]['id']);
+          callback2(dataList[i]['id']);
           activeId.indexOf(dataList[i]['id']) == -1
               ? activeId.add(dataList[i]['id'])
               : activeId.remove(dataList[i]['id']);
-          creatChoice(dataList, listNum, activeId, calback, calback2);
+          creatChoice(dataList, listNum, activeId, callback, callback2);
         },
       ));
     }
-    calback(btnGroups);
+    callback(btnGroups);
     return;
   }
   Widget _childBtn(int i) {
@@ -80,11 +80,11 @@ creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
         ),
       ),
       onTap: () {
-        calback2(dataList[i]['id']);
+        callback2(dataList[i]['id']);
         activeId.indexOf(dataList[i]['id']) == -1
             ? activeId.add(dataList[i]['id'])
             : activeId.remove(dataList[i]['id']);
-        creatChoice(dataList, listNum, activeId, calback, calback2);
+        creatChoice(dataList, listNum, activeId, callback, callback2);
       },
     );
   }
@@ -129,5 +129,5 @@ creatChoice(List dataList, int listNum, activeNum, calback, calback2) {
       }
     }
   }
-  calback(btnGroups);
+  callback(btnGroups);
 }

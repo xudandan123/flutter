@@ -333,7 +333,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 ? AddCompany(
                                     showIndex: _activeTag2[_step],
                                     nameGroup: _nameGroup[_step],
-                                    calback: (text) => {
+                                    callback: (text) => {
                                           setState(() {
                                             if (_nameGroup[_step].length < 3) {
                                               _nameGroup[_step].add(text);
@@ -343,7 +343,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                             }
                                           })
                                         },
-                                    calback2: (index) => {
+                                    callback2: (index) => {
                                           setState(() {
                                             _nameGroup[_step].removeAt(index);
                                           })

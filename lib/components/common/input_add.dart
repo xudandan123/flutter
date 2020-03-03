@@ -6,9 +6,9 @@ import 'package:flutter_app/constants/constants.dart';
 class AddCompany extends StatefulWidget {
   final int showIndex;
   final List nameGroup;
-  final calback;
-  final calback2;
-  AddCompany({Key key, this.showIndex, this.nameGroup, this.calback, this.calback2})
+  final callback;
+  final callback2;
+  AddCompany({Key key, this.showIndex, this.nameGroup, this.callback, this.callback2})
       : super(key: key);
   @override
   _AddCompanyState createState() => _AddCompanyState();
@@ -36,7 +36,7 @@ class _AddCompanyState extends State<AddCompany> {
       nameArr.add(
         Chip(
           onDeleted: () {
-            widget.calback2(i);
+            widget.callback2(i);
           },
           deleteIcon: Icon(Icons.cancel),
           deleteIconColor: Color.fromRGBO(0, 0, 0, 0.3),
@@ -81,7 +81,7 @@ class _AddCompanyState extends State<AddCompany> {
                         padding: EdgeInsets.all(0),
                         icon: Icon(Icons.control_point),
                         onPressed: () {
-                          widget.calback(_userEtController.text);
+                          widget.callback(_userEtController.text);
                           WidgetsBinding.instance.addPostFrameCallback(
                               (_) => _userEtController.clear());
                           FocusScope.of(context).requestFocus(FocusNode());
