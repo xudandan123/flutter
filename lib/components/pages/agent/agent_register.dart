@@ -31,8 +31,8 @@ class _AgentRegisterState extends State<AgentRegister> {
   List<Widget> btnGroup2 = []; // 选择学历按钮数组
   List<Widget> btnGroup3 = []; // 选择外语按钮数组
   List _nameGroup = []; //输入按钮数组
-  Map agentUserInfo = {};
-  // bool _showMsg = false;
+  Map agentUserInfo = {}; // 选择后保存参数的地方
+  // bool _showMsg = false; // 是否加校验规则
 
   _AgentRegisterState(this.step);
   @override
@@ -111,7 +111,6 @@ class _AgentRegisterState extends State<AgentRegister> {
               }
               this._changeList(pageInfoData["list"], pageInfoData["type"], ids);
             }
-            // print();
             setState(() {
               _activeBtn = k;
             });
@@ -125,7 +124,6 @@ class _AgentRegisterState extends State<AgentRegister> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // SizedBox(height: 10),
               Container(
                 constraints:
                     BoxConstraints(minHeight: 540, minWidth: double.infinity),
@@ -147,15 +145,9 @@ class _AgentRegisterState extends State<AgentRegister> {
                                       onPressed: () {
                                         if (_step > 1) {
                                           List ids = [];
-                                          Map currentMap =
-                                              serviceTag['Step${_step - 1}'];
-                                          if (agentUserInfo.isEmpty == false &&
-                                              agentUserInfo[
-                                                      currentMap["key"]] !=
-                                                  null) {
-                                            ids =
-                                                agentUserInfo[currentMap["key"]]
-                                                    ["ids"];
+                                          Map currentMap = serviceTag['Step${_step - 1}'];
+                                          if (agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null) {
+                                            ids = agentUserInfo[currentMap["key"]]["ids"];
                                           }
                                           this._changeList(currentMap["list"],
                                               currentMap["type"], ids);
@@ -173,27 +165,23 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 padding: EdgeInsets.all(0),
                                 icon: Icon(Icons.arrow_forward),
                                 onPressed: () {
-                                  Map currentMap =
-                                      serviceTag['Step${_step + 1}'];
+                                  Map currentMap = serviceTag['Step${_step + 1}'];
                                   List ids = [];
                                   if (_step < serviceTag.length) {
-                                    if (agentUserInfo.isEmpty == false &&
-                                        agentUserInfo[currentMap["key"]] !=
-                                            null) {
-                                      ids = agentUserInfo[currentMap["key"]]
-                                          ["ids"];
+                                    if (agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null) {
+                                      ids = agentUserInfo[currentMap["key"]]["ids"];
                                     }
-                                    this._changeList(currentMap["list"],
-                                        currentMap["type"], ids);
+                                    this._changeList(currentMap["list"], currentMap["type"], ids);
                                     setState(() {
                                       _step += 1;
                                       // _showMsg = false;
                                     });
-                                  } else {
-                                    setState(() {
-                                      // _showMsg = true;
-                                    });
                                   }
+                                  // else {
+                                  //   setState(() {
+                                  //     _showMsg = true;
+                                  //   });
+                                  // }
                                 },
                               ),
                             ],
@@ -205,18 +193,16 @@ class _AgentRegisterState extends State<AgentRegister> {
                           SizedBox(height: 18),
                           Container(
                             height: 41,
-                            width: 312,
                             constraints: BoxConstraints(
                               minWidth: double.infinity, //宽度尽可能大
                             ),
                             child: DecoratedBox(
                               decoration: BoxDecoration(
                                 color: Constants.COLOR_1FB3C4,
-                                borderRadius:
-                                    BorderRadius.circular(14.0), //3像素圆角
+                                borderRadius: BorderRadius.circular(14.0), //3像素圆角
                               ),
                               child: Stack(
-                                alignment: Alignment.center,
+                                alignment: Alignment.center, // 垂直居中
                                 children: <Widget>[
                                   Positioned(
                                     left: 10.0,
@@ -333,7 +319,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 )
                               : SizedBox(height: 0),
                           pageInfoData["hasInput"]
-                              ? addCompany(_activeTag2, _nameGroup, (text) {
+                              ? AddCompany(showIndex: _activeTag2, nameGroup: _nameGroup, calback:(text) {
                                   setState(() {
                                     if (_nameGroup.length < 3) {
                                       _nameGroup.add(text);
@@ -341,7 +327,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                       Toast.toast(context, msg: "不能超过3");
                                     }
                                   });
-                                }, (index) {
+                                }, calback2:(index) {
                                   setState(() {
                                     _nameGroup.removeAt(index);
                                   });

@@ -3,41 +3,57 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/constants.dart';
 
-addCompany(_activeTag2, nameGroup, calback, calback2) {
+class AddCompany extends StatefulWidget {
+  final int showIndex;
+  final List nameGroup;
+  final calback;
+  final calback2;
+  AddCompany({Key key, this.showIndex, this.nameGroup, this.calback, this.calback2})
+      : super(key: key);
+  @override
+  _AddCompanyState createState() => _AddCompanyState();
+}
+
+class _AddCompanyState extends State<AddCompany> {
   List<Widget> nameArr = [];
   TextEditingController _userEtController = TextEditingController();
-  for (int i = 0; i < nameGroup.length; i++) {
-    nameArr.add(
-      Chip(
-        onDeleted: () {
-          calback2(i);
-        },
-        deleteIcon: Icon(Icons.cancel),
-        deleteIconColor: Color.fromRGBO(0, 0, 0, 0.3),
-        backgroundColor: Color(0xFF81CBD4),
-        labelStyle: TextStyle(color: Constants.COLOR_e5e5e5),
-        label: Text(nameGroup[i]),
-      ),
-    );
+  void initState() {
+    super.initState();
+    for (int i = 0; i < widget.nameGroup.length; i++) {
+      nameArr.add(
+        Chip(
+          onDeleted: () {
+            widget.calback2(i);
+          },
+          deleteIcon: Icon(Icons.cancel),
+          deleteIconColor: Color.fromRGBO(0, 0, 0, 0.3),
+          backgroundColor: Color(0xFF81CBD4),
+          labelStyle: TextStyle(color: Constants.COLOR_e5e5e5),
+          label: Text(widget.nameGroup[i]),
+        ),
+      );
+    }
   }
-  return _activeTag2 == 0
-      ? Column(
-          children: <Widget>[
-            SizedBox(height: 12),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                minWidth: double.infinity, //宽度尽可能大
+  @override
+  Widget build(BuildContext context) {
+    return widget.showIndex == 0
+        ? Column(
+            children: <Widget>[
+              SizedBox(height: 12),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: double.infinity, //宽度尽可能大
+                ),
+                child: Container(
+                    height: 20,
+                    child: Text(
+                      '请输入单位名称,最多添加3个',
+                      style: TextStyle(fontSize: 10),
+                    )),
               ),
-              child: Container(
-                  height: 20,
-                  child: Text(
-                    '请输入单位名称,最多添加3个',
-                    style: TextStyle(fontSize: 10),
-                  )),
-            ),
-            Container(
-              constraints: BoxConstraints(maxHeight: 32),
-              child: new TextField(
+              Container(
+                constraints: BoxConstraints(maxHeight: 32),
+                child: new TextField(
                   controller: _userEtController,
                   cursorColor: Colors.grey,
                   textAlignVertical: TextAlignVertical(y: 1),
@@ -54,7 +70,7 @@ addCompany(_activeTag2, nameGroup, calback, calback2) {
                         padding: EdgeInsets.all(0),
                         icon: Icon(Icons.control_point),
                         onPressed: () {
-                          calback(_userEtController.text);
+                          widget.calback(_userEtController.text);
                           // _userEtController.clear();
                           WidgetsBinding.instance.addPostFrameCallback(
                               (_) => _userEtController.clear());
@@ -65,17 +81,19 @@ addCompany(_activeTag2, nameGroup, calback, calback2) {
                             width: 1, color: Constants.COLOR_808080)),
                     filled: true,
                     fillColor: Constants.COLOR_e5e5e5,
-                  )),
-            ),
-            SizedBox(height: 5),
-            Container(
-              alignment: Alignment.centerLeft,
-              child: Wrap(
-                spacing: 8.0, // 主轴(水平)方向间距
-                children: nameArr,
+                  ),
+                ),
               ),
-            ),
-          ],
-        )
-      : SizedBox(height: 0);
+              SizedBox(height: 5),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Wrap(
+                  spacing: 8.0, // 主轴(水平)方向间距
+                  children: nameArr,
+                ),
+              ),
+            ],
+          )
+        : SizedBox(height: 0);
+  }
 }
