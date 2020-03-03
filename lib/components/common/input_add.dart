@@ -15,10 +15,20 @@ class AddCompany extends StatefulWidget {
 }
 
 class _AddCompanyState extends State<AddCompany> {
-  List<Widget> nameArr = [];
   TextEditingController _userEtController = TextEditingController();
+
+  @override
+  void dispose() {
+    _userEtController.dispose();
+    super.dispose();
+  }
+
   void initState() {
     super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> nameArr = [];
     for (int i = 0; i < widget.nameGroup.length; i++) {
       nameArr.add(
         Chip(
@@ -33,9 +43,6 @@ class _AddCompanyState extends State<AddCompany> {
         ),
       );
     }
-  }
-  @override
-  Widget build(BuildContext context) {
     return widget.showIndex == 0
         ? Column(
             children: <Widget>[

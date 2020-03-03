@@ -1,4 +1,4 @@
-Map serviceTag = {
+Map agentLoginData = {
   'Step1': {
     "type": 1, // 按钮的排列类型 1为竖排1列，2为竖排2列
     "steptitle": "服务标签 1/6", // 当前步骤title

@@ -18,9 +18,9 @@ class _CategoryPageState extends State<CategoryPage> {
       activeBtn: _activeBtn == activeIndex,
       pressed: () {
         if (activeIndex == 0) {
-          _creatChoice(serviceTag['Step1']);
+          _creatChoice(agentLoginData['Step1']);
         } else {
-          _creatChoice(serviceTag['Step2']);
+          _creatChoice(agentLoginData['Step2']);
         }
         setState(() {
           _activeBtn = activeIndex;
@@ -96,7 +96,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   void initState() {
     super.initState();
-    _creatChoice(serviceTag['Step1']);
+    _creatChoice(agentLoginData['Step1']);
   }
 
   @override

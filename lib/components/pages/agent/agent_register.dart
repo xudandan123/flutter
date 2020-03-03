@@ -39,7 +39,7 @@ class _AgentRegisterState extends State<AgentRegister> {
   void initState() {
     super.initState();
     _step = step;
-    Map pageInfoData = serviceTag['Step${_step}'];
+    Map pageInfoData = agentLoginData['Step${_step}'];
     this._changeList(pageInfoData["list"], pageInfoData["type"], []);
     this._changeList(pageInfoData["list"], 3, [], Constants.education, 8);
     this._changeList(
@@ -66,7 +66,7 @@ class _AgentRegisterState extends State<AgentRegister> {
         btnGroup = btnGroups;
       });
     }, (id) {
-      String key = serviceTag['Step${_step}']["key"];
+      String key = agentLoginData['Step${_step}']["key"];
       setState(() {
         btnGroup = [];
         if (agentUserInfo.isEmpty) {
@@ -92,7 +92,7 @@ class _AgentRegisterState extends State<AgentRegister> {
 
   @override
   Widget build(BuildContext context) {
-    Map pageInfoData = serviceTag['Step${_step}'];
+    Map pageInfoData = agentLoginData['Step${_step}'];
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
@@ -145,7 +145,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                       onPressed: () {
                                         if (_step > 1) {
                                           List ids = [];
-                                          Map currentMap = serviceTag['Step${_step - 1}'];
+                                          Map currentMap = agentLoginData['Step${_step - 1}'];
                                           if (agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null) {
                                             ids = agentUserInfo[currentMap["key"]]["ids"];
                                           }
@@ -165,9 +165,9 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 padding: EdgeInsets.all(0),
                                 icon: Icon(Icons.arrow_forward),
                                 onPressed: () {
-                                  Map currentMap = serviceTag['Step${_step + 1}'];
+                                  Map currentMap = agentLoginData['Step${_step + 1}'];
                                   List ids = [];
-                                  if (_step < serviceTag.length) {
+                                  if (_step < agentLoginData.length) {
                                     if (agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null) {
                                       ids = agentUserInfo[currentMap["key"]]["ids"];
                                     }
@@ -319,18 +319,19 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 )
                               : SizedBox(height: 0),
                           pageInfoData["hasInput"]
-                              ? AddCompany(showIndex: _activeTag2, nameGroup: _nameGroup, calback:(text) {
+                              ? AddCompany(showIndex: _activeTag2, nameGroup: _nameGroup, calback:(text) => {
                                   setState(() {
+                                    print(_nameGroup.length);
                                     if (_nameGroup.length < 3) {
                                       _nameGroup.add(text);
                                     } else {
                                       Toast.toast(context, msg: "不能超过3");
                                     }
-                                  });
-                                }, calback2:(index) {
+                                  })
+                                }, calback2:(index) => {
                                   setState(() {
                                     _nameGroup.removeAt(index);
-                                  });
+                                  })
                                 })
                               : SizedBox(height: 0),
                         ],
