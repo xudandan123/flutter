@@ -136,7 +136,7 @@ class _FormsState extends State<Forms> {
 
   String _password = '';
 
-  DateTime _selectedDate = DateTime.now(); //当前选中的日期
+  DateTime _selectedDate; //当前选中的日期
 
   void _forSubmitted() {
     var _form = _formKey.currentState;
@@ -145,6 +145,7 @@ class _FormsState extends State<Forms> {
       _form.save();
       print(_name);
       print(_password);
+      print(_selectedDate);
     }
   }
 
@@ -156,7 +157,7 @@ class _FormsState extends State<Forms> {
       showDatePicker(
         //如下四个参数为必填参数
         context: context,
-        initialDate: _selectedDate, //选中的日期
+        initialDate: DateTime.now(), //选中的日期
         firstDate: DateTime(1980), //日期选择器上可选择的最早日期
         lastDate: DateTime(2100), //日期选择器上可选择的最晚日期
       ).then((selectedValue) {
@@ -166,7 +167,6 @@ class _FormsState extends State<Forms> {
         });
       });
     }
-
     return new Container(
       // padding: const EdgeInsets.all(16.0),
       child: new Form(
@@ -199,7 +199,6 @@ class _FormsState extends State<Forms> {
                   ),
                 ),
                 onSaved: (val) {
-                  print(1);
                   setState(() {
                     _name = val;
                   });
@@ -247,7 +246,9 @@ class _FormsState extends State<Forms> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      formatDate(this._selectedDate, [yyyy, "-", mm, "-", "dd"]),
+                      this._selectedDate != null ?
+                      formatDate(this._selectedDate, [yyyy, "-", mm, "-", "dd"]) :
+                      '请选择毕业时间',
                       style: TextStyle(fontSize: 14, color: Color(0xFF777777)),
                     ),
                     Icon(Icons.schedule, color: Color(0xFF777777),)
@@ -275,6 +276,7 @@ class _FormsState extends State<Forms> {
               ),
               onTap: () {
                 // this.pressed();
+                this._forSubmitted();
               },
             ),
           ],

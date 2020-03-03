@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate
         ],
         supportedLocales: [const Locale("zh", "CH")],
-        // home: AgentLogin(),
-        home: AgentDetail(),
+        home: AgentLogin(),
+        // home: AgentDetail(),
       ),
     );
   }
