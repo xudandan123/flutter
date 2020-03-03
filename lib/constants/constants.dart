@@ -139,6 +139,13 @@ class Constants {
     {"step": 10, "text": "4. O-职业标签 - 3"},
     {"step": 13, "text": "5. P-身份标签  - 4"}
   ];
+  static List talentUserList = [
+    {"step": 1, "text": "1. A-求职标签 - 9"},
+    {"step": 10, "text": "2. E-照片视频 - 1"},
+    {"step": 11, "text": "3. F-学历标签 - 2"},
+    {"step": 13, "text": "4. G-职业标签 - 7"},
+    {"step": 20, "text": "5. H-身份标签 - 8"}
+  ];
   static List education = [
     {"id": 1, "text": "博士"},
     {"id": 2, "text": "硕士"},
@@ -242,6 +249,19 @@ class Constants {
     "text": '特别标签'
   }
 ];
+static Map agentAddInputTitle = {
+  2: '请输入单位名称   最多添加3个',
+  11: '请输入岗位名称 ',
+  12: '请输入知名企业品牌名',
+  16: '请输入标签名，'
+};
+
+static Map talentAddInputTitle = {
+  2: '请输入单位名称   最多添加3个',
+  17: '请输入岗位名称 ',
+  18: '请输入知名企业品牌名',
+  28: '请输入标签名'
+};
   // static init() async {
   //   final _di = DeviceInfoPlugin();
   //   if (Platform.isAndroid) {

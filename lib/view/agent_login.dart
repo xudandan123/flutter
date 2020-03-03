@@ -53,7 +53,7 @@ class _AgentLoginState extends State<AgentLogin> {
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
-        title: Text('  我是顾问-个人中心'),
+        title: Text('  我是顾问-个人中心', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
         backgroundColor: Constants.COLOR_1FB3C4,
         centerTitle: false,
         elevation: 0,
@@ -89,7 +89,7 @@ class _AgentLoginState extends State<AgentLogin> {
                         style: TextStyle(
                             fontSize: 18,
                             color: Constants.COLOR_1FB3C4,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                     SizedBox(height: 15),

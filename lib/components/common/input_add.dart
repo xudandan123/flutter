@@ -6,9 +6,10 @@ import 'package:flutter_app/constants/constants.dart';
 class AddCompany extends StatefulWidget {
   final int showIndex;
   final List nameGroup;
+  final String title;
   final callback;
   final callback2;
-  AddCompany({Key key, this.showIndex, this.nameGroup, this.callback, this.callback2})
+  AddCompany({Key key, this.showIndex, this.nameGroup, this.title, this.callback, this.callback2})
       : super(key: key);
   @override
   _AddCompanyState createState() => _AddCompanyState();
@@ -57,7 +58,7 @@ class _AddCompanyState extends State<AddCompany> {
                 child: Container(
                     height: 20,
                     child: Text(
-                      '请输入单位名称,最多添加3个',
+                      widget.title,
                       style: TextStyle(fontSize: 10),
                     )),
               ),
@@ -69,7 +70,7 @@ class _AddCompanyState extends State<AddCompany> {
                   cursorColor: Colors.grey,
                   textAlignVertical: TextAlignVertical(y: 1),
                   decoration: InputDecoration(
-                    hintText: '请输入单位名称',
+                    hintText: '',
                     hintStyle: TextStyle(fontSize: 14),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),

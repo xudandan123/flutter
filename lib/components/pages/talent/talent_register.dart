@@ -8,33 +8,33 @@ import 'package:flutter_app/components/common/input_add.dart';
 import 'package:flutter_app/components/common/toast.dart';
 import 'package:flutter_app/components/pages/chips/register.dart';
 
-class AgentRegister extends StatefulWidget {
+class TalentRegister extends StatefulWidget {
   int step;
-  AgentRegister({Key key, this.step}) : super(key: key);
+  TalentRegister({Key key, this.step}) : super(key: key);
   @override
-  _AgentRegisterState createState() => _AgentRegisterState(this.step);
+  _TalentRegisterState createState() => _TalentRegisterState(this.step);
 }
 
-class _AgentRegisterState extends State<AgentRegister> {
+class _TalentRegisterState extends State<TalentRegister> {
   int step;
   int _activeBtn = 0; // 顶部切换按钮的索引
   int _activeTag = 0; // 有还是没有切换的索引
-  Map _activeTag2 = {2: 0, 11: 0, 12: 0, 16: 0}; // 输入生成标签的索引集
+  Map _activeTag2 = {2: 0, 17: 0, 18: 0, 28: 0}; // 输入生成标签的索引集
   int _step = 1; // 当前的页码
   List<Widget> btnGroup = []; // 选择按钮数组
   List<Widget> btnGroup2 = []; // 选择学历按钮数组
   List<Widget> btnGroup3 = []; // 选择外语按钮数组
-  Map<int, List> _nameGroup = {2: [], 11: [], 12: [], 16: []}; //输入按钮数组
+  Map<int, List> _nameGroup = {2: [], 17: [], 18: [], 28: []}; //输入按钮数组
   Map agentUserInfo = {}; // 选择后保存参数的地方
   bool inWork = true;
   Map Chips;
 
-  _AgentRegisterState(this.step);
+  _TalentRegisterState(this.step);
   @override
   void initState() {
     super.initState();
     _step = step;
-    Map pageInfoData = agentLoginData['Step${_step}'];
+    Map pageInfoData = talentLoginData['Step${_step}'];
     this._changeList(pageInfoData["list"], pageInfoData["type"], []);
     this._changeList(pageInfoData["list"], 3, [], Constants.education, 8);
     this._changeList(
@@ -61,7 +61,7 @@ class _AgentRegisterState extends State<AgentRegister> {
         btnGroup = btnGroups;
       });
     }, (id) {
-      String key = agentLoginData['Step${_step}']["key"];
+      String key = talentLoginData['Step${_step}']["key"];
       setState(() {
         btnGroup = [];
         if (agentUserInfo.isEmpty) {
@@ -87,7 +87,7 @@ class _AgentRegisterState extends State<AgentRegister> {
 
   @override
   Widget build(BuildContext context) {
-    Map pageInfoData = agentLoginData['Step${_step}'];
+    Map pageInfoData = talentLoginData['Step${_step}'];
     Chips = {
       "Images": Images(),
       "Forms": Forms(),
@@ -100,7 +100,7 @@ class _AgentRegisterState extends State<AgentRegister> {
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
-        title: Text('  我是顾问-个人中心', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
+        title: Text('  我是人才-我的求职', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
         backgroundColor: Constants.COLOR_1FB3C4,
         automaticallyImplyLeading: false,
         centerTitle: false,
@@ -153,7 +153,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                         onPressed: () {
                                           if (_step > 1) {
                                             List ids = [];
-                                            Map currentMap = agentLoginData[
+                                            Map currentMap = talentLoginData[
                                                 'Step${_step - 1}'];
                                             if (agentUserInfo.isEmpty ==
                                                     false &&
@@ -179,9 +179,9 @@ class _AgentRegisterState extends State<AgentRegister> {
                                   icon: Icon(Icons.arrow_forward),
                                   onPressed: () {
                                     Map currentMap =
-                                        agentLoginData['Step${_step + 1}'];
+                                        talentLoginData['Step${_step + 1}'];
                                     List ids = [];
-                                    if (_step < agentLoginData.length) {
+                                    if (_step < talentLoginData.length) {
                                       if (agentUserInfo.isEmpty == false &&
                                           agentUserInfo[currentMap["key"]] !=
                                               null) {
@@ -230,7 +230,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 ),
                               ),
                             ),
-                            _step == 15
+                            _step == 26
                                 ? Column(
                                     children: <Widget>[
                                       SizedBox(
@@ -304,7 +304,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                             children: btnGroup),
                                   )
                                 : SizedBox(height: 0),
-                            _step == 8
+                            _step == 11
                                 ? Column(
                                     children: <Widget>[
                                       Divider(
@@ -340,7 +340,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 ? AddCompany(
                                     showIndex: _activeTag2[_step],
                                     nameGroup: _nameGroup[_step],
-                                    title: Constants.agentAddInputTitle[_step],
+                                    title: Constants.talentAddInputTitle[_step],
                                     callback: (text) => {
                                           setState(() {
                                             if (_nameGroup[_step].length < 3) {
