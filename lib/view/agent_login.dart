@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/constants.dart';
-import 'package:flutter_app/components/common/tab-button.dart';
-import 'package:flutter_app/components/pages/agent/agent-register.dart';
+import 'package:flutter_app/components/common/tab_button.dart';
+import 'package:flutter_app/components/pages/agent/agent_register.dart';
 
 class AgentLogin extends StatefulWidget {
   AgentLogin({Key key}) : super(key: key);

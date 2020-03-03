@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/constants/constants.dart';
 import 'package:flutter_app/data.dart';
-import 'package:flutter_app/components/common/tab-button.dart';
-import 'package:flutter_app/components/common/creat-choice.dart';
-import 'package:flutter_app/components/common/input-add.dart';
+import 'package:flutter_app/components/common/tab_button.dart';
+import 'package:flutter_app/components/common/create_choice.dart';
+import 'package:flutter_app/components/common/input_add.dart';
 import 'package:flutter_app/components/common/toast.dart';
 import 'package:flutter_app/components/pages/chips/register.dart';
 
