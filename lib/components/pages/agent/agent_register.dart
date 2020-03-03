@@ -25,14 +25,13 @@ class _AgentRegisterState extends State<AgentRegister> {
   int step;
   int _activeBtn = 0; // 顶部切换按钮的索引
   int _activeTag = 0; // 有还是没有切换的索引
-  int _activeTag2 = 0; // 另一个切换的索引
+  Map _activeTag2 = {2: 0, 11: 0, 12: 0, 16: 0}; // 输入生成标签的索引集
   int _step = 1; // 当前的页码
   List<Widget> btnGroup = []; // 选择按钮数组
   List<Widget> btnGroup2 = []; // 选择学历按钮数组
   List<Widget> btnGroup3 = []; // 选择外语按钮数组
-  List _nameGroup = []; //输入按钮数组
+  Map<int, List> _nameGroup = {2: [], 11: [], 12: [], 16: []}; //输入按钮数组
   Map agentUserInfo = {}; // 选择后保存参数的地方
-  // bool _showMsg = false; // 是否加校验规则
 
   _AgentRegisterState(this.step);
   @override
@@ -124,221 +123,238 @@ class _AgentRegisterState extends State<AgentRegister> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
-                constraints:
-                    BoxConstraints(minHeight: 540, minWidth: double.infinity),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(14.0),
-                    color: Constants.COLOR_e5e5e5),
-                padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                child: _activeBtn == 0
-                    ? Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              _step > 1
-                                  ? IconButton(
-                                      alignment: Alignment.centerLeft,
-                                      padding: EdgeInsets.all(0),
-                                      icon: Icon(Icons.arrow_back),
-                                      onPressed: () {
-                                        if (_step > 1) {
-                                          List ids = [];
-                                          Map currentMap = agentLoginData['Step${_step - 1}'];
-                                          if (agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null) {
-                                            ids = agentUserInfo[currentMap["key"]]["ids"];
+              GestureDetector(
+                onTap: () {FocusScope.of(context).requestFocus(FocusNode());},
+                child: Container(
+                  constraints:
+                      BoxConstraints(minHeight: 540, minWidth: double.infinity),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(14.0),
+                      color: Constants.COLOR_e5e5e5),
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                  child: _activeBtn == 0
+                      ? Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                _step > 1
+                                    ? IconButton(
+                                        alignment: Alignment.centerLeft,
+                                        padding: EdgeInsets.all(0),
+                                        icon: Icon(Icons.arrow_back),
+                                        onPressed: () {
+                                          if (_step > 1) {
+                                            List ids = [];
+                                            Map currentMap = agentLoginData[
+                                                'Step${_step - 1}'];
+                                            if (agentUserInfo.isEmpty ==
+                                                    false &&
+                                                agentUserInfo[
+                                                        currentMap["key"]] !=
+                                                    null) {
+                                              ids = agentUserInfo[
+                                                  currentMap["key"]]["ids"];
+                                            }
+                                            this._changeList(currentMap["list"],
+                                                currentMap["type"], ids);
+                                            setState(() {
+                                              _step -= 1;
+                                            });
                                           }
-                                          this._changeList(currentMap["list"],
-                                              currentMap["type"], ids);
-                                          setState(() {
-                                            _step -= 1;
-                                            // _showMsg = false;
-                                          });
-                                        }
-                                      },
-                                    )
-                                  : SizedBox(width: 0),
-                              Text(pageInfoData["steptitle"]),
-                              IconButton(
-                                alignment: Alignment.centerRight,
-                                padding: EdgeInsets.all(0),
-                                icon: Icon(Icons.arrow_forward),
-                                onPressed: () {
-                                  Map currentMap = agentLoginData['Step${_step + 1}'];
-                                  List ids = [];
-                                  if (_step < agentLoginData.length) {
-                                    if (agentUserInfo.isEmpty == false && agentUserInfo[currentMap["key"]] != null) {
-                                      ids = agentUserInfo[currentMap["key"]]["ids"];
-                                    }
-                                    this._changeList(currentMap["list"], currentMap["type"], ids);
-                                    setState(() {
-                                      _step += 1;
-                                      // _showMsg = false;
-                                    });
-                                  }
-                                  // else {
-                                  //   setState(() {
-                                  //     _showMsg = true;
-                                  //   });
-                                  // }
-                                },
-                              ),
-                            ],
-                          ),
-                          Divider(
-                            height: 8, //容器器⾼高度，不不是线的⾼高度 indent: 10, //左侧间距
-                            color: Constants.COLOR_333333,
-                          ),
-                          SizedBox(height: 18),
-                          Container(
-                            height: 41,
-                            constraints: BoxConstraints(
-                              minWidth: double.infinity, //宽度尽可能大
-                            ),
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: Constants.COLOR_1FB3C4,
-                                borderRadius: BorderRadius.circular(14.0), //3像素圆角
-                              ),
-                              child: Stack(
-                                alignment: Alignment.center, // 垂直居中
-                                children: <Widget>[
-                                  Positioned(
-                                    left: 10.0,
-                                    child: Text(
-                                      pageInfoData['titles'],
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: Constants.COLOR_e5e5e5),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          _step == 15
-                              ? Column(
-                                  children: <Widget>[
-                                    SizedBox(height: 15,),
-                                    Wrap(
-                                      spacing: 16.0, // 主轴(水平)方向间距
-                                      runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                      alignment: WrapAlignment.start,
-                                      children: btnGroup3),
-                                  ],
-                                )
-                              : SizedBox(height: 0),
-                          SizedBox(height: 28),
-                          pageInfoData["page"] != ''
-                              ? Chips[pageInfoData['page']]
-                              : SizedBox(height: 0),
-                          pageInfoData["list"].length != 0
-                              ? ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                    minWidth: double.infinity, //宽度尽可能大
-                                  ),
-                                  child: Container(
-                                      height: 20,
-                                      child: Text(
-                                        '选择如下标签',
-                                        style: TextStyle(fontSize: 10),
-                                      )),
-                                )
-                              : SizedBox(height: 0),
-                          SizedBox(height: 2),
-                          Column(
-                            children: <Widget>[
-                              pageInfoData["hasOr"]
-                                  ? TabButton.createBtn(
-                                      Constants.hasOr, _activeTag, (k) {
-                                      List dataLists =
-                                          k == 0 ? pageInfoData["list"] : [];
-                                      List ids = [];
+                                        },
+                                      )
+                                    : SizedBox(width: 0),
+                                Text(pageInfoData["steptitle"]),
+                                IconButton(
+                                  alignment: Alignment.centerRight,
+                                  padding: EdgeInsets.all(0),
+                                  icon: Icon(Icons.arrow_forward),
+                                  onPressed: () {
+                                    Map currentMap =
+                                        agentLoginData['Step${_step + 1}'];
+                                    List ids = [];
+                                    if (_step < agentLoginData.length) {
                                       if (agentUserInfo.isEmpty == false &&
-                                          agentUserInfo[pageInfoData["key"]] !=
+                                          agentUserInfo[currentMap["key"]] !=
                                               null) {
-                                        ids = agentUserInfo[pageInfoData["key"]]
+                                        ids = agentUserInfo[currentMap["key"]]
                                             ["ids"];
                                       }
-                                      this._changeList(
-                                          dataLists, pageInfoData["type"], ids);
+                                      this._changeList(currentMap["list"],
+                                          currentMap["type"], ids);
                                       setState(() {
-                                        _activeTag = k;
+                                        _step += 1;
                                       });
-                                    }, 0)
-                                  : SizedBox(height: 0),
-                              SizedBox(height: pageInfoData["hasOr"] ? 10 : 0),
-                            ],
-                          ),
-                          pageInfoData["list"].length != 0
-                              ? Container(
-                                  child: pageInfoData["type"] != 3
-                                      ? Column(
-                                          children: btnGroup,
-                                        )
-                                      :
-                                      // Text('123'),
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
+                            Divider(
+                              height: 8, //容器器⾼高度，不不是线的⾼高度 indent: 10, //左侧间距
+                              color: Constants.COLOR_333333,
+                            ),
+                            SizedBox(height: 18),
+                            Container(
+                              height: 41,
+                              constraints: BoxConstraints(
+                                minWidth: double.infinity, //宽度尽可能大
+                              ),
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Constants.COLOR_1FB3C4,
+                                  borderRadius:
+                                      BorderRadius.circular(14.0), //3像素圆角
+                                ),
+                                child: Stack(
+                                  alignment: Alignment.center, // 垂直居中
+                                  children: <Widget>[
+                                    Positioned(
+                                      left: 10.0,
+                                      child: Text(
+                                        pageInfoData['titles'],
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Constants.COLOR_e5e5e5),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            _step == 15
+                                ? Column(
+                                    children: <Widget>[
+                                      SizedBox(
+                                        height: 15,
+                                      ),
                                       Wrap(
-                                          spacing: 7.0, // 主轴(水平)方向间距
+                                          spacing: 16.0, // 主轴(水平)方向间距
                                           runSpacing: 3.0, // 纵轴（垂直）方向间距
                                           alignment: WrapAlignment.start,
-                                          children: btnGroup),
-                                )
-                              : SizedBox(height: 0),
-                          _step == 8
-                              ? Column(
-                                  children: <Widget>[
-                                    Divider(
-                                        height: 45,
-                                        color: Constants.COLOR_999999),
-                                    Wrap(
-                                        spacing: 16.0, // 主轴(水平)方向间距
-                                        runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                        alignment: WrapAlignment.start,
-                                        children: btnGroup2),
-                                    Divider(
-                                        height: 45,
-                                        color: Constants.COLOR_999999),
-                                  ],
-                                )
-                              : SizedBox(height: 0),
-                          pageInfoData["hasInput"] &&
-                                  pageInfoData["inputTab"] != false
-                              ? Column(
-                                  children: <Widget>[
-                                    SizedBox(height: 46),
-                                    TabButton.createBtn(
-                                        Constants.companyOr, _activeTag2, (k) {
-                                      print(k);
-                                      setState(() {
-                                        _activeTag2 = k;
-                                      });
-                                    }, 0)
-                                  ],
-                                )
-                              : SizedBox(height: 0),
-                          pageInfoData["hasInput"]
-                              ? AddCompany(showIndex: _activeTag2, nameGroup: _nameGroup, calback:(text) => {
-                                  setState(() {
-                                    print(_nameGroup.length);
-                                    if (_nameGroup.length < 3) {
-                                      _nameGroup.add(text);
-                                    } else {
-                                      Toast.toast(context, msg: "不能超过3");
-                                    }
-                                  })
-                                }, calback2:(index) => {
-                                  setState(() {
-                                    _nameGroup.removeAt(index);
-                                  })
-                                })
-                              : SizedBox(height: 0),
-                        ],
-                      )
-                    : Center(
-                        child: Text('暂无数据'),
-                      ),
+                                          children: btnGroup3),
+                                    ],
+                                  )
+                                : SizedBox(height: 0),
+                            SizedBox(height: 28),
+                            pageInfoData["page"] != ''
+                                ? Chips[pageInfoData['page']]
+                                : SizedBox(height: 0),
+                            pageInfoData["list"].length != 0
+                                ? ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      minWidth: double.infinity, //宽度尽可能大
+                                    ),
+                                    child: Container(
+                                        height: 20,
+                                        child: Text(
+                                          '选择如下标签',
+                                          style: TextStyle(fontSize: 10),
+                                        )),
+                                  )
+                                : SizedBox(height: 0),
+                            SizedBox(height: 2),
+                            Column(
+                              children: <Widget>[
+                                pageInfoData["hasOr"]
+                                    ? TabButton.createBtn(
+                                        Constants.hasOr, _activeTag, (k) {
+                                        List dataLists =
+                                            k == 0 ? pageInfoData["list"] : [];
+                                        List ids = [];
+                                        if (agentUserInfo.isEmpty == false &&
+                                            agentUserInfo[
+                                                    pageInfoData["key"]] !=
+                                                null) {
+                                          ids =
+                                              agentUserInfo[pageInfoData["key"]]
+                                                  ["ids"];
+                                        }
+                                        this._changeList(dataLists,
+                                            pageInfoData["type"], ids);
+                                        setState(() {
+                                          _activeTag = k;
+                                        });
+                                      }, 0)
+                                    : SizedBox(height: 0),
+                                SizedBox(
+                                    height: pageInfoData["hasOr"] ? 10 : 0),
+                              ],
+                            ),
+                            pageInfoData["list"].length != 0
+                                ? Container(
+                                    child: pageInfoData["type"] != 3
+                                        ? Column(
+                                            children: btnGroup,
+                                          )
+                                        :
+                                        // Text('123'),
+                                        Wrap(
+                                            spacing: 7.0, // 主轴(水平)方向间距
+                                            runSpacing: 3.0, // 纵轴（垂直）方向间距
+                                            alignment: WrapAlignment.start,
+                                            children: btnGroup),
+                                  )
+                                : SizedBox(height: 0),
+                            _step == 8
+                                ? Column(
+                                    children: <Widget>[
+                                      Divider(
+                                          height: 45,
+                                          color: Constants.COLOR_999999),
+                                      Wrap(
+                                          spacing: 16.0, // 主轴(水平)方向间距
+                                          runSpacing: 3.0, // 纵轴（垂直）方向间距
+                                          alignment: WrapAlignment.start,
+                                          children: btnGroup2),
+                                      Divider(
+                                          height: 45,
+                                          color: Constants.COLOR_999999),
+                                    ],
+                                  )
+                                : SizedBox(height: 0),
+                            pageInfoData["hasInput"] &&
+                                    pageInfoData["inputTab"] != false
+                                ? Column(
+                                    children: <Widget>[
+                                      SizedBox(height: 46),
+                                      TabButton.createBtn(Constants.companyOr,
+                                          _activeTag2[_step], (k) {
+                                        print(k);
+                                        setState(() {
+                                          _activeTag2[_step] = k;
+                                        });
+                                      }, 0)
+                                    ],
+                                  )
+                                : SizedBox(height: 0),
+                            pageInfoData["hasInput"]
+                                ? AddCompany(
+                                    showIndex: _activeTag2[_step],
+                                    nameGroup: _nameGroup[_step],
+                                    calback: (text) => {
+                                          setState(() {
+                                            if (_nameGroup[_step].length < 3) {
+                                              _nameGroup[_step].add(text);
+                                            } else {
+                                              Toast.toast(context,
+                                                  msg: "不能超过3");
+                                            }
+                                          })
+                                        },
+                                    calback2: (index) => {
+                                          setState(() {
+                                            _nameGroup[_step].removeAt(index);
+                                          })
+                                        })
+                                : SizedBox(height: 0),
+                          ],
+                        )
+                      : Center(
+                          child: Text('暂无数据'),
+                        ),
+                ),
               ),
             ],
           ),

@@ -233,6 +233,7 @@ class _FormsState extends State<Forms> {
               onTap: () {
                 //调起日期选择器
                 _showDatePicker();
+                FocusScope.of(context).requestFocus(FocusNode());
               },
               child: Container(
                 height: 32,

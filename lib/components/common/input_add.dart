@@ -16,15 +16,18 @@ class AddCompany extends StatefulWidget {
 
 class _AddCompanyState extends State<AddCompany> {
   TextEditingController _userEtController = TextEditingController();
+  FocusNode nameFocusNode;
 
   @override
   void dispose() {
     _userEtController.dispose();
+    nameFocusNode.dispose();
     super.dispose();
   }
 
   void initState() {
     super.initState();
+    nameFocusNode = FocusNode();
   }
   @override
   Widget build(BuildContext context) {
@@ -61,6 +64,7 @@ class _AddCompanyState extends State<AddCompany> {
               Container(
                 constraints: BoxConstraints(maxHeight: 32),
                 child: new TextField(
+                  focusNode: nameFocusNode,
                   controller: _userEtController,
                   cursorColor: Colors.grey,
                   textAlignVertical: TextAlignVertical(y: 1),
@@ -78,9 +82,9 @@ class _AddCompanyState extends State<AddCompany> {
                         icon: Icon(Icons.control_point),
                         onPressed: () {
                           widget.calback(_userEtController.text);
-                          // _userEtController.clear();
                           WidgetsBinding.instance.addPostFrameCallback(
                               (_) => _userEtController.clear());
+                          FocusScope.of(context).requestFocus(FocusNode());
                         }),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
