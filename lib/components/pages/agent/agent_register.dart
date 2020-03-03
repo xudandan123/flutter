@@ -8,12 +8,6 @@ import 'package:flutter_app/components/common/input_add.dart';
 import 'package:flutter_app/components/common/toast.dart';
 import 'package:flutter_app/components/pages/chips/register.dart';
 
-Map Chips = {
-  "Images": Images(),
-  "Forms": Forms(),
-  "Forms2": Forms2(),
-};
-
 class AgentRegister extends StatefulWidget {
   int step;
   AgentRegister({Key key, this.step}) : super(key: key);
@@ -32,6 +26,8 @@ class _AgentRegisterState extends State<AgentRegister> {
   List<Widget> btnGroup3 = []; // 选择外语按钮数组
   Map<int, List> _nameGroup = {2: [], 11: [], 12: [], 16: []}; //输入按钮数组
   Map agentUserInfo = {}; // 选择后保存参数的地方
+  bool inWork = true;
+  Map Chips;
 
   _AgentRegisterState(this.step);
   @override
@@ -92,6 +88,15 @@ class _AgentRegisterState extends State<AgentRegister> {
   @override
   Widget build(BuildContext context) {
     Map pageInfoData = agentLoginData['Step${_step}'];
+    Chips = {
+      "Images": Images(),
+      "Forms": Forms(),
+      "Forms2": Forms2(inWork, (type) {
+        setState(() {
+          inWork = type;
+        });
+      }),
+    };
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
@@ -124,7 +129,9 @@ class _AgentRegisterState extends State<AgentRegister> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               GestureDetector(
-                onTap: () {FocusScope.of(context).requestFocus(FocusNode());},
+                onTap: () {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                },
                 child: Container(
                   constraints:
                       BoxConstraints(minHeight: 540, minWidth: double.infinity),

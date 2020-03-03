@@ -36,7 +36,8 @@ Images() {
   );
 }
 
-Forms2() {
+Forms2(bool inWork, Function callback) {
+  print(inWork);
   return Column(
     children: <Widget>[
       Text(
@@ -59,69 +60,102 @@ Forms2() {
       ),
       GestureDetector(
         onTap: () {
-          
+          callback(!inWork);
         },
         child: Container(
           height: 32,
           decoration: BoxDecoration(
             // 容器的背景颜色和背景图片
-            border: Border.all(width: 1, color: Constants.COLOR_808080),
+            border: Border.all(
+                width: 1,
+                color:
+                    !inWork ? Constants.COLOR_1FB3C4 : Constants.COLOR_808080),
             borderRadius: BorderRadius.all(Radius.circular(16.0)),
           ),
           child: Center(
-            child: Text("无工作单位", style: TextStyle(color: Constants.COLOR_808080),),
-          ),
-        ),
-      ),
-      SizedBox(height: 10),
-      Container(
-        constraints: BoxConstraints(maxHeight: 32),
-        child: TextFormField(
-          textAlignVertical: TextAlignVertical(y: 1), // 文字居中
-          decoration: new InputDecoration(
-            hintText: '请输入工作单位全称',
-            hintStyle: TextStyle(fontSize: 14),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(width: 1, color: Constants.COLOR_808080),
+            child: Text(
+              "无工作单位",
+              style: TextStyle(
+                  color: !inWork
+                      ? Constants.COLOR_1FB3C4
+                      : Constants.COLOR_808080),
             ),
           ),
-          onSaved: (val) {},
         ),
       ),
-      SizedBox(height: 10),
-      Container(
-        constraints: BoxConstraints(maxHeight: 32),
-        child: TextFormField(
-          textAlignVertical: TextAlignVertical(y: 1), // 文字居中
-          decoration: new InputDecoration(
-            hintText: '请输入部门全称',
-            hintStyle: TextStyle(fontSize: 14),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(width: 1, color: Constants.COLOR_808080),
-            ),
-          ),
-          onSaved: (val) {},
-        ),
-      ),
-      SizedBox(height: 10),
-      Container(
-        constraints: BoxConstraints(maxHeight: 32),
-        child: TextFormField(
-          textAlignVertical: TextAlignVertical(y: 1), // 文字居中
-          decoration: new InputDecoration(
-            hintText: '请输入岗位名称',
-            hintStyle: TextStyle(fontSize: 14),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(width: 1, color: Constants.COLOR_808080),
-            ),
-          ),
-          onSaved: (val) {},
-        ),
-      ),
-      SizedBox(height: 30),
+      inWork
+          ? Column(
+              children: <Widget>[
+                SizedBox(height: 10),
+                Container(
+                  constraints: BoxConstraints(maxHeight: 32),
+                  child: TextFormField(
+                    textAlignVertical: TextAlignVertical(y: 1), // 文字居中
+                    decoration: new InputDecoration(
+                      hintText: '请输入工作单位全称',
+                      hintStyle: TextStyle(fontSize: 14),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(width: 1, color: Constants.COLOR_808080),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(width: 1, color: Constants.COLOR_808080),
+                      ),
+                    ),
+                    onSaved: (val) {},
+                  ),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  constraints: BoxConstraints(maxHeight: 32),
+                  child: TextFormField(
+                    textAlignVertical: TextAlignVertical(y: 1), // 文字居中
+                    decoration: new InputDecoration(
+                      hintText: '请输入部门全称',
+                      hintStyle: TextStyle(fontSize: 14),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(width: 1, color: Constants.COLOR_808080),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(width: 1, color: Constants.COLOR_808080),
+                      ),
+                    ),
+                    onSaved: (val) {},
+                  ),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  constraints: BoxConstraints(maxHeight: 32),
+                  child: TextFormField(
+                    textAlignVertical: TextAlignVertical(y: 1), // 文字居中
+                    decoration: new InputDecoration(
+                      hintText: '请输入岗位名称',
+                      hintStyle: TextStyle(fontSize: 14),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(width: 1, color: Constants.COLOR_808080),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(width: 1, color: Constants.COLOR_808080),
+                      ),
+                    ),
+                    onSaved: (val) {},
+                  ),
+                ),
+                SizedBox(height: 30),
+              ],
+            )
+          : SizedBox(height: 30),
     ],
   );
 }
@@ -169,6 +203,7 @@ class _FormsState extends State<Forms> {
         });
       });
     }
+
     return new Container(
       // padding: const EdgeInsets.all(16.0),
       child: new Form(
@@ -194,6 +229,11 @@ class _FormsState extends State<Forms> {
                 decoration: new InputDecoration(
                   hintText: '请输入学校全称',
                   hintStyle: TextStyle(fontSize: 14),
+                  focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(width: 1, color: Constants.COLOR_808080),
+                      ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide:
@@ -217,6 +257,11 @@ class _FormsState extends State<Forms> {
                 decoration: new InputDecoration(
                   hintText: '请输入学科专业全称',
                   hintStyle: TextStyle(fontSize: 14),
+                  focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(width: 1, color: Constants.COLOR_808080),
+                      ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide:
@@ -249,12 +294,16 @@ class _FormsState extends State<Forms> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      this._selectedDate != null ?
-                      formatDate(this._selectedDate, [yyyy, "-", mm, "-", "dd"]) :
-                      '请选择毕业时间',
+                      this._selectedDate != null
+                          ? formatDate(
+                              this._selectedDate, [yyyy, "-", mm, "-", "dd"])
+                          : '请选择毕业时间',
                       style: TextStyle(fontSize: 14, color: Color(0xFF777777)),
                     ),
-                    Icon(Icons.schedule, color: Color(0xFF777777),)
+                    Icon(
+                      Icons.schedule,
+                      color: Color(0xFF777777),
+                    )
                   ],
                 ),
               ),
