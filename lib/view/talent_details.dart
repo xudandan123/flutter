@@ -114,11 +114,14 @@ class TalentDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
-      appBar: AppBar(
-        title: Text('  我是顾问-个人中心'),
-        backgroundColor: Constants.COLOR_1FB3C4,
-        centerTitle: false,
-        elevation: 0,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30),
+        child: AppBar(
+          title: Text(''),
+          backgroundColor: Constants.COLOR_1FB3C4,
+          automaticallyImplyLeading: false,
+          elevation: 0,
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(

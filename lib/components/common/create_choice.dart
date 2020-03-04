@@ -5,7 +5,6 @@ creatChoice(List dataList, int listNum, activeNum, callback, callback2) {
   List<Widget> btnGroupList = [];
   List<Widget> btnGroups = [];
   List activeId = [...activeNum];
-  // print(listNum);
   if (listNum == 3) {
     for (int i = 0; i < dataList.length; i++) {
       btnGroups.add(GestureDetector(

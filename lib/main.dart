@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
             new RaisedButton(
               child: Text('我是人才'),
               onPressed: () {
-                print('xdd');
                 Navigator.push(
                   context,
                   MaterialPageRoute(

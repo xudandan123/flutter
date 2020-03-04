@@ -61,7 +61,8 @@ class AgentDetail extends StatelessWidget {
                       color: Constants.COLOR_1FB3C4),
                   child: Text(
                     value,
-                    style: TextStyle(color: Constants.COLOR_e5e5e5, fontSize: 12),
+                    style:
+                        TextStyle(color: Constants.COLOR_e5e5e5, fontSize: 12),
                   ),
                 );
               }).toList(),
@@ -117,11 +118,14 @@ class AgentDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
-      appBar: AppBar(
-        title: Text('  我是顾问-个人中心'),
-        backgroundColor: Constants.COLOR_1FB3C4,
-        centerTitle: false,
-        elevation: 0,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30),
+        child: AppBar(
+          title: Text(''),
+          backgroundColor: Constants.COLOR_1FB3C4,
+          automaticallyImplyLeading: false,
+          elevation: 0,
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -189,7 +193,7 @@ class AgentDetail extends StatelessWidget {
                 Divider(height: 10, color: Color(0xFFA6A6A6)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  verticalDirection:VerticalDirection.up,
+                  verticalDirection: VerticalDirection.up,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Column(

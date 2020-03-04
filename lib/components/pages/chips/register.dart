@@ -37,7 +37,6 @@ Images() {
 }
 
 Forms2(bool inWork, Function callback) {
-  print(inWork);
   return Column(
     children: <Widget>[
       Text(

@@ -152,41 +152,36 @@ class _AgentRegisterState extends State<AgentRegister> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                _step > 1
-                                    ? IconButton(
-                                        alignment: Alignment.centerLeft,
-                                        padding: EdgeInsets.all(0),
-                                        icon: Icon(Icons.arrow_back),
-                                        onPressed: () {
-                                          if (_step > 1) {
-                                            List ids = [];
-                                            Map currentMap = agentLoginData[
-                                                'Step${_step - 1}'];
-                                            if (agentUserInfo.isEmpty ==
-                                                    false &&
-                                                agentUserInfo[
-                                                        currentMap["key"]] !=
-                                                    null) {
-                                              ids = agentUserInfo[
-                                                  currentMap["key"]]["ids"];
-                                            }
-                                            this._changeList(currentMap["list"],
-                                                currentMap["type"], ids);
-                                            setState(() {
-                                              _step -= 1;
-                                            });
-                                          } else {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    AgentLogin(),
-                                              ),
-                                            );
-                                          }
-                                        },
-                                      )
-                                    : SizedBox(width: 0),
+                                IconButton(
+                                  alignment: Alignment.centerLeft,
+                                  padding: EdgeInsets.all(0),
+                                  icon: Icon(Icons.arrow_back),
+                                  onPressed: () {
+                                    if (_step > 1) {
+                                      List ids = [];
+                                      Map currentMap =
+                                          agentLoginData['Step${_step - 1}'];
+                                      if (agentUserInfo.isEmpty == false &&
+                                          agentUserInfo[currentMap["key"]] !=
+                                              null) {
+                                        ids = agentUserInfo[currentMap["key"]]
+                                            ["ids"];
+                                      }
+                                      this._changeList(currentMap["list"],
+                                          currentMap["type"], ids);
+                                      setState(() {
+                                        _step -= 1;
+                                      });
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => AgentLogin(),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
                                 Text(pageInfoData["steptitle"]),
                                 IconButton(
                                   alignment: Alignment.centerRight,
@@ -350,7 +345,6 @@ class _AgentRegisterState extends State<AgentRegister> {
                                       SizedBox(height: 46),
                                       TabButton.createBtn(Constants.companyOr,
                                           _activeTag2[_step], (k) {
-                                        print(k);
                                         setState(() {
                                           _activeTag2[_step] = k;
                                         });
