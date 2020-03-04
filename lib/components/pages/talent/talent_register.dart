@@ -112,7 +112,7 @@ class _TalentRegisterState extends State<TalentRegister> {
   @override
   Widget build(BuildContext context) {
     Map pageInfoData = talentLoginData['Step${_step}'];
-    double screenHeight = MediaQuery.of(context).size.height - 180;
+    double screenHeight = MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom - 120;
     Chips = {
       "Images": Images(),
       "Forms": Forms(),

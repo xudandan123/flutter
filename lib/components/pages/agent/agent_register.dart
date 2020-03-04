@@ -109,7 +109,7 @@ class _AgentRegisterState extends State<AgentRegister> {
   @override
   Widget build(BuildContext context) {
     Map pageInfoData = agentLoginData['Step${_step}'];
-    double screenHeight = MediaQuery.of(context).size.height - 180;
+    double screenHeight = MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom - 120;
     Chips = {
       "Images": Images(),
       "Forms": Forms(),
