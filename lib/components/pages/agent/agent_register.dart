@@ -253,11 +253,16 @@ class _AgentRegisterState extends State<AgentRegister> {
                                       SizedBox(
                                         height: 15,
                                       ),
-                                      Wrap(
-                                          spacing: 16.0, // 主轴(水平)方向间距
-                                          runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                          alignment: WrapAlignment.start,
-                                          children: btnGroup3),
+                                      Container(
+                                        constraints: BoxConstraints(
+                                          minWidth: double.infinity,
+                                        ),
+                                        child: Wrap(
+                                          spacing: 8.0, // 主轴(水平)方向间距
+                                          alignment: WrapAlignment.start, //沿主轴方向居中
+                                          children: btnGroup3,
+                                        ),
+                                      )
                                     ],
                                   )
                                 : SizedBox(height: 0),
@@ -312,13 +317,15 @@ class _AgentRegisterState extends State<AgentRegister> {
                                         ? Column(
                                             children: btnGroup,
                                           )
-                                        :
-                                        // Text('123'),
-                                        Wrap(
-                                            spacing: 7.0, // 主轴(水平)方向间距
-                                            runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                            alignment: WrapAlignment.start,
-                                            children: btnGroup),
+                                        : Container(
+                                            constraints: BoxConstraints(
+                                              minWidth: double.infinity,
+                                            ),
+                                            child: Wrap(
+                                                spacing: 8.0, // 主轴(水平)方向间距
+                                                alignment: WrapAlignment.start, //沿主轴方向居中
+                                                children: btnGroup),
+                                          ),
                                   )
                                 : SizedBox(height: 0),
                             _step == 8
@@ -327,11 +334,15 @@ class _AgentRegisterState extends State<AgentRegister> {
                                       Divider(
                                           height: 45,
                                           color: Constants.COLOR_999999),
-                                      Wrap(
-                                          spacing: 16.0, // 主轴(水平)方向间距
-                                          runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                          alignment: WrapAlignment.start,
-                                          children: btnGroup2),
+                                      Container(
+                                        constraints: BoxConstraints(
+                                          minWidth: double.infinity,
+                                        ),
+                                        child: Wrap(
+                                            spacing: 8.0, // 主轴(水平)方向间距
+                                            alignment: WrapAlignment.start, //沿主轴方向居中
+                                            children: btnGroup2),
+                                      ),
                                       Divider(
                                           height: 45,
                                           color: Constants.COLOR_999999),

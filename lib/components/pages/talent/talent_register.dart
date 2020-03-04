@@ -258,10 +258,16 @@ class _TalentRegisterState extends State<TalentRegister> {
                                       SizedBox(
                                         height: 15,
                                       ),
-                                      Wrap(
+                                      Container(
+                                        constraints: BoxConstraints(
+                                          minWidth: double.infinity,
+                                        ),
+                                        child: Wrap(
                                           spacing: 10.0, // 主轴(水平)方向间距
-                                          // runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                          children: btnGroup3),
+                                          alignment: WrapAlignment.start,
+                                          children: btnGroup3,
+                                        ),
+                                      ),
                                     ],
                                   )
                                 : SizedBox(height: 0),
@@ -316,13 +322,16 @@ class _TalentRegisterState extends State<TalentRegister> {
                                         ? Column(
                                             children: btnGroup,
                                           )
-                                        :
-                                        // Text('123'),
-                                        Wrap(
-                                            spacing: 7.0, // 主轴(水平)方向间距
-                                            runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                            alignment: WrapAlignment.start,
-                                            children: btnGroup),
+                                        : Container(
+                                            constraints: BoxConstraints(
+                                              minWidth: double.infinity,
+                                            ),
+                                            child: Wrap(
+                                              spacing: 8.0, // 主轴(水平)方向间距
+                                              alignment: WrapAlignment.start,
+                                              children: btnGroup,
+                                            ),
+                                          ),
                                   )
                                 : SizedBox(height: 0),
                             _step == 11
@@ -331,19 +340,28 @@ class _TalentRegisterState extends State<TalentRegister> {
                                       Divider(
                                           height: 45,
                                           color: Constants.COLOR_999999),
-                                      Wrap(
-                                          spacing: 7.0, // 主轴(水平)方向间距
-                                          runSpacing: 3.0, // 纵轴（垂直）方向间距
+                                      Container(
+                                        constraints: BoxConstraints(
+                                          minWidth: double.infinity,
+                                        ),
+                                        child: Wrap(
+                                          spacing: 3.0, // 主轴(水平)方向间距
                                           alignment: WrapAlignment.start,
-                                          children: btnGroup2),
+                                          children: btnGroup2,
+                                        ),
+                                      ),
                                       Divider(
                                           height: 45,
                                           color: Constants.COLOR_999999),
-                                      Wrap(
-                                        spacing: 3.0, // 主轴(水平)方向��距
-                                        // runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                        // alignment: WrapAlignment.spaceBetween,
-                                        children: btnGroup4,
+                                      Container(
+                                        constraints: BoxConstraints(
+                                          minWidth: double.infinity,
+                                        ),
+                                        child: Wrap(
+                                          spacing: 3.0, // 主轴(水平)方向��距
+                                          alignment: WrapAlignment.start,
+                                          children: btnGroup4,
+                                        ),
                                       ),
                                     ],
                                   )

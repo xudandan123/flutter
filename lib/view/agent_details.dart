@@ -55,9 +55,9 @@ class AgentDetail extends StatelessWidget {
               runSpacing: 4,
               children: data.map<Widget>((value) {
                 return Container(
-                  padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                  padding: EdgeInsets.fromLTRB(20, 3, 20, 3),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(12.0),
                       color: Constants.COLOR_1FB3C4),
                   child: Text(
                     value,
@@ -119,7 +119,7 @@ class AgentDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(30),
+        preferredSize: Size.fromHeight(0),
         child: AppBar(
           title: Text(''),
           backgroundColor: Constants.COLOR_1FB3C4,
@@ -129,7 +129,7 @@ class AgentDetail extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.fromLTRB(26, 0, 26, 10),
+          margin: EdgeInsets.fromLTRB(26, 30, 26, 10),
           child: Container(
             constraints:
                 BoxConstraints(minHeight: 540, minWidth: double.infinity),
@@ -254,22 +254,6 @@ class AgentDetail extends StatelessWidget {
                   ),
                 ),
                 Divider(height: 30, color: Color(0xFFA6A6A6)),
-                // Container(
-                //   height: 40,
-                //   margin: EdgeInsets.only(bottom: 20),
-                //   alignment: Alignment.center,
-                //   decoration: BoxDecoration(
-                //     // 容器的背景颜色和背景图片
-                //     border: Border.all(width: 1, color: Constants.COLOR_1FB3C4),
-                //     borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                //   ),
-                //   child: Text(
-                //     "顾问费  2000.00  元",
-                //     style: TextStyle(
-                //         color: Constants.COLOR_1FB3C4,
-                //         fontWeight: FontWeight.w700),
-                //   ),
-                // ),
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -285,7 +269,7 @@ class AgentDetail extends StatelessWidget {
                                   width: 1, color: Color(0xFFA6A6A6))),
                         ),
                         child: Text(
-                          "定向求职",
+                          "定向推荐",
                           style: TextStyle(
                               color: Constants.COLOR_EFF0F0,
                               fontWeight: FontWeight.w700),
@@ -299,8 +283,52 @@ class AgentDetail extends StatelessWidget {
                         padding: EdgeInsets.only(left: 5),
                         height: 60.0,
                         decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 1, color: Constants.COLOR_1FB3C4),
+                          border: Border(
+                            top: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                            right: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                            bottom: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                          ),
+                        ),
+                        child: Text(''),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(left: 5),
+                        height: 60.0,
+                        decoration: BoxDecoration(
+                          color: Constants.COLOR_1FB3C4,
+                          border: Border(
+                              right: BorderSide(
+                                  width: 1, color: Color(0xFFA6A6A6))),
+                        ),
+                        child: Text(
+                          "服务项目",
+                          style: TextStyle(
+                              color: Constants.COLOR_EFF0F0,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(left: 5),
+                        height: 60.0,
+                        decoration: BoxDecoration(
+                          border: Border(
+                            top: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                            right: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                            bottom: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                          ),
                         ),
                         child: Text(''),
                       ),

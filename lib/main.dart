@@ -46,6 +46,8 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 100),
             new RaisedButton(
               child: Text('我是人才'),
+              shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              padding: EdgeInsets.fromLTRB(50, 30, 50, 30),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -55,9 +57,11 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             new RaisedButton(
               child: Text('我是顾问'),
+              shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              padding: EdgeInsets.fromLTRB(50, 30, 50, 30),
               onPressed: () {
                 Navigator.push(
                   context,

@@ -144,7 +144,7 @@ class Constants {
     {"step": 10, "text": "2. E-照片视频 - 1"},
     {"step": 11, "text": "3. F-学历标签 - 2"},
     {"step": 13, "text": "4. G-职业标签 - 7"},
-    {"step": 20, "text": "5. H-身份标签 - 8"}
+    {"step": 20, "text": "5. H-身份标签 - 9"}
   ];
   static List education = [
     {"id": 1, "text": "博士研究生"},

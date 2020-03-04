@@ -10,9 +10,9 @@ creatChoice(List dataList, int listNum, activeNum, callback, callback2) {
       btnGroups.add(GestureDetector(
         child: Container(
           height: 32,
-          constraints: BoxConstraints(minWidth: 69),
+          constraints: BoxConstraints(minWidth: 66),
           margin: EdgeInsets.only(bottom: 6),
-          padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+          padding: EdgeInsets.fromLTRB(12, 5, 12, 5),
           decoration: BoxDecoration(
             border: dataList[i]['text'] != ''
                 ? Border.all(

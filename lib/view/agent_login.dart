@@ -53,14 +53,16 @@ class _AgentLoginState extends State<AgentLogin> {
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
-        title: Text('  我是顾问-个人中心', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
+        title: Text(
+          '  我是顾问-个人中心',
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+        ),
         backgroundColor: Constants.COLOR_1FB3C4,
         centerTitle: false,
         automaticallyImplyLeading: false,
         elevation: 0,
         bottom: PreferredSize(
           child: TabButton.createBtn(Constants.userTab, _activeBtn, (k) {
-            if (k == 0) {}
             setState(() {
               _activeBtn = k;
             });
@@ -81,43 +83,47 @@ class _AgentLoginState extends State<AgentLogin> {
                     borderRadius: BorderRadius.circular(14.0),
                     color: Constants.COLOR_e5e5e5),
                 padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 15),
-                    Center(
-                      child: Text(
-                        "设置身份标签  展示您的优势",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Constants.COLOR_1FB3C4,
-                            fontWeight: FontWeight.w700),
+                child: _activeBtn == 0
+                    ? Column(
+                        children: <Widget>[
+                          SizedBox(height: 15),
+                          Center(
+                            child: Text(
+                              "设置身份标签  展示您的优势",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Constants.COLOR_1FB3C4,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Divider(
+                            color: Constants.COLOR_999999,
+                          ),
+                          SizedBox(height: 50),
+                          Column(
+                            children: _createChip(),
+                          ),
+                          SizedBox(height: 80),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              '点击"发布"即视同您同意接受并签署',
+                              style: TextStyle(
+                                  fontSize: 12, color: Color(0xFF505050)),
+                            ),
+                          ),
+                          SizedBox(height: 45),
+                          TabButton.createBtn(Constants.hasOr, _activeTag, (k) {
+                            setState(() {
+                              // _activeTag = k;
+                            });
+                          }, 0),
+                        ],
+                      )
+                    : Center(
+                        child: Text('暂无数据'),
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    Divider(
-                      color: Constants.COLOR_999999,
-                    ),
-                    SizedBox(height: 50),
-                    Column(
-                      children: _createChip(),
-                    ),
-                    SizedBox(height: 80),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '点击"发布"即视同您同意接受并签署',
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0xFF505050)),
-                      ),
-                    ),
-                    SizedBox(height: 45),
-                    TabButton.createBtn(Constants.hasOr, _activeTag, (k) {
-                      setState(() {
-                        // _activeTag = k;
-                      });
-                    }, 0),
-                  ],
-                ),
               )
             ],
           ),

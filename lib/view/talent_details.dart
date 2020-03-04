@@ -55,11 +55,14 @@ class TalentDetail extends StatelessWidget {
               runSpacing: 4,
               children: data.map<Widget>((value) {
                 return Container(
-                  padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                  padding: EdgeInsets.fromLTRB(20, 3, 20, 3),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(12.0),
                       color: Constants.COLOR_1FB3C4),
-                  child: Text(value, style: TextStyle(color: Constants.COLOR_e5e5e5),),
+                  child: Text(
+                    value,
+                    style: TextStyle(color: Constants.COLOR_e5e5e5),
+                  ),
                 );
               }).toList(),
             );
@@ -115,7 +118,7 @@ class TalentDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(30),
+        preferredSize: Size.fromHeight(0),
         child: AppBar(
           title: Text(''),
           backgroundColor: Constants.COLOR_1FB3C4,
@@ -125,7 +128,7 @@ class TalentDetail extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.fromLTRB(26, 0, 26, 10),
+          margin: EdgeInsets.fromLTRB(26, 30, 26, 10),
           child: Container(
             constraints:
                 BoxConstraints(minHeight: 540, minWidth: double.infinity),
@@ -247,8 +250,11 @@ class TalentDetail extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Constants.COLOR_1FB3C4,
                           border: Border(
-                              right: BorderSide(
-                                  width: 1, color: Color(0xFFA6A6A6))),
+                            right: BorderSide(
+                              width: 1,
+                              color: Color(0xFFA6A6A6),
+                            ),
+                          ),
                         ),
                         child: Text(
                           "定向求职",
@@ -265,8 +271,11 @@ class TalentDetail extends StatelessWidget {
                         padding: EdgeInsets.only(left: 5),
                         height: 60.0,
                         decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 1, color: Constants.COLOR_1FB3C4),
+                         border: Border(
+                            top: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                            right: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                            bottom: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                          ),
                         ),
                         child: Text(''),
                       ),
