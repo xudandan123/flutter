@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/constants.dart';
+import 'package:flutter_app/view/home.dart';
 
 class AgentDetail extends StatelessWidget {
   const AgentDetail({Key key}) : super(key: key);
@@ -126,6 +127,18 @@ class AgentDetail extends StatelessWidget {
           automaticallyImplyLeading: false,
           elevation: 0,
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Constants.COLOR_1FB3C4,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
+        },
+        child: new Text('返回'),
       ),
       body: SingleChildScrollView(
         child: Container(

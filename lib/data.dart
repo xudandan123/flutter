@@ -3,8 +3,6 @@ Map agentLoginData = {
     "type": 1, // 按钮的排列类型 1为竖排1列，2为竖排2列
     "steptitle": "服务标签 1/6", // 当前步骤title
     "titles": '您提供的服务有哪些 ？ 多选', // 选择提示
-    "hasOr": false, // 有还是没有
-    "hasInput": false, // 有无输入框
     "key": "step1_1", // 存数据的key
     "list": [
       // 数据列表
@@ -37,8 +35,6 @@ Map agentLoginData = {
     "type": 2,
     "steptitle": "服务标签 3/6",
     "titles": '您专注服务哪些城市 ？ 多选2项',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step3_1",
     "list": [
       {"id": 1, "text": "上海"},
@@ -60,8 +56,6 @@ Map agentLoginData = {
     "type": 1,
     "steptitle": "服务标签 4/6",
     "titles": '您专注服务哪些行业 ？ 最多选2项',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step4_1",
     "list": [
       {"id": 1, "text": "互联网IT信息"},
@@ -79,8 +73,6 @@ Map agentLoginData = {
     "type": 1,
     "steptitle": "服务标签 5/6",
     "titles": '您专注哪类岗位 ？ 多选3项',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step5_1",
     "list": [
       {"id": 1, "text": "专业技术类"},
@@ -99,8 +91,6 @@ Map agentLoginData = {
     "type": 2,
     "steptitle": "服务标签 6/6",
     "titles": '您专注服务哪些职级 ？ 多选3项',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step6_1",
     "list": [
       {"id": 1, "text": "不限"},
@@ -122,8 +112,6 @@ Map agentLoginData = {
     "type": 2,
     "steptitle": "照片视频 1/1",
     "titles": '上传个人照片或视频吧',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step7_1",
     "list": [],
     "page": 'Images'
@@ -132,8 +120,6 @@ Map agentLoginData = {
     "type": 3,
     "steptitle": "学历标签 1/2",
     "titles": '您的学历背景是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step8_1",
     "list": [
       {"id": 1, "text": "海外名校留学"},
@@ -150,8 +136,6 @@ Map agentLoginData = {
     "type": 1,
     "steptitle": "学历标签 2/2",
     "titles": '您毕业于哪所院校 ？（最高学历）',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step9_1",
     "list": [],
     "page": 'Forms'
@@ -160,8 +144,6 @@ Map agentLoginData = {
     "type": 2,
     "steptitle": "职业标签 1/3",
     "titles": '您现在工作单位是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step10_1",
     "list": [
       {"id": 2, "text": "员工级"},
@@ -181,7 +163,6 @@ Map agentLoginData = {
     "type": 2,
     "steptitle": "职业标签 2/3",
     "titles": '您从事过哪些岗位 ？多填项',
-    "hasOr": false,
     "hasInput": true,
     "inputTab": false,
     "key": "step11_1",
@@ -192,7 +173,6 @@ Map agentLoginData = {
     "type": 2,
     "steptitle": "职业标签 3/3",
     "titles": '您在哪些知名企业工作过 ？多填项',
-    "hasOr": false,
     "hasInput": true,
     "key": "step12_1",
     "list": [],
@@ -202,8 +182,6 @@ Map agentLoginData = {
     "type": 2,
     "steptitle": "身份标签 1/4",
     "titles": '您从事猎头职业有几年 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step13_1",
     "list": [
       {"id": 1, "text": "1年"},
@@ -225,8 +203,6 @@ Map agentLoginData = {
     "type": 2,
     "steptitle": "身份标签 2/4",
     "titles": '您从事招聘相关的职业有几年 ？ ',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step14_1",
     "list": [
       {"id": 1, "text": "1年"},
@@ -248,8 +224,6 @@ Map agentLoginData = {
     "type": 1,
     "steptitle": "身份标签 3/4",
     "titles": '您掌握的外语水平是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step15_1",
     "list": [
       {"id": 1, "text": "口语一般"},
@@ -265,7 +239,6 @@ Map agentLoginData = {
     "type": 1,
     "steptitle": "身份标签 4/4",
     "titles": '您可以添加更多优势标签。 多填项',
-    "hasOr": false,
     "hasInput": true,
     "key": "step16_1",
     "list": [],
@@ -278,8 +251,6 @@ Map talentLoginData = {
     "type": 1, // 按钮的排列类型 1为竖排1列，2为竖排2列
     "steptitle": "求职标签 1/9", // 当前步骤title
     "titles": '您求职意向是？', // 选择提示
-    "hasOr": false, // 有还是没有
-    "hasInput": false, // 有无输入框
     "key": "step1_1", // 存数据的key
     "list": [
       // 数据列表
@@ -296,7 +267,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "求职标签 2/9",
     "titles": '您求职的岗位是 ？',
-    "hasOr": false,
     "hasInput": true,
     "inputTab": false,
     "key": "step2_1",
@@ -307,8 +277,6 @@ Map talentLoginData = {
     "type": 2,
     "steptitle": "求职标签 3/9",
     "titles": '您求职的岗位职级是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step3_1",
     "list": [
       {"id": 1, "text": "不限"},
@@ -330,8 +298,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "求职标签 4/9",
     "titles": '您要求的薪资标准是？税钱、月薪、元',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step4_1",
     "list": [
       {"id": 1, "text": "0 - 3000"},
@@ -348,8 +314,6 @@ Map talentLoginData = {
     "type": 2,
     "steptitle": "求职标签 5/9",
     "titles": '您希望去哪个城市工作？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step5_1",
     "list": [
       {"id": 1, "text": "上海"},
@@ -371,8 +335,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "求职标签 6/9",
     "titles": '您求职的行业是 ？ 最多选2个',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step6_1",
     "list": [
       {"id": 1, "text": "互联网IT信息"},
@@ -390,8 +352,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "求职标签 7/9",
     "titles": '您现在的身份状态是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step7_1",
     "list": [
       {"id": 1, "text": "应届毕业生"},
@@ -404,8 +364,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "求职标签 8/9",
     "titles": '您最快到岗时间是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step8_1",
     "list": [
       {"id": 1, "text": "随时到岗"},
@@ -419,8 +377,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "求职标签 9/9",
     "titles": '您的家庭状况是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step9_1",
     "list": [
       {"id": 1, "text": "单身"},
@@ -438,8 +394,6 @@ Map talentLoginData = {
     "type": 2,
     "steptitle": "照片视频 1/1",
     "titles": '您要上传照片或个人视频吗 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step10_1",
     "list": [],
     "page": 'Images'
@@ -448,8 +402,6 @@ Map talentLoginData = {
     "type": 3,
     "steptitle": "学历标签 1/2",
     "titles": '您的学历背景是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step11_1",
     "list": [
       {"id": 1, "text": "海外QS100强"},
@@ -466,8 +418,6 @@ Map talentLoginData = {
     "type": 2,
     "steptitle": "学历标签 2/2",
     "titles": '您毕业于哪所院校 ？（最高学历）',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step12_1",
     "list": [],
     "page": 'Forms'
@@ -476,8 +426,6 @@ Map talentLoginData = {
     "type": 2,
     "steptitle": "职业标签 1/7",
     "titles": '您的工作经验有几年？ ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step13_1",
     "list": [
       {"id": 1, "text": "1年"},
@@ -500,7 +448,6 @@ Map talentLoginData = {
     "steptitle": "职业标签 2/7",
     "titles": '您是否有带领团队的管理经验？',
     "hasOr": true,
-    "hasInput": false,
     "key": "step14_1",
     "list": [
       {"id": 1, "text": "1年"},
@@ -521,8 +468,6 @@ Map talentLoginData = {
     "type": 2,
     "steptitle": "职业标签 3/7",
     "titles": '您最近的工作单位是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step15_1",
     "list": [
       {"id": 1, "text": "员工级"},
@@ -542,8 +487,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "职业标签 4/7",
     "titles": '您在哪些行业工作过 ？ 多选',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step16_1",
     "list": [
       {"id": 1, "text": "互联网IT信息"},
@@ -563,7 +506,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "职业标签 5/7",
     "titles": '您从事过的哪些岗位 ？多填项',
-    "hasOr": false,
     "hasInput": true,
     "inputTab": false,
     "key": "step17_1",
@@ -574,7 +516,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "职业标签 6/7",
     "titles": '您有知名企业工作的经历吗 ？多填项',
-    "hasOr": false,
     "hasInput": true,
     "key": "step18_1",
     "list": [],
@@ -584,8 +525,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "职业标签 7/7",
     "titles": '您离职的原因是什么 ？ ',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step19_1",
     "list": [
       {"id": 1, "text": "劳动合同期满"},
@@ -602,8 +541,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "身份标签 1/9",
     "titles": '您有特殊经验背景吗 ？ ',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step20_1",
     "list": [
       {"id": 1, "text": "无"},
@@ -619,8 +556,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "身份标签 2/9",
     "titles": '您有存在特别约定的情形吗 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step21_1",
     "list": [
       {"id": 1, "text": "无"},
@@ -632,8 +567,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "身份标签 3/9",
     "titles": '您的性格偏向是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step22_1",
     "list": [
       {"id": 1, "text": "更偏外向"},
@@ -648,8 +581,6 @@ Map talentLoginData = {
     "type": 2,
     "steptitle": "身份标签 4/9",
     "titles": '您认为自己更倾向哪种类型 ？ 多选',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step23_1",
     "list": [
       {"id": 1, "text": "指挥领导型"},
@@ -671,8 +602,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "身份标签 5/9",
     "titles": '您接受的工作状态是 ？ 多选',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step24_1",
     "list": [
       {"id": 1, "text": "996工作制"},
@@ -688,8 +617,6 @@ Map talentLoginData = {
     "type": 2,
     "steptitle": "身份标签 6/9",
     "titles": '您不接受的是 ？ 多选',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step25_1",
     "list": [
       {"id": 1, "text": "996工作制"},
@@ -706,8 +633,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "身份标签 7/9",
     "titles": '您掌握的外语水平是 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step26_1",
     "list": [
       {"id": 1, "text": "口语一般"},
@@ -723,8 +648,6 @@ Map talentLoginData = {
     "type": 2,
     "steptitle": "身份标签 8/9",
     "titles": '您有其它特别的身份标签吗 ？',
-    "hasOr": false,
-    "hasInput": false,
     "key": "step27_1",
     "list": [
       {"id": 1, "text": "没有"},
@@ -747,7 +670,6 @@ Map talentLoginData = {
     "type": 1,
     "steptitle": "身份标签 9/9",
     "titles": '您可以添加更多特别标签。 多填项',
-    "hasOr": false,
     "hasInput": true,
     "key": "step28_1",
     "list": [],

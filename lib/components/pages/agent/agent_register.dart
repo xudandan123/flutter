@@ -286,7 +286,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                             SizedBox(height: 2),
                             Column(
                               children: <Widget>[
-                                pageInfoData["hasOr"]
+                                pageInfoData["hasOr"] != null && pageInfoData["hasOr"]
                                     ? TabButton.createBtn(
                                         Constants.hasOr, _activeTag, (k) {
                                         List dataLists =
@@ -308,7 +308,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                       }, 0)
                                     : SizedBox(height: 0),
                                 SizedBox(
-                                    height: pageInfoData["hasOr"] ? 10 : 0),
+                                    height: pageInfoData["hasOr"] != null && pageInfoData["hasOr"] ? 10 : 0),
                               ],
                             ),
                             pageInfoData["list"].length != 0
@@ -349,7 +349,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                     ],
                                   )
                                 : SizedBox(height: 0),
-                            pageInfoData["hasInput"] &&
+                            pageInfoData["hasInput"] != null && pageInfoData["hasInput"] &&
                                     pageInfoData["inputTab"] != false
                                 ? Column(
                                     children: <Widget>[
@@ -363,7 +363,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                     ],
                                   )
                                 : SizedBox(height: 0),
-                            pageInfoData["hasInput"]
+                            pageInfoData["hasInput"] != null && pageInfoData["hasInput"]
                                 ? AddCompany(
                                     showIndex: _activeTag2[_step],
                                     nameGroup: _nameGroup[_step],
