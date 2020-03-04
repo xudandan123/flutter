@@ -7,6 +7,8 @@ import 'package:flutter_app/components/common/create_choice.dart';
 import 'package:flutter_app/components/common/input_add.dart';
 import 'package:flutter_app/components/common/toast.dart';
 import 'package:flutter_app/components/pages/chips/register.dart';
+import 'package:flutter_app/view/agent_details.dart';
+import 'package:flutter_app/view/agent_login.dart';
 
 class AgentRegister extends StatefulWidget {
   int step;
@@ -36,18 +38,20 @@ class _AgentRegisterState extends State<AgentRegister> {
     _step = step;
     Map pageInfoData = agentLoginData['Step${_step}'];
     this._changeList(pageInfoData["list"], pageInfoData["type"], []);
-    this._changeList(pageInfoData["list"], 3, [], Constants.education, 8);
     this._changeList(
-        pageInfoData["list"], 3, [], Constants.foreignLanguage, 15);
+        pageInfoData["list"], 3, [], Constants.education, "education");
+    this._changeList(pageInfoData["list"], 3, [], Constants.foreignLanguage,
+        "foreignLanguage");
   }
 
-  _changeList(List dataList, int type, List activeId, [List list2, int step]) {
+  _changeList(List dataList, int type, List activeId,
+      [List list2, String listType]) {
     if (list2 != null) {
       creatChoice(list2, type, activeId, (btnGroups) {
         setState(() {
-          if (step == 8) {
+          if (listType == "education") {
             btnGroup2 = btnGroups;
-          } else if (step == 15) {
+          } else if (listType == "foreignLanguage") {
             btnGroup3 = btnGroups;
           }
         });
@@ -100,7 +104,10 @@ class _AgentRegisterState extends State<AgentRegister> {
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
-        title: Text('  我是顾问-个人中心', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
+        title: Text(
+          '  我是顾问-个人中心',
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+        ),
         backgroundColor: Constants.COLOR_1FB3C4,
         automaticallyImplyLeading: false,
         centerTitle: false,
@@ -168,6 +175,14 @@ class _AgentRegisterState extends State<AgentRegister> {
                                             setState(() {
                                               _step -= 1;
                                             });
+                                          } else {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AgentLogin(),
+                                              ),
+                                            );
                                           }
                                         },
                                       )
@@ -193,6 +208,13 @@ class _AgentRegisterState extends State<AgentRegister> {
                                       setState(() {
                                         _step += 1;
                                       });
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => AgentDetail(),
+                                        ),
+                                      );
                                     }
                                   },
                                 ),

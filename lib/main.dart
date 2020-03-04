@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/view/agent_login.dart';
 import 'package:flutter_app/view/talent_login.dart';
-import 'package:flutter_app/view/agent_details.dart';
+import 'package:flutter_app/constants/constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
@@ -21,7 +21,55 @@ class MyApp extends StatelessWidget {
         supportedLocales: [const Locale("zh", "CH")],
         // home: AgentLogin(),
         // home: AgentDetail(),
-        home: TalentLogin(),
+        home: HomePage(),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Constants.COLOR_1FB3C4,
+        title: Text('T-Map'),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 100),
+            new RaisedButton(
+              child: Text('我是人才'),
+              onPressed: () {
+                print('xdd');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TalentLogin(),
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: 20),
+            new RaisedButton(
+              child: Text('我是顾问'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AgentLogin(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

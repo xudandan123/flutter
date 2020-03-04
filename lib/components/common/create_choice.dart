@@ -11,6 +11,7 @@ creatChoice(List dataList, int listNum, activeNum, callback, callback2) {
       btnGroups.add(GestureDetector(
         child: Container(
           height: 32,
+          constraints: BoxConstraints(minWidth: 69),
           margin: EdgeInsets.only(bottom: 6),
           padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
           decoration: BoxDecoration(
@@ -25,6 +26,7 @@ creatChoice(List dataList, int listNum, activeNum, callback, callback2) {
           ),
           child: Text(
             dataList[i]["text"],
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
               color: activeNum.indexOf(dataList[i]['id']) != -1

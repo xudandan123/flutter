@@ -7,6 +7,8 @@ import 'package:flutter_app/components/common/create_choice.dart';
 import 'package:flutter_app/components/common/input_add.dart';
 import 'package:flutter_app/components/common/toast.dart';
 import 'package:flutter_app/components/pages/chips/register.dart';
+import 'package:flutter_app/view/talent_details.dart';
+import 'package:flutter_app/view/talent_login.dart';
 
 class TalentRegister extends StatefulWidget {
   int step;
@@ -24,6 +26,7 @@ class _TalentRegisterState extends State<TalentRegister> {
   List<Widget> btnGroup = []; // 选择按钮数组
   List<Widget> btnGroup2 = []; // 选择学历按钮数组
   List<Widget> btnGroup3 = []; // 选择外语按钮数组
+  List<Widget> btnGroup4 = []; // 选择外语按钮数组
   Map<int, List> _nameGroup = {2: [], 17: [], 18: [], 28: []}; //输入按钮数组
   Map agentUserInfo = {}; // 选择后保存参数的地方
   bool inWork = true;
@@ -36,19 +39,25 @@ class _TalentRegisterState extends State<TalentRegister> {
     _step = step;
     Map pageInfoData = talentLoginData['Step${_step}'];
     this._changeList(pageInfoData["list"], pageInfoData["type"], []);
-    this._changeList(pageInfoData["list"], 3, [], Constants.education, 8);
     this._changeList(
-        pageInfoData["list"], 3, [], Constants.foreignLanguage, 15);
+        pageInfoData["list"], 3, [], Constants.education, "education");
+    this._changeList(pageInfoData["list"], 3, [], Constants.foreignLanguage,
+        "foreignLanguage");
+    this._changeList(
+        pageInfoData["list"], 3, [], Constants.educationType, "educationType");
   }
 
-  _changeList(List dataList, int type, List activeId, [List list2, int step]) {
+  _changeList(List dataList, int type, List activeId,
+      [List list2, String listType]) {
     if (list2 != null) {
       creatChoice(list2, type, activeId, (btnGroups) {
         setState(() {
-          if (step == 8) {
+          if (listType == "education") {
             btnGroup2 = btnGroups;
-          } else if (step == 15) {
+          } else if (listType == "foreignLanguage") {
             btnGroup3 = btnGroups;
+          } else if (listType == "educationType") {
+            btnGroup4 = btnGroups;
           }
         });
       }, (id) {
@@ -100,7 +109,10 @@ class _TalentRegisterState extends State<TalentRegister> {
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
-        title: Text('  我是人才-我的求职', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
+        title: Text(
+          '  我是人才-我的求职',
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+        ),
         backgroundColor: Constants.COLOR_1FB3C4,
         automaticallyImplyLeading: false,
         centerTitle: false,
@@ -168,6 +180,14 @@ class _TalentRegisterState extends State<TalentRegister> {
                                             setState(() {
                                               _step -= 1;
                                             });
+                                          } else {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    TalentLogin(),
+                                              ),
+                                            );
                                           }
                                         },
                                       )
@@ -193,6 +213,13 @@ class _TalentRegisterState extends State<TalentRegister> {
                                       setState(() {
                                         _step += 1;
                                       });
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => TalentDetail(),
+                                        ),
+                                      );
                                     }
                                   },
                                 ),
@@ -237,9 +264,8 @@ class _TalentRegisterState extends State<TalentRegister> {
                                         height: 15,
                                       ),
                                       Wrap(
-                                          spacing: 16.0, // 主轴(水平)方向间距
-                                          runSpacing: 3.0, // 纵轴（垂直）方向间距
-                                          alignment: WrapAlignment.start,
+                                          spacing: 10.0, // 主轴(水平)方向间距
+                                          // runSpacing: 3.0, // 纵轴（垂直）方向间距
                                           children: btnGroup3),
                                     ],
                                   )
@@ -311,13 +337,19 @@ class _TalentRegisterState extends State<TalentRegister> {
                                           height: 45,
                                           color: Constants.COLOR_999999),
                                       Wrap(
-                                          spacing: 16.0, // 主轴(水平)方向间距
+                                          spacing: 7.0, // 主轴(水平)方向间距
                                           runSpacing: 3.0, // 纵轴（垂直）方向间距
                                           alignment: WrapAlignment.start,
                                           children: btnGroup2),
                                       Divider(
                                           height: 45,
                                           color: Constants.COLOR_999999),
+                                      Wrap(
+                                        spacing: 3.0, // 主轴(水平)方向��距
+                                        // runSpacing: 3.0, // 纵轴（垂直）方向间距
+                                        // alignment: WrapAlignment.spaceBetween,
+                                        children: btnGroup4,
+                                      ),
                                     ],
                                   )
                                 : SizedBox(height: 0),
@@ -326,8 +358,9 @@ class _TalentRegisterState extends State<TalentRegister> {
                                 ? Column(
                                     children: <Widget>[
                                       SizedBox(height: 46),
-                                      TabButton.createBtn(Constants.companyOr,
-                                          _activeTag2[_step], (k) {
+                                      TabButton.createBtn(
+                                          Constants.hasOr, _activeTag2[_step],
+                                          (k) {
                                         print(k);
                                         setState(() {
                                           _activeTag2[_step] = k;

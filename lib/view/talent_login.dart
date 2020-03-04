@@ -56,6 +56,7 @@ class _TalentLoginState extends State<TalentLogin> {
         title: Text('  我是人才-我的求职', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
         backgroundColor: Constants.COLOR_1FB3C4,
         centerTitle: false,
+        automaticallyImplyLeading: false,
         elevation: 0,
         bottom: PreferredSize(
           child: TabButton.createBtn(Constants.userTab, _activeBtn, (k) {

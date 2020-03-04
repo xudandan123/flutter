@@ -147,10 +147,10 @@ class Constants {
     {"step": 20, "text": "5. H-身份标签 - 8"}
   ];
   static List education = [
-    {"id": 1, "text": "博士"},
-    {"id": 2, "text": "硕士"},
-    {"id": 3, "text": "本科"},
-    {"id": 4, "text": "专科"},
+    {"id": 1, "text": "博士研究生"},
+    {"id": 2, "text": "硕士研究生"},
+    {"id": 3, "text": "大学本科"},
+    {"id": 4, "text": "大学专科"},
   ];
   static List foreignLanguage = [
     {"id": 1, "text": "英语"},
@@ -160,6 +160,11 @@ class Constants {
     {"id": 5, "text": "意大利语"},
     {"id": 6, "text": "西班牙语"},
     {"id": 7, "text": "俄语"},
+  ];
+  static List educationType = [
+    {"id": 1, "text": "统招全日制"},
+    {"id": 2, "text": "统招在职"},
+    {"id": 3, "text": "成教自考函授"},
   ];
 
  static List listIntentionTitle = [
