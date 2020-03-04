@@ -28,7 +28,7 @@ class _TalentRegisterState extends State<TalentRegister> {
   List<Widget> btnGroup3 = []; // 选择外语按钮数组
   List<Widget> btnGroup4 = []; // 选择外语按钮数组
   Map<int, List> _nameGroup = {2: [], 17: [], 18: [], 28: []}; //输入按钮数组
-  Map agentUserInfo = {}; // 选择后保存参数的地方
+  Map talentUserInfo = {}; // 选择后保存参数的地方
   bool inWork = true;
   Map Chips;
 
@@ -38,19 +38,16 @@ class _TalentRegisterState extends State<TalentRegister> {
     super.initState();
     _step = step;
     Map pageInfoData = talentLoginData['Step${_step}'];
-    this._changeList(pageInfoData["list"], pageInfoData["type"], []);
-    this._changeList(
-        pageInfoData["list"], 3, [], Constants.education, "education");
-    this._changeList(pageInfoData["list"], 3, [], Constants.foreignLanguage,
-        "foreignLanguage");
-    this._changeList(
-        pageInfoData["list"], 3, [], Constants.educationType, "educationType");
+    this._changeList(pageInfoData, pageInfoData["type"], []);
+    this._changeList(pageInfoData, 3, [], Constants.education, "education");
+    this._changeList(pageInfoData, 3, [], Constants.foreignLanguage, "foreignLanguage");
+    this._changeList(pageInfoData, 3, [], Constants.educationType, "educationType");
   }
 
-  _changeList(List dataList, int type, List activeId,
+  _changeList(Map datas, int type, List activeId,
       [List list2, String listType]) {
     if (list2 != null) {
-      creatChoice(list2, type, activeId, (btnGroups) {
+      creatChoice({"list": list2}, type, activeId, (btnGroups) {
         setState(() {
           if (listType == "education") {
             btnGroup2 = btnGroups;
@@ -65,22 +62,40 @@ class _TalentRegisterState extends State<TalentRegister> {
       });
       return;
     }
-    creatChoice(dataList, type, activeId, (btnGroups) {
+    creatChoice(datas, type, activeId, (btnGroups) {
       setState(() {
         btnGroup = btnGroups;
       });
-    }, (id) {
+    }, (id, [single]) {
       String key = talentLoginData['Step${_step}']["key"];
+      if (single != null) {
+        Map currentMap = talentLoginData['Step${_step + 1}'];
+        List ids = [];
+        if (_step < talentLoginData.length) {
+          if (talentLoginData.isEmpty == false &&
+              talentLoginData[currentMap["key"]] != null) {
+            ids = talentLoginData[currentMap["key"]]["ids"];
+          }
+          this._changeList(currentMap, currentMap["type"], ids);
+          setState(() {
+            _step += 1;
+          });
+          talentUserInfo[key] = {
+            "ids": [id]
+          };
+        }
+        return;
+      }
       setState(() {
         btnGroup = [];
-        if (agentUserInfo.isEmpty) {
-          agentUserInfo = {
+        if (talentUserInfo.isEmpty) {
+          talentUserInfo = {
             key: {
               "ids": [id]
             }
           };
         } else {
-          Map _currentInfo = {...agentUserInfo};
+          Map _currentInfo = {...talentUserInfo};
           if (_currentInfo[key] != null) {
             _currentInfo[key]["ids"].add(id);
           } else {
@@ -88,7 +103,7 @@ class _TalentRegisterState extends State<TalentRegister> {
               "ids": [id]
             };
           }
-          agentUserInfo = _currentInfo;
+          talentUserInfo = _currentInfo;
         }
       });
     });
@@ -122,11 +137,11 @@ class _TalentRegisterState extends State<TalentRegister> {
           child: TabButton.createBtn(Constants.userTab, _activeBtn, (k) {
             if (k == 0) {
               List ids = [];
-              if (agentUserInfo.isEmpty == false &&
-                  agentUserInfo[pageInfoData["key"]] != null) {
-                ids = agentUserInfo[pageInfoData["key"]]["ids"];
+              if (talentUserInfo.isEmpty == false &&
+                  talentUserInfo[pageInfoData["key"]] != null) {
+                ids = talentUserInfo[pageInfoData["key"]]["ids"];
               }
-              this._changeList(pageInfoData["list"], pageInfoData["type"], ids);
+              this._changeList(pageInfoData, pageInfoData["type"], ids);
             }
             setState(() {
               _activeBtn = k;
@@ -167,13 +182,13 @@ class _TalentRegisterState extends State<TalentRegister> {
                                       List ids = [];
                                       Map currentMap =
                                           talentLoginData['Step${_step - 1}'];
-                                      if (agentUserInfo.isEmpty == false &&
-                                          agentUserInfo[currentMap["key"]] !=
+                                      if (talentUserInfo.isEmpty == false &&
+                                          talentUserInfo[currentMap["key"]] !=
                                               null) {
-                                        ids = agentUserInfo[currentMap["key"]]
+                                        ids = talentUserInfo[currentMap["key"]]
                                             ["ids"];
                                       }
-                                      this._changeList(currentMap["list"],
+                                      this._changeList(currentMap,
                                           currentMap["type"], ids);
                                       setState(() {
                                         _step -= 1;
@@ -198,13 +213,13 @@ class _TalentRegisterState extends State<TalentRegister> {
                                         talentLoginData['Step${_step + 1}'];
                                     List ids = [];
                                     if (_step < talentLoginData.length) {
-                                      if (agentUserInfo.isEmpty == false &&
-                                          agentUserInfo[currentMap["key"]] !=
+                                      if (talentUserInfo.isEmpty == false &&
+                                          talentUserInfo[currentMap["key"]] !=
                                               null) {
-                                        ids = agentUserInfo[currentMap["key"]]
+                                        ids = talentUserInfo[currentMap["key"]]
                                             ["ids"];
                                       }
-                                      this._changeList(currentMap["list"],
+                                      this._changeList(currentMap,
                                           currentMap["type"], ids);
                                       setState(() {
                                         _step += 1;
@@ -295,18 +310,16 @@ class _TalentRegisterState extends State<TalentRegister> {
                                 pageInfoData["hasOr"] != null && pageInfoData["hasOr"]
                                     ? TabButton.createBtn(
                                         Constants.hasOr, _activeTag, (k) {
-                                        List dataLists =
-                                            k == 0 ? pageInfoData["list"] : [];
+                                        Map datas =
+                                            k == 0 ? pageInfoData : {"list": []};
                                         List ids = [];
-                                        if (agentUserInfo.isEmpty == false &&
-                                            agentUserInfo[
+                                        if (talentUserInfo.isEmpty == false &&
+                                            talentUserInfo[
                                                     pageInfoData["key"]] !=
                                                 null) {
-                                          ids =
-                                              agentUserInfo[pageInfoData["key"]]
-                                                  ["ids"];
+                                          ids = talentUserInfo[pageInfoData["key"]]["ids"];
                                         }
-                                        this._changeList(dataLists,
+                                        this._changeList(datas,
                                             pageInfoData["type"], ids);
                                         setState(() {
                                           _activeTag = k;

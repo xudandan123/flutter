@@ -37,16 +37,16 @@ class _AgentRegisterState extends State<AgentRegister> {
     super.initState();
     _step = step;
     Map pageInfoData = agentLoginData['Step${_step}'];
-    this._changeList(pageInfoData["list"], pageInfoData["type"], []);
+    this._changeList(pageInfoData, pageInfoData["type"], []);
+    this._changeList(pageInfoData, 3, [], Constants.education, "education");
     this._changeList(
-        pageInfoData["list"], 3, [], Constants.education, "education");
-    this._changeList(pageInfoData["list"], 3, [], Constants.foreignLanguage,
-        "foreignLanguage");
+        pageInfoData, 3, [], Constants.foreignLanguage, "foreignLanguage");
   }
 
-  _changeList(List dataList, int type, List activeId, [List list2, String listType]) {
+  _changeList(Map datas, int type, List activeId,
+      [List list2, String listType]) {
     if (list2 != null) {
-      creatChoice(list2, type, activeId, (btnGroups) {
+      creatChoice({"list": list2}, type, activeId, (btnGroups) {
         setState(() {
           if (listType == "education") {
             btnGroup2 = btnGroups;
@@ -59,12 +59,30 @@ class _AgentRegisterState extends State<AgentRegister> {
       });
       return;
     }
-    creatChoice(dataList, type, activeId, (btnGroups) {
+    creatChoice(datas, type, activeId, (btnGroups) {
       setState(() {
         btnGroup = btnGroups;
       });
-    }, (id) {
+    }, (id, single) {
       String key = agentLoginData['Step${_step}']["key"];
+      if (single != null) {
+        Map currentMap = agentLoginData['Step${_step + 1}'];
+        List ids = [];
+        if (_step < agentLoginData.length) {
+          if (agentUserInfo.isEmpty == false &&
+              agentUserInfo[currentMap["key"]] != null) {
+            ids = agentUserInfo[currentMap["key"]]["ids"];
+          }
+          this._changeList(currentMap, currentMap["type"], ids);
+          setState(() {
+            _step += 1;
+          });
+          agentUserInfo[key] = {
+            "ids": [id]
+          };
+        }
+        return;
+      }
       setState(() {
         btnGroup = [];
         if (agentUserInfo.isEmpty) {
@@ -120,7 +138,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                   agentUserInfo[pageInfoData["key"]] != null) {
                 ids = agentUserInfo[pageInfoData["key"]]["ids"];
               }
-              this._changeList(pageInfoData["list"], pageInfoData["type"], ids);
+              this._changeList(pageInfoData, pageInfoData["type"], ids);
             }
             setState(() {
               _activeBtn = k;
@@ -167,8 +185,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                                         ids = agentUserInfo[currentMap["key"]]
                                             ["ids"];
                                       }
-                                      this._changeList(currentMap["list"],
-                                          currentMap["type"], ids);
+                                      this._changeList(
+                                          currentMap, currentMap["type"], ids);
                                       setState(() {
                                         _step -= 1;
                                       });
@@ -198,8 +216,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                                         ids = agentUserInfo[currentMap["key"]]
                                             ["ids"];
                                       }
-                                      this._changeList(currentMap["list"],
-                                          currentMap["type"], ids);
+                                      this._changeList(
+                                          currentMap, currentMap["type"], ids);
                                       setState(() {
                                         _step += 1;
                                       });
@@ -291,8 +309,9 @@ class _AgentRegisterState extends State<AgentRegister> {
                                         pageInfoData["hasOr"]
                                     ? TabButton.createBtn(
                                         Constants.hasOr, _activeTag, (k) {
-                                        List dataLists =
-                                            k == 0 ? pageInfoData["list"] : [];
+                                        Map datas = k == 0
+                                            ? pageInfoData
+                                            : {"list": []};
                                         List ids = [];
                                         if (agentUserInfo.isEmpty == false &&
                                             agentUserInfo[
@@ -302,8 +321,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                                               agentUserInfo[pageInfoData["key"]]
                                                   ["ids"];
                                         }
-                                        this._changeList(dataLists,
-                                            pageInfoData["type"], ids);
+                                        this._changeList(
+                                            datas, pageInfoData["type"], ids);
                                         setState(() {
                                           _activeTag = k;
                                         });

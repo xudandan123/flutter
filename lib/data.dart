@@ -254,6 +254,7 @@ Map talentLoginData = {
     "steptitle": "求职标签 1/9", // 当前步骤title
     "titles": '您求职意向是？', // 选择提示
     "key": "step1_1", // 存数据的key
+    "single": true,
     "list": [
       // 数据列表
       {"id": 1, "text": "名企工作机会"},
@@ -280,6 +281,7 @@ Map talentLoginData = {
     "steptitle": "求职标签 3/9",
     "titles": '您求职的岗位职级是 ？',
     "key": "step3_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "不限"},
       {"id": -99, "text": ""},
@@ -301,6 +303,7 @@ Map talentLoginData = {
     "steptitle": "求职标签 4/9",
     "titles": '您要求的薪资标准是？税钱、月薪、元',
     "key": "step4_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "0 - 3000"},
       {"id": 2, "text": "3001 - 5000"},
@@ -317,6 +320,7 @@ Map talentLoginData = {
     "steptitle": "求职标签 5/9",
     "titles": '您希望去哪个城市工作？',
     "key": "step5_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "上海"},
       {"id": 2, "text": "北京"},
@@ -355,6 +359,7 @@ Map talentLoginData = {
     "steptitle": "求职标签 7/9",
     "titles": '您现在的身份状态是 ？',
     "key": "step7_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "应届毕业生"},
       {"id": 2, "text": "在岗，寻找新的机会"},
@@ -367,6 +372,7 @@ Map talentLoginData = {
     "steptitle": "求职标签 8/9",
     "titles": '您最快到岗时间是 ？',
     "key": "step8_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "随时到岗"},
       {"id": 2, "text": "录用之日起一周到岗"},
@@ -380,6 +386,7 @@ Map talentLoginData = {
     "steptitle": "求职标签 9/9",
     "titles": '您的家庭状况是 ？',
     "key": "step9_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "单身"},
       {"id": 2, "text": "单身有恋人"},
@@ -429,6 +436,7 @@ Map talentLoginData = {
     "steptitle": "职业标签 1/7",
     "titles": '您的工作经验有几年？ ？',
     "key": "step13_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "1年"},
       {"id": 2, "text": "2年"},
@@ -451,6 +459,7 @@ Map talentLoginData = {
     "titles": '您是否有带领团队的管理经验？',
     "hasOr": true,
     "key": "step14_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "1年"},
       {"id": 2, "text": "2年"},
@@ -528,6 +537,7 @@ Map talentLoginData = {
     "steptitle": "职业标签 7/7",
     "titles": '您离职的原因是什么 ？ ',
     "key": "step19_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "劳动合同期满"},
       {"id": 2, "text": "单位裁员"},
@@ -544,6 +554,7 @@ Map talentLoginData = {
     "steptitle": "身份标签 1/9",
     "titles": '您有特殊经验背景吗 ？ ',
     "key": "step20_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "无"},
       {"id": 2, "text": "有创业经验"},
@@ -559,6 +570,7 @@ Map talentLoginData = {
     "steptitle": "身份标签 2/9",
     "titles": '您有存在特别约定的情形吗 ？',
     "key": "step21_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "无"},
       {"id": 2, "text": "有禁业、涉密保密约定"},
@@ -570,6 +582,7 @@ Map talentLoginData = {
     "steptitle": "身份标签 3/9",
     "titles": '您的性格偏向是 ？',
     "key": "step22_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "更偏外向"},
       {"id": 2, "text": "外向"},
