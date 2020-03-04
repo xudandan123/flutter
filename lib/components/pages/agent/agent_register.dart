@@ -44,8 +44,7 @@ class _AgentRegisterState extends State<AgentRegister> {
         "foreignLanguage");
   }
 
-  _changeList(List dataList, int type, List activeId,
-      [List list2, String listType]) {
+  _changeList(List dataList, int type, List activeId, [List list2, String listType]) {
     if (list2 != null) {
       creatChoice(list2, type, activeId, (btnGroups) {
         setState(() {
@@ -92,6 +91,7 @@ class _AgentRegisterState extends State<AgentRegister> {
   @override
   Widget build(BuildContext context) {
     Map pageInfoData = agentLoginData['Step${_step}'];
+    double screenHeight = MediaQuery.of(context).size.height - 180;
     Chips = {
       "Images": Images(),
       "Forms": Forms(),
@@ -140,8 +140,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                   FocusScope.of(context).requestFocus(FocusNode());
                 },
                 child: Container(
-                  constraints:
-                      BoxConstraints(minHeight: 540, minWidth: double.infinity),
+                  constraints: BoxConstraints(
+                      minHeight: screenHeight, minWidth: double.infinity),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14.0),
                       color: Constants.COLOR_e5e5e5),
@@ -259,7 +259,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                                         ),
                                         child: Wrap(
                                           spacing: 8.0, // 主轴(水平)方向间距
-                                          alignment: WrapAlignment.start, //沿主轴方向居中
+                                          alignment:
+                                              WrapAlignment.start, //沿主轴方向居中
                                           children: btnGroup3,
                                         ),
                                       )
@@ -286,7 +287,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                             SizedBox(height: 2),
                             Column(
                               children: <Widget>[
-                                pageInfoData["hasOr"] != null && pageInfoData["hasOr"]
+                                pageInfoData["hasOr"] != null &&
+                                        pageInfoData["hasOr"]
                                     ? TabButton.createBtn(
                                         Constants.hasOr, _activeTag, (k) {
                                         List dataLists =
@@ -308,7 +310,10 @@ class _AgentRegisterState extends State<AgentRegister> {
                                       }, 0)
                                     : SizedBox(height: 0),
                                 SizedBox(
-                                    height: pageInfoData["hasOr"] != null && pageInfoData["hasOr"] ? 10 : 0),
+                                    height: pageInfoData["hasOr"] != null &&
+                                            pageInfoData["hasOr"]
+                                        ? 10
+                                        : 0),
                               ],
                             ),
                             pageInfoData["list"].length != 0
@@ -323,7 +328,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                                             ),
                                             child: Wrap(
                                                 spacing: 8.0, // 主轴(水平)方向间距
-                                                alignment: WrapAlignment.start, //沿主轴方向居中
+                                                alignment: WrapAlignment
+                                                    .start, //沿主轴方向居中
                                                 children: btnGroup),
                                           ),
                                   )
@@ -340,7 +346,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                                         ),
                                         child: Wrap(
                                             spacing: 8.0, // 主轴(水平)方向间距
-                                            alignment: WrapAlignment.start, //沿主轴方向居中
+                                            alignment:
+                                                WrapAlignment.start, //沿主轴方向居中
                                             children: btnGroup2),
                                       ),
                                       Divider(
@@ -349,7 +356,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                                     ],
                                   )
                                 : SizedBox(height: 0),
-                            pageInfoData["hasInput"] != null && pageInfoData["hasInput"] &&
+                            pageInfoData["hasInput"] != null &&
+                                    pageInfoData["hasInput"] &&
                                     pageInfoData["inputTab"] != false
                                 ? Column(
                                     children: <Widget>[
@@ -363,7 +371,8 @@ class _AgentRegisterState extends State<AgentRegister> {
                                     ],
                                   )
                                 : SizedBox(height: 0),
-                            pageInfoData["hasInput"] != null && pageInfoData["hasInput"]
+                            pageInfoData["hasInput"] != null &&
+                                    pageInfoData["hasInput"]
                                 ? AddCompany(
                                     showIndex: _activeTag2[_step],
                                     nameGroup: _nameGroup[_step],

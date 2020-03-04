@@ -116,6 +116,7 @@ class TalentDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height - 180;
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: PreferredSize(
@@ -144,7 +145,7 @@ class TalentDetail extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(26, 30, 26, 10),
           child: Container(
             constraints:
-                BoxConstraints(minHeight: 540, minWidth: double.infinity),
+                BoxConstraints(minHeight: screenHeight, minWidth: double.infinity),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14.0),
                 color: Constants.COLOR_e5e5e5),

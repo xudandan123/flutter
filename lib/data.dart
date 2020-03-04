@@ -183,6 +183,7 @@ Map agentLoginData = {
     "steptitle": "身份标签 1/4",
     "titles": '您从事猎头职业有几年 ？',
     "key": "step13_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "1年"},
       {"id": 2, "text": "2年"},
@@ -204,6 +205,7 @@ Map agentLoginData = {
     "steptitle": "身份标签 2/4",
     "titles": '您从事招聘相关的职业有几年 ？ ',
     "key": "step14_1",
+    "single": true,
     "list": [
       {"id": 1, "text": "1年"},
       {"id": 2, "text": "2年"},

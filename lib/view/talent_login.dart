@@ -50,6 +50,7 @@ class _TalentLoginState extends State<TalentLogin> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height - 180;
     return Scaffold(
       backgroundColor: Constants.COLOR_1FB3C4,
       appBar: AppBar(
@@ -78,7 +79,7 @@ class _TalentLoginState extends State<TalentLogin> {
             children: <Widget>[
               Container(
                 constraints:
-                    BoxConstraints(minHeight: 540, minWidth: double.infinity),
+                    BoxConstraints(minHeight: screenHeight, minWidth: double.infinity),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14.0),
                     color: Constants.COLOR_e5e5e5),

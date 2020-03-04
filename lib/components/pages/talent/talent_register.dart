@@ -97,6 +97,7 @@ class _TalentRegisterState extends State<TalentRegister> {
   @override
   Widget build(BuildContext context) {
     Map pageInfoData = talentLoginData['Step${_step}'];
+    double screenHeight = MediaQuery.of(context).size.height - 180;
     Chips = {
       "Images": Images(),
       "Forms": Forms(),
@@ -146,7 +147,7 @@ class _TalentRegisterState extends State<TalentRegister> {
                 },
                 child: Container(
                   constraints:
-                      BoxConstraints(minHeight: 540, minWidth: double.infinity),
+                      BoxConstraints(minHeight: screenHeight, minWidth: double.infinity),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14.0),
                       color: Constants.COLOR_e5e5e5),
