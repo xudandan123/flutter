@@ -1,0 +1,4 @@
+storePassword=123123dd
+keyPassword=123123dd
+keyAlias=sign
+storeFile=key/sign.jks
