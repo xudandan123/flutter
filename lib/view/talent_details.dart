@@ -290,9 +290,9 @@ class TalentDetail extends StatelessWidget {
                 this._listIntention(Constants.occupation),
                 this._listTitle('身份'),
                 this._listIntention(Constants.identity),
-                SizedBox(height: 50),
+                SizedBox(height: 20),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 30),
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
                   decoration: BoxDecoration(
                       border:
                           Border.all(width: 1, color: Constants.COLOR_808080)),

@@ -167,106 +167,161 @@ class Constants {
     {"id": 3, "text": "成教自考函授"},
   ];
 
- static List listIntentionTitle = [
-  {
-    "text": '意向类别'
-  },
-  {
-    "text": '岗位和职级',
-  },
-  {
-    "text": '期望薪资',
-  },
-  {
-    "text": '城市',
-  },
-  {
-    "text": '行业',
-  },
-  {
-    "text": '状态',
-  },
-  {
-    "text": '到岗时间',
-  },
-  {
-    "text": '家庭地址'
-  }
-];
+  static List listIntentionTitle = [
+    {
+      "text": '意向类别',
+      "data": ['名企实习机会']
+    },
+    {
+      "text": '岗位和职级',
+      "type": 'list',
+      "data": ['计算机硬件开发', ' 经理级']
+    },
+    {
+      "text": '期望薪资',
+      "data": ['5001 - 10000']
+    },
+    {
+      "text": '城市',
+      "data": ['上海']
+    },
+    {
+      "text": '行业',
+      "data": ['互联网']
+    },
+    {
+      "text": '状态',
+      "data": ["已离职"]
+    },
+    {
+      "text": '到岗时间',
+      "data": ['一周之内']
+    },
+    {
+      "text": '家庭地址',
+      "data": ['上海市闵行区莘庄镇']
+    }
+  ];
 
- static List educationList = [
-  {
-    "text": '学历背景',
-    "type": "circle",
-    "data": ['双学位硕士', '211院校', '海外留学']
-  },
-  {
-    "text": '毕业院校',
-    "type": 'list',
-    "data": ['华中科技大学', '计算机科学与管理专业', '2012年12月毕业']
-  }
-];
+  static List educationList = [
+    {
+      "text": '学历背景',
+      "type": "circle",
+      "data": ['双学位硕士', '211院校', '海外留学']
+    },
+    {
+      "text": '毕业院校',
+      "type": 'list',
+      "data": ['华中科技大学', '计算机科学与管理专业', '2012年12月毕业']
+    }
+  ];
 
- static List occupation = [
-  {
-    "text": '经验',
-    "data": ['工作10年（管理5年）']
-  },
-  {
-    "text": '最近工作单位',
-  },
-  {
-    "text": '行业经历',
-  },
-  {
-    "text": '任职岗位经历',
-  },
-  {
-    "text": '名企经历',
-  },
-  {
-    "text": '离职原因',
-  },
-];
- static List identity = [
-  {
-    "text": '特殊工作经验'
-  },
-  {
-    "text": '竟业保密',
-  },
-  {
-    "text": '性格倾向',
-  },
-  {
-    "text": '人才类型',
-  },
-  {
-    "text": '接受',
-  },
-  {
-    "text": '不接受',
-  },
-  {
-    "text": '外语水平',
-  },
-  {
-    "text": '特别标签'
-  }
-];
-static Map agentAddInputTitle = {
-  2: '请输入单位名称   最多添加3个',
-  11: '请输入岗位名称 ',
-  12: '请输入知名企业品牌名',
-  16: '请输入标签名，'
-};
+  static List occupation = [
+    {
+      "text": '经验',
+      "data": ['工作10年（管理5年）']
+    },
+    {
+      "text": '最近工作单位',
+      "type": 'list',
+      "data": ['万马奔腾（上海）数据有限公司', '事业一部', '部长-总监级']
+    },
+    {
+      "text": '行业经历',
+      "data": ['互联网IT信息；', '金融投资与证券；', '汽车制造；']
+    },
+    {
+      "text": '任职岗位经历',
+      "data": ['技术研发部长']
+    },
+    {
+      "text": '名企经历',
+      "type": "circle",
+      "data": ['百度', '阿里', '腾讯']
+    },
+    {
+      "text": '离职原因',
+      "data": ['主动辞职']
+    },
+  ];
 
-static Map talentAddInputTitle = {
-  2: '请输入单位名称   最多添加3个',
-  17: '请输入岗位名称 ',
-  18: '请输入知名企业品牌名',
-  28: '请输入标签名'
-};
+  static List agentOccupation = [
+    {
+      "text": '最近工作单位',
+      "data": ['万马奔腾（上海）数据有限公司', '上海掘东网络技术有限公司']
+    },
+    {
+      "text": '任职岗位经历',
+      "data": ['软件开发-', '初级主管-', '高级主管']
+    },
+    {
+      "text": '名企经历',
+      "type": "circle",
+      "data": ['百度', '阿里', '腾讯']
+    },
+  ];
+
+  static List agentIdentity = [
+    {
+      "text": '猎头工作经验',
+      "data": ['5年']
+    },
+    {
+      "text": '外语水平',
+      "data": ['日语-口语一般；', '笔译熟练']
+    },
+    {
+      "text": '特别标签',
+      "type": "circle",
+      "data": ['运动达人']
+    }
+  ];
+
+  static List identity = [
+    {
+      "text": '特殊工作经验',
+      "data": ['无']
+    },
+    {
+      "text": '竟业保密',
+      "data": ['无']
+    },
+    {
+      "text": '性格倾向',
+      "data": ['更偏向外向']
+    },
+    {
+      "text": '人才类型',
+      "data": ['政府资源型；', '学霸型；']
+    },
+    {
+      "text": '接受',
+    },
+    {
+      "text": '不接受',
+    },
+    {
+      "text": '外语水平',
+    },
+    {
+      "text": '特别标签',
+      "type": "circle",
+      "data": ['运动达人']
+    }
+  ];
+  static Map agentAddInputTitle = {
+    2: '请输入单位名称   最多添加3个',
+    11: '请输入岗位名称 ',
+    12: '请输入知名企业品牌名',
+    16: '请输入标签名，'
+  };
+
+  static Map talentAddInputTitle = {
+    2: '请输入单位名称   最多添加3个',
+    17: '请输入岗位名称 ',
+    18: '请输入知名企业品牌名',
+    28: '请输入标签名'
+  };
   // static init() async {
   //   final _di = DeviceInfoPlugin();
   //   if (Platform.isAndroid) {

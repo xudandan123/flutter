@@ -284,9 +284,12 @@ class AgentDetail extends StatelessWidget {
                         height: 60.0,
                         decoration: BoxDecoration(
                           border: Border(
-                            top: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
-                            right: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
-                            bottom: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                            top: BorderSide(
+                                width: 1, color: Constants.COLOR_1FB3C4),
+                            right: BorderSide(
+                                width: 1, color: Constants.COLOR_1FB3C4),
+                            bottom: BorderSide(
+                                width: 1, color: Constants.COLOR_1FB3C4),
                           ),
                         ),
                         child: Text(''),
@@ -325,9 +328,12 @@ class AgentDetail extends StatelessWidget {
                         height: 60.0,
                         decoration: BoxDecoration(
                           border: Border(
-                            top: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
-                            right: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
-                            bottom: BorderSide(width: 1, color: Constants.COLOR_1FB3C4),
+                            top: BorderSide(
+                                width: 1, color: Constants.COLOR_1FB3C4),
+                            right: BorderSide(
+                                width: 1, color: Constants.COLOR_1FB3C4),
+                            bottom: BorderSide(
+                                width: 1, color: Constants.COLOR_1FB3C4),
                           ),
                         ),
                         child: Text(''),
@@ -335,34 +341,23 @@ class AgentDetail extends StatelessWidget {
                     ),
                   ],
                 ),
-                this._listTitle('求职意向'),
+                this._listTitle('服务'),
                 this._listIntention(Constants.listIntentionTitle),
                 this._listTitle('学历'),
                 this._listIntention(Constants.educationList),
                 this._listTitle('职业'),
-                this._listIntention(Constants.occupation),
+                this._listIntention(Constants.agentOccupation),
                 this._listTitle('身份'),
-                this._listIntention(Constants.identity),
-                SizedBox(height: 50),
+                this._listIntention(Constants.agentIdentity),
+                SizedBox(height: 20),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 30),
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
                   decoration: BoxDecoration(
                       border:
                           Border.all(width: 1, color: Constants.COLOR_808080)),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        "T-MAP 数据与支付宝、芝麻信用直连，由人力资源区块链（HRBC）进行加密和认证。HRBC 已获国家网信办区块链信息服务备案。",
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0xFF383838)),
-                      ),
-                      SizedBox(height: 20),
-                      Text(
-                        "T-MAP数据源于当事人本人填写，该信息内容和数据仅限用人单位招聘和评估人才工作之参考借鉴。任何用户或第三方对于使用该信息内容和数据所导致的任何结果，全民推荐软件及所有权人不承担任何形式下的法律责任。",
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0xFF383838)),
-                      )
-                    ],
+                  child: Text(
+                    "T-MAP 数据与支付宝、芝麻信用直连，由人力资源区块链（HRBC）进行加密和认证。HRBC 已获国家网信办区块链信息服务备案。",
+                    style: TextStyle(fontSize: 12, color: Color(0xFF383838)),
                   ),
                 ),
               ],
