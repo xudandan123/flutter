@@ -63,7 +63,7 @@ class _AgentRegisterState extends State<AgentRegister> {
       setState(() {
         btnGroup = btnGroups;
       });
-    }, (id, single) {
+    }, (id, [single]) {
       String key = agentLoginData['Step${_step}']["key"];
       if (single != null) {
         Map currentMap = agentLoginData['Step${_step + 1}'];

@@ -79,7 +79,9 @@ class _AddCompanyState extends State<AddCompany> {
                     ),
                     suffixIcon: IconButton(
                         color: Constants.COLOR_999999,
-                        padding: EdgeInsets.all(0),
+                        iconSize: 26,
+                        padding: EdgeInsets.only(right: 6),
+                        alignment: Alignment.centerRight,
                         icon: Icon(Icons.control_point),
                         onPressed: () {
                           widget.callback(_userEtController.text);
