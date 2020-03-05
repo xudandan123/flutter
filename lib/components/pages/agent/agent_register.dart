@@ -316,20 +316,12 @@ class _AgentRegisterState extends State<AgentRegister> {
                                         pageInfoData["hasOr"]
                                     ? TabButton.createBtn(
                                         Constants.hasOr, _activeTag, (k) {
-                                        Map datas = k == 0
-                                            ? pageInfoData
-                                            : {"list": []};
+                                        Map<String, dynamic> datas = k == 0 ? pageInfoData : {"list": []};
                                         List ids = [];
-                                        if (agentUserInfo.isEmpty == false &&
-                                            agentUserInfo[
-                                                    pageInfoData["key"]] !=
-                                                null) {
-                                          ids =
-                                              agentUserInfo[pageInfoData["key"]]
-                                                  ["ids"];
+                                        if (agentUserInfo.isEmpty == false && agentUserInfo[pageInfoData["key"]] != null) {
+                                          ids = agentUserInfo[pageInfoData["key"]]["ids"];
                                         }
-                                        this._changeList(
-                                            datas, pageInfoData["type"], ids);
+                                        this._changeList(datas, pageInfoData["type"], ids);
                                         setState(() {
                                           _activeTag = k;
                                         });

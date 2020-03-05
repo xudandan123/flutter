@@ -9,7 +9,13 @@ class AddCompany extends StatefulWidget {
   final String title;
   final callback;
   final callback2;
-  AddCompany({Key key, this.showIndex, this.nameGroup, this.title, this.callback, this.callback2})
+  AddCompany(
+      {Key key,
+      this.showIndex,
+      this.nameGroup,
+      this.title,
+      this.callback,
+      this.callback2})
       : super(key: key);
   @override
   _AddCompanyState createState() => _AddCompanyState();
@@ -18,6 +24,7 @@ class AddCompany extends StatefulWidget {
 class _AddCompanyState extends State<AddCompany> {
   TextEditingController _userEtController = TextEditingController();
   FocusNode nameFocusNode;
+  bool _showList = false;
 
   @override
   void dispose() {
@@ -30,6 +37,7 @@ class _AddCompanyState extends State<AddCompany> {
     super.initState();
     nameFocusNode = FocusNode();
   }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> nameArr = [];
@@ -69,6 +77,11 @@ class _AddCompanyState extends State<AddCompany> {
                   controller: _userEtController,
                   cursorColor: Colors.grey,
                   textAlignVertical: TextAlignVertical(y: 1),
+                  onChanged: (e) {
+                    setState(() {
+                      _showList = true;
+                    });
+                  },
                   decoration: InputDecoration(
                     hintText: '',
                     hintStyle: TextStyle(fontSize: 14),
@@ -84,6 +97,9 @@ class _AddCompanyState extends State<AddCompany> {
                         alignment: Alignment.centerRight,
                         icon: Icon(Icons.control_point),
                         onPressed: () {
+                          setState(() {
+                            _showList = false;
+                          });
                           widget.callback(_userEtController.text);
                           WidgetsBinding.instance.addPostFrameCallback(
                               (_) => _userEtController.clear());
@@ -98,12 +114,51 @@ class _AddCompanyState extends State<AddCompany> {
                   ),
                 ),
               ),
-              SizedBox(height: 5),
               Container(
-                alignment: Alignment.centerLeft,
-                child: Wrap(
-                  spacing: 8.0, // 主轴(水平)方向间距
-                  children: nameArr,
+                constraints:
+                    BoxConstraints(minWidth: double.infinity, minHeight: 50),
+                child: Stack(
+                  alignment: Alignment.topLeft, //指定未定位或部分定位widget的对齐方式
+                  children: <Widget>[
+                    Positioned(
+                      top: 0,
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Wrap(
+                          spacing: 8.0, // 主轴(水平)方向间距
+                          children: nameArr,
+                        ),
+                      ),
+                    ),
+                    this._showList == true
+                        ? Column(
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _showList = false;
+                                  });
+                                  widget.callback(_userEtController.text);
+                                  WidgetsBinding.instance.addPostFrameCallback(
+                                      (_) => _userEtController.clear());
+                                  FocusScope.of(context)
+                                      .requestFocus(FocusNode());
+                                },
+                                child: Container(
+                                  color: Constants.COLOR_CCCCCC,
+                                  alignment: Alignment.centerLeft,
+                                  padding: EdgeInsets.only(left: 5),
+                                  constraints: BoxConstraints(
+                                      minWidth: double.infinity, //宽度尽可能大
+                                      minHeight: 30.0 //最小高度为50像素
+                                      ),
+                                  child: Text('测试'),
+                                ),
+                              ),
+                            ],
+                          )
+                        : SizedBox(height: 0),
+                  ],
                 ),
               ),
             ],
