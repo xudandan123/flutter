@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter_app/constants/constants.dart';
+import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 
 Images() {
   return Column(
@@ -160,51 +161,46 @@ Forms2(bool inWork, Function callback) {
 }
 
 class Forms extends StatefulWidget {
+  final callback;
+  Forms({Key key, this.callback}) : super(key: key);
   @override
   _FormsState createState() => new _FormsState();
 }
 
 class _FormsState extends State<Forms> {
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-
-  String _name = '';
-
-  String _password = '';
-
-  DateTime _selectedDate; //当前选中的日期
-
-  void _forSubmitted() {
-    var _form = _formKey.currentState;
-
-    if (_form.validate()) {
-      _form.save();
-      print(_name);
-      print(_password);
-      print(_selectedDate);
-    }
-  }
+  DateTime _selectedDateTime = DateTime.now(); // 默认日期
 
   @override
   Widget build(BuildContext context) {
-    //调起日期选择器
-    _showDatePicker() {
-      //获取异步方法里面的值的第一种方式：then
-      showDatePicker(
-        //如下四个参数为必填参数
-        context: context,
-        initialDate: DateTime.now(), //选中的日期
-        firstDate: DateTime(1980), //日期选择器上可选择的最早日期
-        lastDate: DateTime(2100), //日期选择器上可选择的最晚日期
-      ).then((selectedValue) {
-        setState(() {
-          //将选中的值传递出来
-          this._selectedDate = selectedValue;
-        });
-      });
+    void _showDatePicker() {
+      DatePicker.showDatePicker(
+        context,
+        pickerTheme: DateTimePickerTheme(
+          showTitle: true,
+          confirm: Text('确定', style: TextStyle(color: Constants.COLOR_1FB3C4)),
+          cancel: Text('取消', style: TextStyle(color: Constants.COLOR_333333)),
+        ),
+        minDateTime: DateTime.parse("1960-01-01"), //选择器上可选择的最早时间
+        maxDateTime: DateTime.parse("2021-12-01"), //选择器上可选择的最晚时间
+        initialDateTime: _selectedDateTime, //选择器的当前选中时间
+        dateFormat: "yyyy-MMMM", //时间格式
+        locale: DateTimePickerLocale.zh_cn, //国际化配置
+        onChange: (dateTime, List<int> index) {
+          setState(() {
+            _selectedDateTime = dateTime;
+          });
+        },
+        onConfirm: (dateTime, List<int> index) {
+          setState(() {
+            _selectedDateTime = dateTime;
+            widget.callback({"date": formatDate(this._selectedDateTime, [yyyy, "-", mm])});
+          });
+        },
+      );
     }
 
     return new Container(
-      // padding: const EdgeInsets.all(16.0),
       child: new Form(
         key: _formKey,
         child: new Column(
@@ -229,19 +225,47 @@ class _FormsState extends State<Forms> {
                   hintText: '请输入学校全称',
                   hintStyle: TextStyle(fontSize: 14),
                   focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide:
-                            BorderSide(width: 1, color: Constants.COLOR_808080),
-                      ),
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide:
+                        BorderSide(width: 1, color: Constants.COLOR_808080),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide:
                         BorderSide(width: 1, color: Constants.COLOR_808080),
                   ),
                 ),
-                onSaved: (val) {
+                onChanged: (val) {
                   setState(() {
-                    _name = val;
+                    widget.callback({"school": val});
+                  });
+                },
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              constraints: BoxConstraints(maxHeight: 32),
+              child: TextFormField(
+                textAlignVertical: TextAlignVertical(y: 1), // 文字居中
+                decoration: new InputDecoration(
+                  hintText: '请输入学院全称',
+                  hintStyle: TextStyle(fontSize: 14),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide:
+                        BorderSide(width: 1, color: Constants.COLOR_808080),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide:
+                        BorderSide(width: 1, color: Constants.COLOR_808080),
+                  ),
+                ),
+                onChanged: (val) {
+                  setState(() {
+                    widget.callback({"college": val});
                   });
                 },
               ),
@@ -257,18 +281,18 @@ class _FormsState extends State<Forms> {
                   hintText: '请输入学科专业全称',
                   hintStyle: TextStyle(fontSize: 14),
                   focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide:
-                            BorderSide(width: 1, color: Constants.COLOR_808080),
-                      ),
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide:
+                        BorderSide(width: 1, color: Constants.COLOR_808080),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide:
                         BorderSide(width: 1, color: Constants.COLOR_808080),
                   ),
                 ),
-                onSaved: (val) {
-                  _password = val;
+                onChanged: (val) {
+                  widget.callback({"major": val});
                 },
               ),
             ),
@@ -280,6 +304,7 @@ class _FormsState extends State<Forms> {
                 //调起日期选择器
                 _showDatePicker();
                 FocusScope.of(context).requestFocus(FocusNode());
+                widget.callback({"date": formatDate(this._selectedDateTime, [yyyy, "-", mm])});
               },
               child: Container(
                 height: 32,
@@ -293,9 +318,8 @@ class _FormsState extends State<Forms> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      this._selectedDate != null
-                          ? formatDate(
-                              this._selectedDate, [yyyy, "-", mm, "-", "dd"])
+                      this._selectedDateTime != null
+                          ? formatDate(this._selectedDateTime, [yyyy, "-", mm])
                           : '请选择毕业时间',
                       style: TextStyle(fontSize: 14, color: Color(0xFF777777)),
                     ),
@@ -310,26 +334,26 @@ class _FormsState extends State<Forms> {
             SizedBox(
               height: 60,
             ),
-            GestureDetector(
-              child: Container(
-                alignment: Alignment.center,
-                width: 112,
-                height: 32,
-                decoration: BoxDecoration(
-                  // 容器的背景颜色和背景图片
-                  border: Border.all(color: Constants.COLOR_1FB3C4, width: 1),
-                  borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                ),
-                child: Text(
-                  '保存',
-                  style: TextStyle(color: Constants.COLOR_1FB3C4),
-                ),
-              ),
-              onTap: () {
-                // this.pressed();
-                this._forSubmitted();
-              },
-            ),
+            // GestureDetector(
+            //   child: Container(
+            //     alignment: Alignment.center,
+            //     width: 112,
+            //     height: 32,
+            //     decoration: BoxDecoration(
+            //       // 容器的背景颜色和背景图片
+            //       border: Border.all(color: Constants.COLOR_1FB3C4, width: 1),
+            //       borderRadius: BorderRadius.all(Radius.circular(16.0)),
+            //     ),
+            //     child: Text(
+            //       '保存',
+            //       style: TextStyle(color: Constants.COLOR_1FB3C4),
+            //     ),
+            //   ),
+            //   onTap: () {
+            //     // this.pressed();
+            //     this._forSubmitted();
+            //   },
+            // ),
           ],
         ),
       ),

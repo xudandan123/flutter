@@ -119,7 +119,9 @@ class _AgentRegisterState extends State<AgentRegister> {
         120;
     Chips = {
       "Images": Images(),
-      "Forms": Forms(),
+      "Forms": Forms(callback: (Map<String, String> key){
+        print(key);
+      }),
       "Forms2": Forms2(inWork, (type) {
         setState(() {
           inWork = type;
@@ -380,7 +382,7 @@ class _AgentRegisterState extends State<AgentRegister> {
                                 ? Column(
                                     children: <Widget>[
                                       SizedBox(height: 46),
-                                      TabButton.createBtn(Constants.companyOr,
+                                      TabButton.createBtn(_step == 2 ? Constants.companyOr : Constants.hasOr,
                                           _activeTag2[_step], (k) {
                                         setState(() {
                                           _activeTag2[_step] = k;

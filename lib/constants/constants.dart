@@ -132,6 +132,10 @@ class Constants {
     {"text": "有定向单位", "height": 32.0, "right": 0.0, "left": 0.0},
     {"text": "没有", "height": 32.0, "right": 0.0, "left": 0.0}
   ];
+    static List experienceOr = [
+    {"text": "有管理经验", "height": 32.0, "right": 0.0, "left": 0.0},
+    {"text": "无管理经验", "height": 32.0, "right": 0.0, "left": 0.0}
+  ];
   static List agentUserList = [
     {"step": 1, "text": "1. K-服务标签  - 6"},
     {"step": 7, "text": "2. M-照片视频 - 1"},

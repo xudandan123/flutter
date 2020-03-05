@@ -115,7 +115,9 @@ class _TalentRegisterState extends State<TalentRegister> {
     double screenHeight = MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom - 120;
     Chips = {
       "Images": Images(),
-      "Forms": Forms(),
+      "Forms": Forms(callback: (Map<String, String> key){
+        print(key);
+      }),
       "Forms2": Forms2(inWork, (type) {
         setState(() {
           inWork = type;
@@ -308,9 +310,9 @@ class _TalentRegisterState extends State<TalentRegister> {
                             Column(
                               children: <Widget>[
                                 pageInfoData["hasOr"] != null && pageInfoData["hasOr"]
-                                    ? TabButton.createBtn(
+                                    ? TabButton.createBtn(_step == 14 ? Constants.experienceOr :
                                         Constants.hasOr, _activeTag, (k) {
-                                        Map datas =
+                                        Map<String, dynamic> datas =
                                             k == 0 ? pageInfoData : {"list": []};
                                         List ids = [];
                                         if (talentUserInfo.isEmpty == false &&
