@@ -85,9 +85,10 @@ creatChoice(Map<String,dynamic > datas, int listNum, activeNum, callback, callba
         activeId.indexOf(datas['list'][i]['id']) == -1
             ? activeId.add(datas['list'][i]['id'])
             : activeId.remove(datas['list'][i]['id']);
-        if(datas['single'] == null) {
-          creatChoice(datas, listNum, activeId, callback, callback2);
-        }
+        creatChoice(datas, listNum, activeId, callback, callback2);
+        // if(datas['single'] == null) {
+        //   creatChoice(datas, listNum, activeId, callback, callback2);
+        // }
       },
     );
   }

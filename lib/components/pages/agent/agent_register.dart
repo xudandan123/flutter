@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/constants/constants.dart';
@@ -66,21 +68,23 @@ class _AgentRegisterState extends State<AgentRegister> {
     }, (id, [single]) {
       String key = agentLoginData['Step${_step}']["key"];
       if (single != null) {
-        Map currentMap = agentLoginData['Step${_step + 1}'];
-        List ids = [];
-        if (_step < agentLoginData.length) {
-          if (agentUserInfo.isEmpty == false &&
-              agentUserInfo[currentMap["key"]] != null) {
-            ids = agentUserInfo[currentMap["key"]]["ids"];
+        Future.delayed(Duration(milliseconds: 500), () {
+          Map currentMap = agentLoginData['Step${_step + 1}'];
+          List ids = [];
+          if (_step < agentLoginData.length) {
+            if (agentUserInfo.isEmpty == false &&
+                agentUserInfo[currentMap["key"]] != null) {
+              ids = agentUserInfo[currentMap["key"]]["ids"];
+            }
+            this._changeList(currentMap, currentMap["type"], ids);
+            setState(() {
+              _step += 1;
+            });
+            agentUserInfo[key] = {
+              "ids": [id]
+            };
           }
-          this._changeList(currentMap, currentMap["type"], ids);
-          setState(() {
-            _step += 1;
-          });
-          agentUserInfo[key] = {
-            "ids": [id]
-          };
-        }
+        });
         return;
       }
       setState(() {
@@ -109,7 +113,10 @@ class _AgentRegisterState extends State<AgentRegister> {
   @override
   Widget build(BuildContext context) {
     Map pageInfoData = agentLoginData['Step${_step}'];
-    double screenHeight = MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom - 120;
+    double screenHeight = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        MediaQuery.of(context).padding.bottom -
+        120;
     Chips = {
       "Images": Images(),
       "Forms": Forms(),
