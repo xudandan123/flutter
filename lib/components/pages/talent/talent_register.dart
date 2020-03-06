@@ -40,8 +40,10 @@ class _TalentRegisterState extends State<TalentRegister> {
     Map pageInfoData = talentLoginData['Step${_step}'];
     this._changeList(pageInfoData, pageInfoData["type"], []);
     this._changeList(pageInfoData, 3, [], Constants.education, "education");
-    this._changeList(pageInfoData, 3, [], Constants.foreignLanguage, "foreignLanguage");
-    this._changeList(pageInfoData, 3, [], Constants.educationType, "educationType");
+    this._changeList(
+        pageInfoData, 3, [], Constants.foreignLanguage, "foreignLanguage");
+    this._changeList(
+        pageInfoData, 3, [], Constants.educationType, "educationType");
   }
 
   _changeList(Map datas, int type, List activeId,
@@ -69,21 +71,23 @@ class _TalentRegisterState extends State<TalentRegister> {
     }, (id, [single]) {
       String key = talentLoginData['Step${_step}']["key"];
       if (single != null) {
-        Map currentMap = talentLoginData['Step${_step + 1}'];
-        List ids = [];
-        if (_step < talentLoginData.length) {
-          if (talentLoginData.isEmpty == false &&
-              talentLoginData[currentMap["key"]] != null) {
-            ids = talentLoginData[currentMap["key"]]["ids"];
+        Future.delayed(Duration(milliseconds: 500), () {
+          Map currentMap = talentLoginData['Step${_step + 1}'];
+          List ids = [];
+          if (_step < talentLoginData.length) {
+            if (talentLoginData.isEmpty == false &&
+                talentLoginData[currentMap["key"]] != null) {
+              ids = talentLoginData[currentMap["key"]]["ids"];
+            }
+            this._changeList(currentMap, currentMap["type"], ids);
+            setState(() {
+              _step += 1;
+            });
+            talentUserInfo[key] = {
+              "ids": [id]
+            };
           }
-          this._changeList(currentMap, currentMap["type"], ids);
-          setState(() {
-            _step += 1;
-          });
-          talentUserInfo[key] = {
-            "ids": [id]
-          };
-        }
+        });
         return;
       }
       setState(() {
@@ -112,10 +116,13 @@ class _TalentRegisterState extends State<TalentRegister> {
   @override
   Widget build(BuildContext context) {
     Map pageInfoData = talentLoginData['Step${_step}'];
-    double screenHeight = MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom - 120;
+    double screenHeight = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        MediaQuery.of(context).padding.bottom -
+        120;
     Chips = {
       "Images": Images(),
-      "Forms": Forms(callback: (Map<String, String> key){
+      "Forms": Forms(callback: (Map<String, String> key) {
         print(key);
       }),
       "Forms2": Forms2(inWork, (type) {
@@ -163,8 +170,8 @@ class _TalentRegisterState extends State<TalentRegister> {
                   FocusScope.of(context).requestFocus(FocusNode());
                 },
                 child: Container(
-                  constraints:
-                      BoxConstraints(minHeight: screenHeight, minWidth: double.infinity),
+                  constraints: BoxConstraints(
+                      minHeight: screenHeight, minWidth: double.infinity),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14.0),
                       color: Constants.COLOR_e5e5e5),
@@ -190,8 +197,8 @@ class _TalentRegisterState extends State<TalentRegister> {
                                         ids = talentUserInfo[currentMap["key"]]
                                             ["ids"];
                                       }
-                                      this._changeList(currentMap,
-                                          currentMap["type"], ids);
+                                      this._changeList(
+                                          currentMap, currentMap["type"], ids);
                                       setState(() {
                                         _step -= 1;
                                       });
@@ -221,8 +228,8 @@ class _TalentRegisterState extends State<TalentRegister> {
                                         ids = talentUserInfo[currentMap["key"]]
                                             ["ids"];
                                       }
-                                      this._changeList(currentMap,
-                                          currentMap["type"], ids);
+                                      this._changeList(
+                                          currentMap, currentMap["type"], ids);
                                       setState(() {
                                         _step += 1;
                                       });
@@ -309,27 +316,36 @@ class _TalentRegisterState extends State<TalentRegister> {
                             SizedBox(height: 2),
                             Column(
                               children: <Widget>[
-                                pageInfoData["hasOr"] != null && pageInfoData["hasOr"]
-                                    ? TabButton.createBtn(_step == 14 ? Constants.experienceOr :
-                                        Constants.hasOr, _activeTag, (k) {
-                                        Map<String, dynamic> datas =
-                                            k == 0 ? pageInfoData : {"list": []};
+                                pageInfoData["hasOr"] != null &&
+                                        pageInfoData["hasOr"]
+                                    ? TabButton.createBtn(
+                                        _step == 14
+                                            ? Constants.experienceOr
+                                            : Constants.hasOr,
+                                        _activeTag, (k) {
+                                        Map<String, dynamic> datas = k == 0
+                                            ? pageInfoData
+                                            : {"list": []};
                                         List ids = [];
                                         if (talentUserInfo.isEmpty == false &&
                                             talentUserInfo[
                                                     pageInfoData["key"]] !=
                                                 null) {
-                                          ids = talentUserInfo[pageInfoData["key"]]["ids"];
+                                          ids = talentUserInfo[
+                                              pageInfoData["key"]]["ids"];
                                         }
-                                        this._changeList(datas,
-                                            pageInfoData["type"], ids);
+                                        this._changeList(
+                                            datas, pageInfoData["type"], ids);
                                         setState(() {
                                           _activeTag = k;
                                         });
                                       }, 0)
                                     : SizedBox(height: 0),
                                 SizedBox(
-                                    height: pageInfoData["hasOr"] != null && pageInfoData["hasOr"] ? 10 : 0),
+                                    height: pageInfoData["hasOr"] != null &&
+                                            pageInfoData["hasOr"]
+                                        ? 10
+                                        : 0),
                               ],
                             ),
                             pageInfoData["list"].length != 0
@@ -382,7 +398,8 @@ class _TalentRegisterState extends State<TalentRegister> {
                                     ],
                                   )
                                 : SizedBox(height: 0),
-                            pageInfoData["hasInput"] != null && pageInfoData["hasInput"] &&
+                            pageInfoData["hasInput"] != null &&
+                                    pageInfoData["hasInput"] &&
                                     pageInfoData["inputTab"] != false
                                 ? Column(
                                     children: <Widget>[
@@ -397,7 +414,8 @@ class _TalentRegisterState extends State<TalentRegister> {
                                     ],
                                   )
                                 : SizedBox(height: 0),
-                            pageInfoData["hasInput"] != null && pageInfoData["hasInput"]
+                            pageInfoData["hasInput"] != null &&
+                                    pageInfoData["hasInput"]
                                 ? AddCompany(
                                     showIndex: _activeTag2[_step],
                                     nameGroup: _nameGroup[_step],
